@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - AgriTech AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-seedling me-2"></i>AgriTech AI - Farmer
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#" onclick="logout()">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="display-6 fw-bold">Welcome, <span id="farmerName">Farmer</span>!</h1>
+                    <p class="lead">Make informed decisions with AI-powered price predictions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <!-- Stats Cards -->
+        <div class="row mb-5">
+            <div class="col-md-3 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon bg-success text-white mx-auto">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h4 id="totalMarkets">0</h4>
+                    <p class="text-muted">Available Markets</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon bg-primary text-white mx-auto">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4 id="totalProducts">0</h4>
+                    <p class="text-muted">Products Tracked</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon bg-warning text-white mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 id="predictions">0</h4>
+                    <p class="text-muted">Price Predictions</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon bg-info text-white mx-auto">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 id="savedAmount">$0</h4>
+                    <p class="text-muted">Losses Prevented</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Prediction Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-crystal-ball me-2"></i>Price Prediction Tool</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="predictionForm" class="row g-3">
+                            <div class="col-md-4">
+                                <label for="productSelect" class="form-label">Select Product</label>
+                                <select class="form-select" id="productSelect" required>
+                                    <option value="">Choose a product...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="marketSelect" class="form-label">Select Market</label>
+                                <select class="form-select" id="marketSelect" required>
+                                    <option value="">Choose a market...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="quantity" class="form-label">Quantity (kg)</label>
+                                <input type="number" class="form-control" id="quantity" min="1" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-search me-2"></i>Get Price Prediction
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Results -->
+        <div id="predictionResults" class="row mb-5" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Price Prediction Results</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="prediction-card p-3 mb-3">
+                                    <h6 class="text-success">Selling Price Prediction</h6>
+                                    <h3 id="sellingPrice" class="price-up">$0.00</h3>
+                                    <p class="mb-0">Best time to sell: <span id="bestSellTime">-</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="prediction-card p-3 mb-3">
+                                    <h6 class="text-primary">Buying Price Prediction</h6>
+                                    <h3 id="buyingPrice" class="price-down">$0.00</h3>
+                                    <p class="mb-0">Best time to buy: <span id="bestBuyTime">-</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Recommendation:</strong> <span id="recommendation">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Comparison -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0"><i class="fas fa-balance-scale me-2"></i>Market Comparison</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>Market</th>
+                                        <th>Product</th>
+                                        <th>Current Selling Price</th>
+                                        <th>Current Buying Price</th>
+                                        <th>Trend</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="marketComparisonTable">
+                                    <!-- Dynamic content will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/farmer-dashboard.js"></script>
+</body>
+</html>

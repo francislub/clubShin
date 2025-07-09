@@ -1,0 +1,174 @@
+<!-- Enhanced Reusable Header Component -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#" id="brandLink">
+            <div class="brand-logo me-2">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">AgriTech AI</span>
+                <small class="brand-subtitle d-block d-md-none">Smart Farming</small>
+            </div>
+        </a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto" id="navLinks">
+                <!-- Dynamic navigation links will be inserted here -->
+            </ul>
+            
+            <!-- Search Bar (for authenticated users) -->
+            <div class="navbar-search me-3 d-none" id="navbarSearch">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search..." id="globalSearch">
+                    <button class="btn btn-outline-light btn-sm" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Notifications (for authenticated users) -->
+            <div class="navbar-nav me-3 d-none" id="notificationDropdown">
+                <div class="nav-item dropdown">
+                    <a class="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount" style="display: none;">
+                            0
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
+                        <li class="dropdown-header d-flex justify-content-between align-items-center">
+                            <span>Notifications</span>
+                            <button class="btn btn-sm btn-link text-muted p-0" onclick="markAllAsRead()">
+                                Mark all as read
+                            </button>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <div id="notificationList" class="notification-list">
+                            <li class="dropdown-item text-center text-muted py-3">
+                                No new notifications
+                            </li>
+                        </div>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-center small" href="#" id="viewAllNotifications">
+                                View all notifications
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- User Menu -->
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown" id="userDropdown" style="display: none;">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="user-avatar me-2">
+                            <img src="/placeholder.svg?height=32&width=32" alt="User" class="rounded-circle" width="32" height="32" id="userAvatar">
+                        </div>
+                        <div class="user-info d-none d-lg-block">
+                            <span class="user-name" id="userName">User</span>
+                            <small class="user-role d-block text-light opacity-75" id="userRole">Farmer</small>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end user-dropdown">
+                        <li class="dropdown-header">
+                            <div class="d-flex align-items-center">
+                                <img src="/placeholder.svg?height=40&width=40" alt="User" class="rounded-circle me-2" width="40" height="40">
+                                <div>
+                                    <div class="fw-bold" id="dropdownUserName">User</div>
+                                    <small class="text-muted" id="dropdownUserEmail">user@example.com</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="#" id="profileLink">
+                                <i class="fas fa-user me-2"></i>My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" id="settingsLink">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#" id="helpLink">
+                                <i class="fas fa-question-circle me-2"></i>Help & Support
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- Login/Register Buttons (for public pages) -->
+                <li class="nav-item dropdown" id="authButtons">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-sign-in-alt me-1"></i>Login
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li class="dropdown-header">Choose Portal</li>
+                        <li>
+                            <a class="dropdown-item" href="farmer-login.html">
+                                <i class="fas fa-user-tie me-2 text-success"></i>Farmer Portal
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="agent-login.html">
+                                <i class="fas fa-briefcase me-2 text-primary"></i>Agent Portal
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="dropdown-header">New User?</li>
+                        <li>
+                            <a class="dropdown-item" href="farmer-register.html">
+                                <i class="fas fa-user-plus me-2 text-success"></i>Register as Farmer
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="agent-register.html">
+                                <i class="fas fa-briefcase me-2 text-primary"></i>Register as Agent
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Bottom Navigation (for authenticated users) -->
+<div class="mobile-bottom-nav d-lg-none" id="mobileBottomNav" style="display: none !important;">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col mobile-nav-item" id="mobileHome">
+                <i class="fas fa-home"></i>
+                <small>Home</small>
+            </div>
+            <div class="col mobile-nav-item" id="mobileMarkets">
+                <i class="fas fa-store"></i>
+                <small>Markets</small>
+            </div>
+            <div class="col mobile-nav-item" id="mobilePredictions">
+                <i class="fas fa-crystal-ball"></i>
+                <small>Predict</small>
+            </div>
+            <div class="col mobile-nav-item" id="mobileTransactions">
+                <i class="fas fa-exchange-alt"></i>
+                <small>History</small>
+            </div>
+            <div class="col mobile-nav-item" id="mobileProfile">
+                <i class="fas fa-user"></i>
+                <small>Profile</small>
+            </div>
+        </div>
+    </div>
+</div>
