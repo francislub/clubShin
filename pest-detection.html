@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+     <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-4 text-success fade-in">AI-Powered Pest & Disease Detection</h1>
+            <p class="lead text-center mb-5 fade-in">
+                Upload an image of your crop or plant and let our AI analyze it for potential pests or diseases. Get instant insights to protect your harvest.
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow p-4 mb-5 fade-in">
+                        <h4 class="card-title text-success mb-3">Upload Image for Analysis</h4>
+                        <div class="mb-3">
+                            <label for="imageUpload" class="form-label">Select an image file:</label>
+                            <input class="form-control" type="file" id="imageUpload" accept="image/*">
+                        </div>
+                        <div class="text-center mb-3">
+                            <img id="imagePreview" src="#" alt="Image Preview" class="img-fluid rounded" style="display: none; max-height: 300px;">
+                        </div>
+                        <button id="detectPestBtn" class="btn btn-success btn-lg" disabled>Detect Pest/Disease</button>
+                    </div>
+
+                    <div id="detectionResults" class="card shadow p-4 fade-in" style="display: none;">
+                        <h4 class="card-title text-success mb-3">Detection Results</h4>
+                        <div id="loadingSpinner" class="text-center" style="display: none;">
+                            <div class="spinner-border text-success" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Analyzing image, please wait...</p>
+                        </div>
+                        <div id="resultContent" style="display: none;">
+                            <p><strong>Analysis Status:</strong> <span id="statusText" class="fw-bold"></span></p>
+                            <p><strong>Detected Problem:</strong> <span id="detectedProblem" class="text-danger fw-bold"></span></p>
+                            <p><strong>Confidence Level:</strong> <span id="confidenceLevel"></span></p>
+                            <h5 class="mt-4 text-success">Recommended Action:</h5>
+                            <p id="recommendationText"></p>
+                            <hr>
+                            <p class="text-muted small">
+                                *Disclaimer: AI detection provides preliminary insights. Always consult with an agricultural expert for definitive diagnosis and treatment plans.
+                            </p>
+                        </div>
+                        <div id="noProblemContent" style="display: none;">
+                            <p class="text-success fw-bold"><i class="fas fa-check-circle me-2"></i>No significant pest or disease detected. Your crop appears healthy!</p>
+                            <p class="text-muted small">Keep monitoring your plants regularly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            ---
+
+            <section id="pest-examples" class="mt-5">
+                <h2 class="text-center mb-4 text-success fade-in">Common Pest & Disease Examples</h2>
+                <p class="text-center mb-5 fade-in">Learn about common crop issues to better identify and manage them.</p>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card shadow p-4 mb-4 fade-in">
+                            <h3 class="card-title text-success mb-3">Early Blight (Tomato)</h3>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <img src="images/toma.webp" class="img-fluid rounded" alt="Tomato Early Blight">
+                                    <p class="text-center text-muted small mt-2">Example of affected tomato leaf</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Affected Crop: <span class="fw-normal">Tomatoes, Potatoes</span></h5>
+                                    <h5>Key Symptoms:</h5>
+                                    <ul>
+                                        <li><strong class="text-danger">Dark spots on leaves:</strong> These spots are usually concentric rings (target-like) and can be up to 1/2 inch in diameter.</li>
+                                        <li>In severe cases, **fuzzy white growth on stems** (though this is more characteristic of *Late Blight* or powdery mildew, I will include it as per your request but note the primary symptom is the dark spots).</li>
+                                        <li>Yellowing of tissue around spots.</li>
+                                        <li>Premature defoliation (leaves dropping off).</li>
+                                        <li>Lesions on stems and fruit.</li>
+                                    </ul>
+                                    <h5>Recommended Actions:</h5>
+                                    <ol>
+                                        <li>**Remove infected leaves:** Promptly remove and destroy any infected leaves or plant debris to reduce the spread of spores.</li>
+                                        <li>**Apply copper-based fungicide:** As a preventative measure or at the first sign of disease, apply a suitable copper-based fungicide following product instructions.</li>
+                                        <li>**Ensure good air circulation:** Space plants adequately and prune lower branches to improve airflow, which helps dry foliage and reduces fungal growth.</li>
+                                        <li>Water plants at the base to avoid wetting foliage.</li>
+                                        <li>Rotate crops annually to prevent pathogen buildup in the soil.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
