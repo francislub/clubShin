@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Custom CSS for AgriTech AI - main.css */
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #28a745; /* Green for agriculture */
+            --secondary-color: #007bff; /* Blue */
+            --accent-color: #ffc107; /* Yellow */
+            --dark-color: #343a40; /* Dark grey */
+            --light-color: #f8f9fa; /* Light grey */
+            --text-color: #495057;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        /* Header & Navbar Styling */
+        .navbar {
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: var(--light-color) !important;
+            font-weight: 400;
+            margin-right: 15px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838; /* Darker green */
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1500x500?text=Uganda+Farming+Landscape') no-repeat center center / cover; /* Placeholder image */
+            color: white;
+            padding: 80px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section .lead {
+            font-size: 1.25rem;
+            color: #f0f0f0;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Article Cards */
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-text strong {
+            color: var(--dark-color);
+        }
+
+        /* List Groups for Principles/Considerations */
+        .list-group-item {
+            background-color: white;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            border-left-color: var(--secondary-color);
+        }
+
+        .list-group-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--light-color);
+            border-top: 5px solid var(--primary-color);
+        }
+
+        #contact .form-control, #contact .form-select, #contact .form-control:focus {
+            border-radius: 0.5rem;
+            border-color: #ced4da;
+            box-shadow: none;
+        }
+
+        #contact .form-control:focus, #contact .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+
+        .btn-success {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #218838; /* Darker green */
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* HR Separator Styling */
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--secondary-color), rgba(0, 0, 0, 0));
+            margin: 4rem 0;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.fade-in { /* Double class to override initial opacity */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .card-title {
+                font-size: 1.3rem;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="container my-5">
+        <section class="hero-section text-center text-white py-5 mb-5 rounded-3">
+            <h1 class="display-4 fw-bold">Control Methods for Crop Pests and Diseases</h1>
+            <p class="lead mt-3">A comprehensive overview for effective and sustainable crop management, with a focus on Uganda.</p>
+            <a href="#introduction" class="btn btn-primary btn-lg mt-4 shadow">Learn More <i class="fas fa-arrow-down ms-2"></i></a>
+        </section>
+
+        <section id="introduction" class="mb-5 fade-in">
+            <h2 class="text-center mb-4 section-title">Introduction to Integrated Pest Management (IPM)</h2>
+            <p class="lead">Integrated Pest Management (IPM) is a sustainable and holistic approach to managing pests and diseases. Instead of relying solely on one method (like chemical pesticides), IPM combines various strategies to keep pest and disease populations below economically damaging levels while minimizing risks to human health and the environment. This approach is highly relevant for smallholder farmers in Uganda, where resources may be limited and environmental sustainability is crucial.</p>
+
+            <h3 class="mt-4">Key Principles of IPM:</h3>
+            <ul class="list-group list-group-flush shadow-sm rounded">
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-shield-alt text-success me-3"></i> <strong>Prevention:</strong> The first line of defense is to prevent problems from occurring in the first place.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-eye text-info me-3"></i> <strong>Monitoring and Early Detection:</strong> Regularly inspect crops to identify pests and diseases early.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-flask text-warning me-3"></i> <strong>Accurate Identification:</strong> Know what pest or disease you are dealing with to choose the right control method.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-chart-line text-danger me-3"></i> <strong>Threshold Levels:</strong> Intervene only when pest or disease populations reach levels that could cause significant economic damage.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-cogs text-secondary me-3"></i> <strong>Combination of Methods:</strong> Use a variety of control methods, prioritizing the least harmful ones.</li>
+            </ul>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="cultural-control" class="mb-5 fade-in">
+            <h2 class="text-center mb-4 section-title">I. Cultural Control Methods</h2>
+            <p class="text-center mb-4">These methods modify the crop environment to make it less favorable for pests and diseases, or to enhance the crop's ability to resist them. They are often the most cost-effective and environmentally friendly.</p>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-sync-alt me-2"></i> Crop Rotation</h3>
+                            <p class="card-text"><strong>Description:</strong> Alternating different types of crops in a sequence on the same land over time.</p>
+                            <p class="card-text"><strong>How it works:</strong> Breaks the life cycles of pests and pathogens specific to certain crops. It also improves soil health and nutrient balance.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Highly recommended for controlling Common Blight, Halo Blight, Bean Rust, Fusarium wilt, and soil-borne pests. Rotating cereals with legumes (e.g., maize with beans) is common.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-clock me-2"></i> Timely Planting and Harvesting</h3>
+                            <p class="card-text"><strong>Description:</strong> Planting crops at the optimal time for their growth and harvesting before pest or disease pressure becomes severe.</p>
+                            <p class="card-text"><strong>How it works:</strong> Allows crops to establish strong growth before pests become abundant or before specific disease conditions are most prevalent.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Can help crops escape peak infestations of pests like cutworms and bean fly. Early planting is a common recommendation.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-broom me-2"></i> Sanitation / Field Hygiene</h3>
+                            <p class="card-text"><strong>Description:</strong> Removing and destroying infected plant debris, volunteer plants, and weeds.</p>
+                            <p class="card-text"><strong>How it works:</strong> Reduces the source of inoculum for diseases and breeding grounds for pests.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Essential for controlling diseases like Common Blight, bean anthracnose, and reducing populations of pests like flower beetles. Burning crop debris (where appropriate and safe) is traditional.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-seedling me-2"></i> Resistant/Tolerant Varieties</h3>
+                            <p class="card-text"><strong>Description:</strong> Planting crop varieties that have been bred or naturally possess genes that make them resistant or tolerant to specific pests or diseases.</p>
+                            <p class="card-text"><strong>How it works:</strong> The plant's own defense mechanisms prevent or minimize pest damage or disease development.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> A cornerstone of management. E.g., maize varieties resistant to Maize Streak Virus, or bean varieties resistant to BCMV. Reduces need for chemical interventions.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-flask-vial me-2"></i> Proper Fertilization & Soil Health</h3>
+                            <p class="card-text"><strong>Description:</strong> Ensuring plants receive adequate, balanced nutrients and maintaining healthy soil structure.</p>
+                            <p class="card-text"><strong>How it works:</strong> Strong, healthy plants are more resilient and better able to withstand pest and disease attacks. Good soil health supports beneficial microorganisms.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Promoting organic amendments like farmyard manure and compost to improve soil fertility and control diseases like Fusarium wilt and root rots.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-water me-2"></i> Water Management</h3>
+                            <p class="card-text"><strong>Description:</strong> Providing appropriate moisture levels, avoiding overwatering, and ensuring good drainage.</p>
+                            <p class="card-text"><strong>How it works:</strong> Many fungal and bacterial diseases thrive in excessively wet conditions. Poor drainage can lead to root rot.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Managing irrigation wisely and ensuring fields are well-drained. Hilling up soil can help improve drainage and protect roots from pests like bean fly.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-layer-group me-2"></i> Intercropping/Mixed Cropping</h3>
+                            <p class="card-text"><strong>Description:</strong> Growing two or more different crops in the same field at the same time.</p>
+                            <p class="card-text"><strong>How it works:</strong> Can confuse pests, provide physical barriers, attract natural enemies, or repel pests. Diverse cropping systems are generally more resilient.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Intercropping maize and beans is common. Can help reduce the incidence of certain bean diseases or attract beneficial insects.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-cut me-2"></i> Timely Weeding</h3>
+                            <p class="card-text"><strong>Description:</strong> Removing weeds promptly from the field.</p>
+                            <p class="card-text"><strong>How it works:</strong> Weeds compete with crops for nutrients and water, stressing the crop and making it more susceptible to pests and diseases. Weeds can also serve as alternative hosts.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Critical for all crops. E.g., leaving fields weed-free for 6 weeks before planting can help control maize stem borers.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="biological-control" class="mb-5 fade-in">
+            <h2 class="text-center mb-4 section-title">II. Biological Control Methods</h2>
+            <p class="text-center mb-4">This involves using living organisms (natural enemies) to control pests.</p>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-success"><i class="fas fa-leaf me-2"></i> Conservation Biological Control</h3>
+                            <p class="card-text"><strong>Description:</strong> Modifying the farming environment to protect and enhance existing populations of beneficial insects and microorganisms that naturally control pests and diseases.</p>
+                            <p class="card-text"><strong>How it works:</strong> Providing habitat, food sources (e.g., nectar-producing plants), and avoiding broad-spectrum pesticides that harm beneficials.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Encouraging practices that support ladybugs (predators of aphids), parasitic wasps, and other natural enemies.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-success"><i class="fas fa-bug me-2"></i> Augmentation Biological Control</h3>
+                            <p class="card-text"><strong>Description:</strong> Releasing commercially reared natural enemies into the field to boost their populations.</p>
+                            <p class="card-text"><strong>How it works:s</strong> Aims to overwhelm pest populations with their natural predators or parasites.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Less common for smallholder farmers due to cost, but growing interest in local production and use of beneficial insects (e.g., for fruit flies).</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-success"><i class="fas fa-bacteria me-2"></i> Biopesticides (Microbial)</h3>
+                            <p class="card-text"><strong>Description:</strong> Using formulations of naturally occurring microorganisms (e.g., bacteria, fungi, viruses, nematodes) that are pathogenic to specific pests.</p>
+                            <p class="card-text"><strong>How it works:</strong> These microorganisms infect and kill or incapacitate the target pest.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Examples include formulations of <em>Bacillus thuringiensis</em> (Bt) for caterpillars (like armyworms) or entomopathogenic fungi/nematodes for soil pests. Increasing research and availability of organic options.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="physical-mechanical-control" class="mb-5 fade-in">
+            <h2 class="text-center mb-4 section-title">III. Physical/Mechanical Control Methods</h2>
+            <p class="text-center mb-4">These involve directly removing or excluding pests and diseases.</p>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning"><i class="fas fa-hand-paper me-2"></i> Hand Picking</h3>
+                            <p class="card-text"><strong>Description:</strong> Manually removing visible pests (e.g., large caterpillars, beetles) or diseased plant parts.</p>
+                            <p class="card-text"><strong>How it works:</strong> Direct removal prevents further damage and spread.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Practical for small-scale plots and for larger, easily visible pests like cutworm larvae or flower beetles. Also used for removing infected leaves or plants.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning"><i class="fas fa-trap me-2"></i> Traps</h3>
+                            <p class="card-text"><strong>Description:</strong> Using devices to capture pests (sticky, pheromone, or light traps).</p>
+                            <p class="card-text"><strong>How it works:</strong> Reduces pest populations by trapping individuals.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Pheromone traps are used for pests like the African sweetpotato weevil and fall armyworm. Farmers can also use simple sticky traps (e.g., yellow sticky cards) for monitoring and control of flying insects.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning"><i class="fas fa-fence me-2"></i> Barriers/Exclusion</h3>
+                            <p class="card-text"><strong>Description:</strong> Using physical obstructions to prevent pests from reaching plants.</p>
+                            <p class="card-text"><strong>How it works:</strong> Physically blocks access for pests.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Netting for nursery beds to protect seedlings from insect vectors of viruses (e.g., in vegetables), or row covers in high-value crops.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning"><i class="fas fa-trash-alt me-2"></i> Rogueing (Removal of Diseased Plants)</h3>
+                            <p class="card-text"><strong>Description:</strong> Promptly removing and destroying individual plants showing symptoms of severe disease.</p>
+                            <p class="card-text"><strong>How it works:s</strong> Prevents the disease from spreading to healthy plants.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Crucial for managing viral diseases like Bean Common Mosaic Virus and Cassava Brown Streak Virus.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning"><i class="fas fa-sun me-2"></i> Solarization</h3>
+                            <p class="card-text"><strong>Description:</strong> Covering moist soil with clear plastic sheets during hot periods to heat the soil and kill pathogens, nematodes, and weed seeds.</p>
+                            <p class="card-text"><strong>How it works:</strong> High temperatures sterilize the top layer of soil.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Can be an effective pre-planting treatment for soil-borne diseases in small plots or nurseries.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="chemical-control" class="mb-5 fade-in">
+            <h2 class="text-center mb-4 section-title">IV. Chemical Control Methods</h2>
+            <p class="text-center mb-4">Chemical pesticides are used as a last resort in IPM, only when other methods are insufficient and pest/disease populations exceed economic thresholds. When used, the focus is on selective, targeted, and safe application.</p>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger"><i class="fas fa-spray-can me-2"></i> Insecticides</h3>
+                            <p class="card-text"><strong>Description:</strong> Chemical compounds designed to kill or deter insects.</p>
+                            <p class="card-text"><strong>Types:</strong> Can be contact (kill on contact), systemic (absorbed by the plant, making it toxic to feeding insects), or stomach poisons.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Used for severe outbreaks of pests like armyworms, cutworms (e.g., Thiamethoxam), bean fly (e.g., Imidacloprid, Azadirachtin), aphids (e.g., Dimethoate), and thrips. Specific products are available through agro-dealers.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger"><i class="fas fa-fungus me-2"></i> Fungicides</h3>
+                            <p class="card-text"><strong>Description:</strong> Chemical compounds that kill or inhibit the growth of fungi.</p>
+                            <p class="card-text"><strong>Types:</strong> Can be protectant (applied before infection to form a barrier) or curative/systemic (can stop an infection that has already started).</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Used for fungal diseases like Common Blight (e.g., Mancozeb) and Bean Rust. Also, seed dressing with fungicides can protect against seedling diseases like Fusarium wilt and damping-off.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger"><i class="fas fa-bacteria me-2"></i> Bactericides</h3>
+                            <p class="card-text"><strong>Description:</strong> Chemical compounds that target and kill bacteria.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Less common than fungicides for general crop use, but copper-based compounds are sometimes used for bacterial diseases.</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger"><i class="fas fa-worm me-2"></i> Nematicides</h3>
+                            <p class="card-text"><strong>Description:</strong> Chemicals used to control nematodes (microscopic roundworms) in the soil.</p>
+                            <p class="card-text"><small class="text-muted"><strong>Relevance in Uganda:</strong> Important for managing root-knot nematodes, which are a problem in many vegetable crops.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-5 text-center">Crucial Considerations for Chemical Control:</h3>
+            <ul class="list-group list-group-flush shadow-sm rounded">
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-book-reader text-primary me-3"></i> <strong>Read Labels Carefully:</strong> Understand the proper dosage, application method, safety precautions (Personal Protective Equipment - PPE), and re-entry intervals.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-bullseye text-primary me-3"></i> <strong>Targeted Application:</strong> Use spot treatments or specific formulations to minimize impact on beneficial organisms and the environment.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-redo-alt text-primary me-3"></i> <strong>Rotation of Active Ingredients:</strong> To prevent pests and pathogens from developing resistance, rotate pesticides with different modes of action.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-warehouse text-primary me-3"></i> <strong>Safe Storage and Disposal:</strong> Store pesticides securely away from food and children, and dispose of empty containers responsibly. Many smallholder farmers in Uganda lack proper storage and disposal facilities, leading to safety and environmental risks.</li>
+                <li class="list-group-item d-flex align-items-center"><i class="fas fa-exclamation-triangle text-primary me-3"></i> <strong>Last Resort:</strong> Chemical control should be considered only when other IPM methods are not sufficient to manage the problem.</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="my-5 bg-light p-5 rounded shadow-lg fade-in">
+            <h2 class="text-center mb-4 section-title">Contact Us</h2>
+            <p class="text-center lead mb-4">Have questions or need expert advice on crop management? Reach out to us!</p>
+            <form id="contactForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="contactName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="contactName" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contactEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="contactEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contactPhone" class="form-label">Phone (Optional)</label>
+                        <input type="tel" class="form-control" id="contactPhone" placeholder="+256 7XX XXX XXX">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contactType" class="form-label">Query Type</label>
+                        <select class="form-select" id="contactType" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="pest-disease">Pest/Disease Identification</option>
+                            <option value="product-info">Product Information</option>
+                            <option value="consultation">Consultation Request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="contactSubject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="contactSubject" placeholder="Subject of your message" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="contactMessage" class="form-label">Message</label>
+                        <textarea class="form-control" id="contactMessage" rows="5" placeholder="Your detailed message..." required></textarea>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-success btn-lg mt-3 shadow-sm"><i class="fas fa-paper-plane me-2"></i> Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
