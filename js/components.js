@@ -435,7 +435,6 @@ class ComponentLoader {
         <li><h6 class="dropdown-header text-info"><i class="fas fa-thermometer-half me-2"></i>Current Conditions</h6></li>
         <li><a class="dropdown-item" href="live-weather.html"><i class="fas fa-broadcast-tower me-2"></i>Live Weather</a></li>
         <li><a class="dropdown-item" href="temperature-humidity.html"><i class="fas fa-tint me-2"></i>Temperature & Humidity</a></li>
-        <li><a class="dropdown-item" href="rainfall-data.html"><i class="fas fa-cloud-rain me-2"></i>Rainfall Data</a></li>
         <li><a class="dropdown-item" href="wind-conditions.html"><i class="fas fa-wind me-2"></i>Wind Conditions</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-primary"><i class="fas fa-calendar-alt me-2"></i>Forecasting</h6></li>
