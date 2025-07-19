@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature and Humidity Monitor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .data-display {
+            margin-bottom: 20px;
+        }
+        .data-display p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .data-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 5px;
+        }
+        .temperature .data-value {
+            color: #dc3545; /* Red for temperature */
+        }
+        .humidity .data-value {
+            color: #28a745; /* Green for humidity */
+        }
+        .refresh-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Environment Readings</h1>
+
+        <div class="data-display temperature">
+            <p>Temperature:</p>
+            <div id="temperature-value" class="data-value">-- °C</div>
+        </div>
+
+        <div class="data-display humidity">
+            <p>Humidity:</p>
+            <div id="humidity-value" class="data-value">-- %</div>
+        </div>
+
+        <button id="refresh-btn" class="btn btn-primary refresh-button">Refresh Readings</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const temperatureValueElement = document.getElementById('temperature-value');
+            const humidityValueElement = document.getElementById('humidity-value');
+            const refreshButton = document.getElementById('refresh-btn');
+
+            function updateReadings() {
+                // Simulate fetching data - replace this with actual sensor data
+                // In a real application, you would make an AJAX request here
+                // to an API endpoint that provides your sensor data.
+                const simulatedTemperature = (Math.random() * (30 - 20) + 20).toFixed(1); // Random temp between 20-30°C
+                const simulatedHumidity = (Math.random() * (80 - 40) + 40).toFixed(1);   // Random humidity between 40-80%
+
+                temperatureValueElement.textContent = `${simulatedTemperature} °C`;
+                humidityValueElement.textContent = `${simulatedHumidity} %`;
+            }
+
+            // Initial load of readings
+            updateReadings();
+
+            // Refresh readings when the button is clicked
+            refreshButton.addEventListener('click', updateReadings);
+
+            // Optional: Auto-refresh every 5 seconds (uncomment to enable)
+            // setInterval(updateReadings, 5000);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

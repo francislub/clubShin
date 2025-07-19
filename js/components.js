@@ -94,7 +94,7 @@ class ComponentLoader {
 
     <!-- Markets -->
     <li class="nav-item">
-      <a class="nav-link" href="farmer-markets.html">
+      <a class="nav-link" href="markets.html">
         <i class="fas fa-store me-1"></i>Markets
       </a>
     </li>
@@ -324,8 +324,8 @@ class ComponentLoader {
         const dashboardLink = navLinks.querySelector('a[href="farmer-dashboard.html"]')
         if (dashboardLink) dashboardLink.href = "farmer-dashboard.html"
 
-        const marketsLink = navLinks.querySelector('a[href="farmer-markets.html"]')
-        if (marketsLink) marketsLink.href = "farmer-markets.html"
+        const marketsLink = navLinks.querySelector('a[href="markets.html"]')
+        if (marketsLink) marketsLink.href = "markets.html"
       }
 
       if (profileLink) profileLink.href = "farmer-profile.html"
@@ -363,7 +363,7 @@ class ComponentLoader {
           dashboardLink.innerHTML = '<i class="fas fa-tachometer-alt me-1"></i>Dashboard'
         }
 
-        const marketsLink = navLinks.querySelector('a[href="farmer-markets.html"]')
+        const marketsLink = navLinks.querySelector('a[href="markets.html"]')
         if (marketsLink) {
           marketsLink.href = "agent-analytics.html"
           marketsLink.innerHTML = '<i class="fas fa-chart-line me-1"></i>Analytics'
@@ -435,7 +435,6 @@ class ComponentLoader {
         <li><h6 class="dropdown-header text-info"><i class="fas fa-thermometer-half me-2"></i>Current Conditions</h6></li>
         <li><a class="dropdown-item" href="live-weather.html"><i class="fas fa-broadcast-tower me-2"></i>Live Weather</a></li>
         <li><a class="dropdown-item" href="temperature-humidity.html"><i class="fas fa-tint me-2"></i>Temperature & Humidity</a></li>
-        <li><a class="dropdown-item" href="rainfall-data.html"><i class="fas fa-cloud-rain me-2"></i>Rainfall Data</a></li>
         <li><a class="dropdown-item" href="wind-conditions.html"><i class="fas fa-wind me-2"></i>Wind Conditions</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-primary"><i class="fas fa-calendar-alt me-2"></i>Forecasting</h6></li>
@@ -470,9 +469,17 @@ class ComponentLoader {
       </ul>
     </li>
 
+    <!-- team -->
+    <li class="nav-item">
+      <a class="nav-link" href="team.html">
+        <i class="fas fa-tachometer-alt me-1"></i>Club Members
+      </a>
+    </li>
+
+
     <!-- Markets -->
     <li class="nav-item">
-      <a class="nav-link" href="farmer-markets.html">
+      <a class="nav-link" href="markets.html">
         <i class="fas fa-store me-1"></i>Markets
       </a>
     </li>
@@ -502,6 +509,7 @@ class ComponentLoader {
       console.log("ComponentLoader.configureMobileNav: Applying farmer-specific mobile nav links.")
       if (mobileHome) mobileHome.onclick = () => (window.location.href = "farmer-dashboard.html")
       if (mobileMarkets) mobileMarkets.onclick = () => (window.location.href = "farmer-markets.html")
+      if (mobileMarkets) mobileMarkets.onclick = () => (window.location.href = "markets.html")
       if (mobilePredictions)
         mobilePredictions.onclick = () => (window.location.href = "farmer-dashboard.html#prediction")
       if (mobileTransactions) mobileTransactions.onclick = () => (window.location.href = "farmer-transactions.html")
