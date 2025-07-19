@@ -3,248 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soil Testing Methods</title>
+    <title>AgriTech AI - Smart Farming Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ddd5d5;
-            color: #f3ebf2;
-            line-height: 1.6;
-        }
-        .container {
-            margin-top: 50px;
-            margin-bottom: 50px;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgb(240, 237, 240);
-        }
-        h1, h2 {
-            color: #181e24;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #2c2f33;
-            padding-bottom: 10px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-        }
-        h2 {
-            font-size: 1.8em;
-            margin-top: 30px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            background-color: #1c1d17;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            font-size: 1.1em;
-            border-left: 5px solid #f3f3f1;
-        }
-        ul li:hover {
-            background-color: #c9d1cf;
-            transform: translateX(5px);
-            transition: all 0.3s ease;
-        }
-        ul li strong {
-            color: #e6d7d7;
-            margin-right: 10px;
-        }
-        .list-group-item {
-            border: none;
-            padding: 10px 15px;
-            margin-bottom: 5px;
-            background-color: #131313;
-            border-left: 4px solid #443641;
-        }
-        .list-group-item:hover {
-            background-color: #0d282c;
-        }
-    </style>
 </head>
 <body>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Variables for easy color management */
+        :root {
+            --primary-color: #28a745; /* Green */
+            --secondary-color: #007bff; /* Blue */
+            --dark-color: #212529;
+            --light-bg: #f8f9fa;
+            --white-color: #ffffff;
+            --text-color: #333;
+            --heading-color: #2c3e50;
+        }
+
         /* General Body Styling */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
             overflow-x: hidden; /* Prevent horizontal scroll */
-            background-color: #f8f9fa; /* Light background for the whole page */
+            background-color: var(--light-bg);
+        }
+
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700; /* Bolder headings */
         }
 
         /* Navigation Bar */
         .navbar {
-            transition: background-color 0.3s ease;
+            transition: background-color 0.4s ease-in-out, padding 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .navbar.scrolled {
+            background-color: rgba(33, 37, 41, 0.95) !important; /* Slightly transparent dark */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .navbar-brand {
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.8rem; /* Larger brand name */
+            color: var(--white-color) !important;
         }
 
         .navbar-nav .nav-link {
             font-weight: 500;
             margin-left: 15px;
-            transition: color 0.3s ease;
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative; /* For underline effect */
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+            width: 100%;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #28a745; /* Green on hover for AgriTech feel */
-        }
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1577708709506-c87a5538e12c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1577708709506-c87a5538e12c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding-top: 56px; /* Adjust for fixed navbar height */
+            color: var(--white-color);
+            position: relative;
+            overflow: hidden; /* For pseudo-elements */
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            animation: pulseBackground 10s infinite alternate;
+        }
+
+        @keyframes pulseBackground {
+            0% { transform: scale(1); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+            100% { transform: scale(1); opacity: 0; }
         }
 
         .hero-section h1 {
-            font-size: 3.8em;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 4.5em; /* Larger heading */
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6); /* Stronger shadow */
+            letter-spacing: 1px;
+            font-weight: 800;
         }
 
         .hero-section p {
-            font-size: 1.5em;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #f1f1f1;
+            font-size: 1.7em; /* Larger lead paragraph */
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            color: #e0e0e0;
+            font-weight: 300;
         }
 
         .hero-section .btn-primary {
-            background-color: #28a745; /* Green button */
-            border-color: #28a745;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 15px 40px; /* Larger button */
+            font-size: 1.3em;
+            border-radius: 50px; /* Pill shape */
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
         }
 
         .hero-section .btn-primary:hover {
             background-color: #218838;
             border-color: #1e7e34;
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(1.02); /* More pronounced hover */
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
         }
 
-        /* Animation for Hero Section elements */
+        /* Animation for all sections and elements */
         .animate-fade-in {
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeIn 1s forwards;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
         }
-
-        .animate-fade-in.delay-1 { animation-delay: 0.3s; }
-        .animate-fade-in.delay-2 { animation-delay: 0.6s; }
-        .animate-fade-in.delay-3 { animation-delay: 0.9s; }
-        .animate-fade-in.delay-4 { animation-delay: 1.2s; }
-        .animate-fade-in.delay-5 { animation-delay: 1.5s; }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .animate-fade-in.animated { /* Class added by JS when in view */
+            opacity: 1;
+            transform: translateY(0);
         }
+        .animate-fade-in.delay-1 { transition-delay: 0.1s; }
+        .animate-fade-in.delay-2 { transition-delay: 0.2s; }
+        .animate-fade-in.delay-3 { transition-delay: 0.3s; }
+        .animate-fade-in.delay-4 { transition-delay: 0.4s; }
+        .animate-fade-in.delay-5 { transition-delay: 0.5s; }
+
 
         /* Sections Styling */
         section {
-            padding: 80px 0;
-            position: relative; /* For animations */
+            padding: 100px 0; /* More vertical padding */
+            position: relative;
         }
-
-        section h2 {
-            font-size: 2.8em;
-            margin-bottom: 40px;
-            color: #2c3e50;
-            text-align: center;
-            font-weight: bold;
+        section:nth-of-type(even) { /* Alternate background for sections */
+            background-color: var(--light-bg);
+        }
+        section:nth-of-type(odd) {
+            background-color: var(--white-color);
         }
 
         /* Feature Cards */
         .feature-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Smoother animation */
             border: none;
-            border-radius: 10px;
+            border-radius: 15px; /* More rounded corners */
+            overflow: hidden; /* For icon background */
+            position: relative;
+            background: var(--white-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        .feature-card::before { /* Background for icon area */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background-color: var(--primary-color);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%); /* Angled bottom edge */
+            z-index: 0;
+        }
+
+        .feature-card .card-body {
+            position: relative;
+            z-index: 1;
+            padding-top: 60px; /* Space for icon */
         }
 
         .feature-card i {
-            color: #28a745; /* Green icon color */
-            font-size: 3.5em; /* Slightly larger icons */
-            margin-bottom: 20px;
+            color: var(--white-color); /* White icon */
+            font-size: 3.8em; /* Larger icon */
+            position: absolute; /* Position over the angled background */
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.2); /* Subtle background for icon */
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px); /* More pronounced lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+        .feature-card:hover i {
+            transform: translateX(-50%) rotateY(180deg); /* Flip icon on hover */
         }
 
         /* pH Monitor Section Specific Styling */
         .ph-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
+            background-color: var(--white-color);
+            padding: 40px; /* More padding */
+            border-radius: 20px; /* More rounded */
             text-align: center;
-            max-width: 500px;
-            margin: 0 auto; /* Center the monitor */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 550px; /* Slightly wider */
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .ph-display {
             margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f0f8ff; /* Light blue background for display area */
-            border-radius: 10px;
-            border: 1px solid #cce5ff; /* Subtle blue border */
+            padding: 25px;
+            background-color: #f0f8ff;
+            border-radius: 15px;
+            border: 1px solid #cce5ff;
+            position: relative;
+            overflow: hidden; /* For glow effect */
+        }
+
+        .ph-display::before { /* Subtle glow effect */
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle at center, rgba(173, 216, 230, 0.2) 0%, transparent 60%);
+            z-index: 0;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.05); opacity: 0.8; }
         }
 
         #current-ph {
-            font-size: 4.5em; /* Larger pH value */
-            font-weight: bold;
-            color: #007bff;
+            font-size: 5em; /* Even larger pH value */
+            font-weight: 700;
+            color: var(--secondary-color);
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .ph-indicator {
             width: 100%;
-            height: 35px; /* Thicker bar */
+            height: 40px; /* Even thicker bar */
             background-color: #e9ecef;
-            border-radius: 17px; /* Match bar height / 2 */
+            border-radius: 20px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 15px;
             position: relative;
         }
 
         #ph-level-bar {
             height: 100%;
-            width: 50%; /* Initial width */
-            background-color: #28a745; /* Default green for neutral */
-            border-radius: 17px;
-            transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+            width: 50%;
+            background-color: var(--primary-color);
+            border-radius: 20px;
+            transition: width 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), background-color 0.5s ease-in-out; /* Bouncy animation */
             position: absolute;
             top: 0;
             left: 0;
@@ -253,241 +317,427 @@
         .ph-labels {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
-            font-size: 0.9em;
+            margin-top: 15px;
+            font-size: 1em;
             color: #555;
-            padding: 0 5px;
+            padding: 0 10px;
+            font-weight: 600;
+        }
+        .ph-labels span {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .ph-labels span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background-color: currentColor;
         }
 
-        .ph-labels span:nth-child(1) { color: #dc3545; font-weight: bold;}
-        .ph-labels span:nth-child(2) { color: #ffc107; font-weight: bold;}
-        .ph-labels span:nth-child(3) { color: #28a745; font-weight: bold;}
+        .ph-labels span:nth-child(1) { color: #dc3545; }
+        .ph-labels span:nth-child(2) { color: #ffc107; }
+        .ph-labels span:nth-child(3) { color: #28a745; }
 
         .status-message {
-            font-size: 1.3em; /* Larger status message */
-            font-weight: 500;
-            color: #495057;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--heading-color);
             background-color: #e2e6ea;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
         .update-button {
-            background-color: #28a745; /* AgriTech green */
-            color: white;
-            padding: 15px 30px; /* Larger button */
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 18px 35px; /* Even larger button */
             border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
+            border-radius: 50px; /* Pill shape */
+            font-size: 1.3em;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
         }
 
         .update-button:hover {
             background-color: #218838;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
         }
-
         .update-button:active {
             background-color: #1e7e34;
             transform: translateY(0);
             box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
         }
 
-        /* Gallery Section */
-        .gallery-item {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
-        }
-
-        .gallery-item img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            object-fit: cover;
-            height: 250px; /* Uniform height for images */
-            width: 100%;
-        }
-
-        .gallery-item .card-body {
-            padding: 20px;
-            background-color: #fff;
-        }
-        .gallery-item .card-title {
-            color: #2c3e50;
-            font-weight: bold;
-        }
-        .gallery-item .card-text {
-            color: #555;
-        }
-
-
         /* Soil Testing Methods Section */
         #soil-testing {
             background-color: #f0f9ed; /* Very light green background */
-            padding-bottom: 80px;
         }
 
         #soil-testing .card {
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 25px; /* Spacing between cards */
+            border-radius: 15px; /* Consistent rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
         #soil-testing .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         #soil-testing .card-header {
-            background-color: #28a745; /* Green header */
-            color: white;
-            font-weight: bold;
-            font-size: 1.3em;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            font-weight: 600;
+            font-size: 1.5em; /* Larger header text */
+            padding: 20px 25px;
+            border-bottom: none;
+            position: relative;
+        }
+        #soil-testing .card-header::after { /* Subtle wave effect */
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: var(--primary-color);
+            transform: skewY(2deg);
+            transform-origin: top left;
+            z-index: 0;
         }
 
         #soil-testing .card-body {
-            padding: 25px;
-            color: #495057;
+            padding: 30px 25px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1; /* Ensure content is above header's pseudo-element */
+        }
+
+        #soil-testing p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
         }
 
         #soil-testing ul {
-            list-style: none; /* Remove default bullets */
+            list-style: none;
             padding: 0;
             margin-top: 20px;
         }
 
         #soil-testing ul li {
-            padding: 12px 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 15px 0;
+            border-bottom: 1px dashed #e9ecef; /* Dashed separator */
             display: flex;
             align-items: flex-start;
             color: #343a40;
+            font-size: 1.1em;
         }
         #soil-testing ul li:last-child {
             border-bottom: none;
         }
 
         #soil-testing ul li i {
-            color: #28a745; /* Green icon */
-            font-size: 1.2em;
-            margin-right: 15px;
-            flex-shrink: 0; /* Prevent icon from shrinking */
-            padding-top: 3px; /* Align with text */
+            color: var(--primary-color);
+            font-size: 1.3em; /* Slightly larger icons */
+            margin-right: 20px;
+            flex-shrink: 0;
+            padding-top: 3px;
         }
 
         #soil-testing h3 {
-            color: #2c3e50;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
+            color: var(--heading-color);
+            font-size: 1.8em; /* Larger sub-headings */
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0; /* Solid separator */
             padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            border: none;
+            border-radius: 15px; /* Consistent rounded corners */
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            object-fit: cover;
+            height: 280px; /* Slightly taller images */
+            width: 100%;
+            transition: transform 0.4s ease; /* Zoom on hover */
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .card-body {
+            padding: 25px;
+            background-color: var(--white-color);
+        }
+        .gallery-item .card-title {
+            color: var(--heading-color);
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+        .gallery-item .card-text {
+            color: #555;
+            font-size: 0.95em;
         }
 
         /* Contact Section */
         #contact {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1510473957-c0e862c76a91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            color: white;
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1510473957-c0e862c76a91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            color: var(--white-color);
+            padding: 100px 0;
         }
 
-        #contact .form-control-lg {
-            border-radius: 0.5rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            background-color: rgba(255,255,255,0.1);
-            color: white;
+        #contact .form-control-lg, #contact .form-select-lg {
+            border-radius: 10px; /* More rounded inputs */
+            border: 1px solid rgba(255,255,255,0.4); /* Stronger border */
+            background-color: rgba(255,255,255,0.15); /* More visible background */
+            color: var(--white-color);
+            padding: 12px 20px; /* More padding */
+            font-size: 1.1em;
+            transition: all 0.3s ease;
         }
-        #contact .form-control-lg::placeholder {
-            color: rgba(255,255,255,0.7);
+        #contact .form-control-lg::placeholder, #contact .form-select-lg option {
+            color: rgba(255,255,255,0.8);
         }
-        #contact .form-control-lg:focus {
-            background-color: rgba(255,255,255,0.2);
-            border-color: #28a745;
-            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
-            color: white;
+        #contact .form-control-lg:focus, #contact .form-select-lg:focus {
+            background-color: rgba(255,255,255,0.25);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.35); /* Stronger focus glow */
+            color: var(--white-color);
+        }
+        #contact .form-select-lg {
+            -webkit-appearance: none; /* Remove default arrow */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1em center;
+            background-size: 0.8em 0.8em;
         }
 
         #contact .form-label {
-            color: #f1f1f1;
-            font-weight: 500;
+            color: #e0e0e0;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.05em;
         }
 
         #contact .btn-primary {
-            background-color: #28a745; /* Green button */
-            border-color: #28a745;
-            padding: 12px 40px;
-            font-size: 1.2em;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 15px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
         }
 
         #contact .btn-primary:hover {
             background-color: #218838;
             border-color: #1e7e34;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
         }
 
         /* Footer */
         footer {
-            background-color: #212529 !important; /* Darker footer */
+            background-color: var(--dark-color) !important;
             color: rgba(255, 255, 255, 0.7);
-            padding-top: 30px;
+            padding-top: 50px; /* More padding */
             padding-bottom: 30px;
+            font-size: 0.95em;
+        }
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: var(--primary-color);
         }
 
         .social-icons a {
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            font-size: 1.8rem; /* Larger social icons */
+            margin: 0 12px;
+            transition: color 0.3s ease, transform 0.2s ease;
             color: rgba(255, 255, 255, 0.6);
         }
 
         .social-icons a:hover {
-            color: #28a745 !important; /* Green on hover */
+            color: var(--primary-color) !important;
+            transform: translateY(-3px) scale(1.1); /* Lift and grow effect */
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .hero-section h1 {
-                font-size: 2.5em;
+                font-size: 3.5em;
             }
-
             .hero-section p {
+                font-size: 1.4em;
+            }
+            section {
+                padding: 80px 0;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+            .feature-card::before {
+                height: 100px;
+            }
+            .feature-card .card-body {
+                padding-top: 50px;
+            }
+            .feature-card i {
+                font-size: 3.2em;
+                top: 20px;
+            }
+            #current-ph {
+                font-size: 4em;
+            }
+            .update-button {
+                padding: 15px 30px;
                 font-size: 1.2em;
             }
+            #soil-testing .card-header {
+                font-size: 1.3em;
+                padding: 15px 20px;
+            }
+            #soil-testing h3 {
+                font-size: 1.5em;
+            }
+            .gallery-item img {
+                height: 220px;
+            }
+        }
 
+        @media (max-width: 768px) {
+            .navbar {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .hero-section h1 {
+                font-size: 2.8em;
+            }
+            .hero-section p {
+                font-size: 1.1em;
+            }
+            .hero-section .btn-primary {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
             section {
                 padding: 60px 0;
             }
-
-            section h2 {
-                font-size: 2em;
+            h2 {
+                font-size: 1.8em;
             }
-
+            .ph-container {
+                padding: 30px;
+            }
             #current-ph {
-                font-size: 3em;
+                font-size: 3.5em;
             }
             .update-button {
                 padding: 12px 25px;
                 font-size: 1.1em;
             }
+            #soil-testing .card {
+                margin-bottom: 20px;
+            }
+            #soil-testing .card-header {
+                font-size: 1.2em;
+            }
+            #soil-testing h3 {
+                font-size: 1.3em;
+            }
+            #soil-testing ul li {
+                font-size: 1em;
+                padding: 10px 0;
+            }
+            .gallery-item img {
+                height: 200px;
+            }
+            #contact .btn-primary {
+                padding: 12px 40px;
+                font-size: 1.1em;
+            }
+            .social-icons a {
+                font-size: 1.4rem;
+                margin: 0 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .hero-section p {
+                font-size: 0.95em;
+            }
+            .feature-card .card-body {
+                padding-top: 40px;
+            }
+            .feature-card i {
+                font-size: 2.8em;
+                top: 15px;
+            }
+            .ph-container {
+                padding: 20px;
+            }
+            #current-ph {
+                font-size: 3em;
+            }
+            .status-message {
+                font-size: 1.1em;
+            }
+            .ph-labels {
+                font-size: 0.85em;
+                padding: 0;
+            }
+            #soil-testing .card-header::after {
+                transform: skewY(1deg); /* Less pronounced wave on mobile */
+            }
+            #soil-testing .card-body {
+                padding: 20px;
+            }
+            #contact .form-control-lg, #contact .form-select-lg {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+            #contact .btn-primary {
+                padding: 10px 30px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Container -->
-    <div id="header-container"></div>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -529,32 +779,32 @@
         </div>
     </header>
 
-    <section id="features" class="py-5 bg-light">
+    <section id="features" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Our Smart Farming Features</h2>
+            <h2 class="text-center mb-5 animate-fade-in">Our Smart Farming Features</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col animate-fade-in">
-                    <div class="card h-100 shadow-sm feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-seedling mb-3"></i>
-                            <h5 class="card-title fw-bold">Crop Health Monitoring</h5>
-                            <p class="card-text">Utilize AI to detect diseases, nutrient deficiencies, and optimize growth conditions for healthier crops.</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="col animate-fade-in delay-1">
                     <div class="card h-100 shadow-sm feature-card">
                         <div class="card-body text-center">
-                            <i class="fas fa-water mb-3"></i>
-                            <h5 class="card-title fw-bold">Automated Irrigation</h5>
-                            <p class="card-text">Smart irrigation systems that adapt to real-time weather data and soil moisture levels, saving water and resources.</p>
+                            <i class="fas fa-seedling"></i>
+                            <h5 class="card-title fw-bold">Crop Health Monitoring</h5>
+                            <p class="card-text">Utilize AI to detect diseases, nutrient deficiencies, and optimize growth conditions for healthier crops.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col animate-fade-in delay-2">
                     <div class="card h-100 shadow-sm feature-card">
                         <div class="card-body text-center">
-                            <i class="fas fa-robot mb-3"></i>
+                            <i class="fas fa-water"></i>
+                            <h5 class="card-title fw-bold">Automated Irrigation</h5>
+                            <p class="card-text">Smart irrigation systems that adapt to real-time weather data and soil moisture levels, saving water and resources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-3">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot"></i>
                             <h5 class="card-title fw-bold">Precision Farming</h5>
                             <p class="card-text">AI-driven insights for precise fertilization, pest control, and yield prediction, maximizing efficiency.</p>
                         </div>
@@ -564,9 +814,9 @@
         </div>
     </section>
 
-    <section id="ph-monitor-section" class="py-5 bg-white">
+    <section id="ph-monitor-section" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Real-time Soil pH Monitor</h2>
+            <h2 class="text-center mb-5 animate-fade-in">Real-time Soil pH Monitor</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-10 animate-fade-in delay-1">
                     <div class="ph-container card shadow-lg p-4">
@@ -591,7 +841,7 @@
 
     <section id="soil-testing" class="py-5">
         <div class="container animate-fade-in delay-2">
-            <h2 class="text-center mb-5 display-4 fw-bold">Soil Testing Methods</h2>
+            <h2 class="text-center mb-5">Soil Testing Methods</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="card shadow-lg p-4">
@@ -653,12 +903,11 @@
         </div>
     </section>
 
-
-    <section id="gallery" class="py-5 bg-white">
+    <section id="gallery" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">AgriTech in Action</h2>
+            <h2 class="text-center mb-5 animate-fade-in">AgriTech in Action</h2>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <div class="col animate-fade-in">
+                <div class="col animate-fade-in delay-1">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1596208920959-b1d5c22501a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Smart Irrigation">
                         <div class="card-body">
@@ -667,7 +916,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col animate-fade-in delay-1">
+                <div class="col animate-fade-in delay-2">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1510414842594-ead62d705c1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Drone Monitoring">
                         <div class="card-body">
@@ -676,7 +925,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col animate-fade-in delay-2">
+                <div class="col animate-fade-in delay-3">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1601662528769-37365675f7e7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sensor Network">
                         <div class="card-body">
@@ -685,7 +934,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col animate-fade-in delay-3">
+                <div class="col animate-fade-in delay-4">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1621601614088-75aa5408d667?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="AI Analytics">
                         <div class="card-body">
@@ -694,7 +943,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col animate-fade-in delay-4">
+                <div class="col animate-fade-in delay-5">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1544265780-e88385208b04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sustainable Farming">
                         <div class="card-body">
@@ -703,7 +952,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col animate-fade-in delay-5">
+                <div class="col animate-fade-in delay-6">
                     <div class="card h-100 shadow-sm gallery-item">
                         <img src="https://images.unsplash.com/photo-1517482352869-d4199c4a5c53?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Happy Farmer">
                         <div class="card-body">
@@ -718,7 +967,7 @@
 
     <section id="contact" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Get in Touch</h2>
+            <h2 class="text-center mb-5 text-white animate-fade-in">Get in Touch</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8 animate-fade-in delay-1">
                     <form id="contactForm">
@@ -763,97 +1012,48 @@
         </div>
     </section>
 
-     <!-- Footer Container -->
-     <div id="footer-container"></div>
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
-     <script src="js/components.js"></script>
-     <script>
-         // Additional JavaScript for enhanced functionality
-         
-         // Contact form handling
-         document.getElementById('contactForm').addEventListener('submit', function(e) {
-             e.preventDefault();
-             
-             // Get form data
-             const formData = {
-                 name: document.getElementById('contactName').value,
-                 email: document.getElementById('contactEmail').value,
-                 phone: document.getElementById('contactPhone').value,
-                 type: document.getElementById('contactType').value,
-                 subject: document.getElementById('contactSubject').value,
-                 message: document.getElementById('contactMessage').value
-             };
-             
-             // Simulate form submission
-             alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-             this.reset();
-         });
- 
-         // Smooth scrolling for anchor links
-         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-             anchor.addEventListener('click', function (e) {
-                 e.preventDefault();
-                 const target = document.querySelector(this.getAttribute('href'));
-                 if (target) {
-                     target.scrollIntoView({
-                         behavior: 'smooth',
-                         block: 'start'
-                     });
-                 }
-             });
-         });
- 
-         // Add fade-in animation on scroll
-         const observerOptions = {
-             threshold: 0.1,
-             rootMargin: '0px 0px -50px 0px'
-         };
- 
-         const observer = new IntersectionObserver(function(entries) {
-             entries.forEach(entry => {
-                 if (entry.isIntersecting) {
-                     entry.target.classList.add('fade-in');
-                 }
-             });
-         }, observerOptions);
- 
-         // Observe all feature cards and sections
-         document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
-             observer.observe(el);
-         });
- 
-         // Initialize tooltips when components are loaded
-         document.addEventListener('DOMContentLoaded', function() {
-             // Wait for components to load, then initialize tooltips
-             setTimeout(function() {
-                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                     return new bootstrap.Tooltip(tooltipTriggerEl);
-                 });
-             }, 500);
-         });
-     </script>
+    <footer class="bg-dark text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 AgriTech AI. All rights reserved.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for anchor links
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) { // Add scrolled class after 50px scroll
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links (adjusted for fixed navbar)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
                     if (target) {
-                        // Adjust scroll position for fixed navbar
                         const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        // Use setTimeout to ensure navbar height is calculated after potential class changes
+                        setTimeout(() => {
+                            const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; // Added extra padding
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100); // Small delay
                     }
                 });
             });
@@ -861,21 +1061,26 @@
             // Intersection Observer for fade-in animations
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '0px 0px -50px 0px' // Start animation a bit earlier
             };
 
-            const observer = new IntersectionObserver(function(entries) {
+            const observer = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
+                        entry.target.classList.add('animated'); // Add 'animated' class
+                        observer.unobserve(entry.target); // Stop observing once animated
                     }
                 });
             }, observerOptions);
 
             // Observe elements for animation
-            document.querySelectorAll('.animate-fade-in:not(.hero-section *)').forEach(el => {
-                observer.observe(el);
+            document.querySelectorAll('.animate-fade-in').forEach(el => {
+                // Only observe elements outside the hero, as hero elements have initial animation
+                if (!el.closest('.hero-section')) {
+                    observer.observe(el);
+                }
             });
+
 
             // pH Monitor Logic
             const currentPhElement = document.getElementById('current-ph');
@@ -884,8 +1089,11 @@
             const updatePhButton = document.getElementById('update-ph-button');
 
             function updatePhMonitor() {
-                // Generate a random pH value between 0 and 14 for demonstration
-                const ph = (Math.random() * 14).toFixed(1);
+                // Generate a more realistic random pH value (e.g., concentrated around neutral but can vary)
+                let ph = (Math.random() * 8 + 3).toFixed(1); // pH between 3.0 and 11.0
+                if (Math.random() > 0.8) { // 20% chance of extreme values
+                    ph = (Math.random() < 0.5 ? Math.random() * 3 : Math.random() * 3 + 11).toFixed(1);
+                }
 
                 currentPhElement.textContent = ph;
 
@@ -897,21 +1105,21 @@
                 let statusMessage = '';
                 let barColor = '';
 
-                if (ph < 6.0) {
-                    statusMessage = 'pH is strongly acidic. Needs liming.';
+                if (ph < 5.5) {
+                    statusMessage = 'Strongly Acidic: Needs liming and organic matter.';
                     barColor = '#dc3545'; // Red
-                } else if (ph >= 6.0 && ph < 6.5) {
-                    statusMessage = 'pH is slightly acidic. Good for many crops.';
-                    barColor = '#fd7e14'; // Orange
-                } else if (ph >= 6.5 && ph <= 7.5) {
-                    statusMessage = 'pH is neutral. Ideal for most crops!';
+                } else if (ph >= 5.5 && ph < 6.0) {
+                    statusMessage = 'Moderately Acidic: Consider liming for optimal growth.';
+                    barColor = '#ffc107'; // Yellow
+                } else if (ph >= 6.0 && ph <= 7.5) {
+                    statusMessage = 'Neutral/Slightly Acidic: Ideal for most crops!';
                     barColor = '#28a745'; // Green
-                } else if (ph > 7.5 && ph <= 8.0) {
-                    statusMessage = 'pH is slightly alkaline. May need acidification.';
-                    barColor = '#17a2b8'; // Cyan
-                } else { // ph > 8.0
-                    statusMessage = 'pH is strongly alkaline. Needs acidification.';
+                } else if (ph > 7.5 && ph <= 8.5) {
+                    statusMessage = 'Moderately Alkaline: May need acidification for some crops.';
                     barColor = '#007bff'; // Blue
+                } else { // ph > 8.5
+                    statusMessage = 'Strongly Alkaline: Requires significant acidification.';
+                    barColor = '#6f42c1'; // Purple
                 }
 
                 phStatusElement.textContent = statusMessage;
@@ -931,7 +1139,7 @@
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Get form data (you would typically send this to a server)
+                // Get form data
                 const formData = {
                     name: document.getElementById('contactName').value,
                     email: document.getElementById('contactEmail').value,
@@ -942,7 +1150,7 @@
                 };
 
                 // Simulate form submission
-                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                alert('Thank you for your message, ' + formData.name + '! We\'ll get back to you within 24 hours regarding your ' + formData.type + ' inquiry.');
                 this.reset(); // Clear the form
             });
         });
