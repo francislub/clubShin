@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Basic custom styles for better readability and presentation */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header-container, .footer-container {
+            background-color: #28a745; /* Green for AgriTech */
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .header-container h1, .footer-container p {
+            margin: 0;
+        }
+        .container {
+            padding: 2rem 0;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #e2e6ea;
+            font-weight: bold;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title {
+            color: #28a745;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        .price-table th, .price-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .price-table thead {
+            background-color: #28a745;
+            color: white;
+        }
+        .price-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <div class="container mt-5">
+        <h2 class="section-title">Current Market Prices in Uganda (Illustrative)</h2>
+        <p class="lead text-center mb-4">
+            Get up-to-date market prices for key agricultural commodities across various districts in Uganda. Make informed decisions for your sales!
+        </p>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="marketSelect" class="form-label">Select Market:</label>
+                <select class="form-select" id="marketSelect">
+                    <option value="all">All Markets</option>
+                    <option value="kampala">Kampala (Owino Market)</option>
+                    <option value="gulu">Gulu (Main Market)</option>
+                    <option value="mbale">Mbale (Central Market)</option>
+                    <option value="mbarara">Mbarara (Main Market)</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="commoditySelect" class="form-label">Select Commodity:</label>
+                <select class="form-select" id="commoditySelect">
+                    <option value="all">All Commodities</option>
+                    <option value="matooke">Matooke (Bananas)</option>
+                    <option value="maize">Maize (Grain)</option>
+                    <option value="beans">Beans</option>
+                    <option value="tomatoes">Tomatoes</option>
+                    <option value="onions">Onions</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button class="btn btn-primary w-100" id="filterPricesBtn">Apply Filters</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered price-table" id="marketPriceTable">
+                <thead>
+                    <tr>
+                        <th>Market</th>
+                        <th>Commodity</th>
+                        <th>Unit (e.g., Kg, Bunch)</th>
+                        <th>Current Price (UGX/Unit)</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+        <p class="text-end text-muted mt-3">
+            <small>Data illustrative and for demonstration purposes only. Actual market prices vary.</small>
+        </p>
+
+        <div class="text-center mt-5">
+            <h3 class="section-title">Want more insights?</h3>
+            <p>Our AgriTech AI platform offers comprehensive data to help you optimize your farming business.</p>
+            <a href="#" class="btn btn-success btn-lg">Explore All AgriTech Solutions</a>
+        </div>
+
+    <!-- Footer Container -->
+    <div id=-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+    
+    <script>
+        // Data representing market prices (this would typically come from an API/database)
+        const marketData = [
+            { market: 'Kampala (Owino Market)', commodity: 'Matooke (Big Bunch)', unit: 'Bunch', price: 25000, updated: '2025-07-18 10:00 AM' },
+            { market: 'Kampala (Owino Market)', commodity: 'Maize (Grain)', unit: 'Kg', price: 1800, updated: '2025-07-18 10:00 AM' },
+            { market: 'Kampala (Owino Market)', commodity: 'Beans (Nambale)', unit: 'Kg', price: 3500, updated: '2025-07-18 10:00 AM' },
+            { market: 'Kampala (Owino Market)', commodity: 'Tomatoes', unit: 'Kg', price: 2000, updated: '2025-07-18 10:00 AM' },
+            { market: 'Kampala (Owino Market)', commodity: 'Onions', unit: 'Kg', price: 2800, updated: '2025-07-18 10:00 AM' },
+
+            { market: 'Gulu (Main Market)', commodity: 'Maize (Grain)', unit: 'Kg', price: 1500, updated: '2025-07-18 11:30 AM' },
+            { market: 'Gulu (Main Market)', commodity: 'Beans', unit: 'Kg', price: 3000, updated: '2025-07-18 11:30 AM' },
+            { market: 'Gulu (Main Market)', commodity: 'Matooke (Medium Bunch)', unit: 'Bunch', price: 18000, updated: '2025-07-18 11:30 AM' },
+            
+            { market: 'Mbale (Central Market)', commodity: 'Matooke (Medium Bunch)', unit: 'Bunch', price: 22000, updated: '2025-07-18 09:00 AM' },
+            { market: 'Mbale (Central Market)', commodity: 'Beans', unit: 'Kg', price: 3200, updated: '2025-07-18 09:00 AM' },
+            { market: 'Mbale (Central Market)', commodity: 'Onions', unit: 'Kg', price: 2500, updated: '2025-07-18 09:00 AM' },
+
+            { market: 'Mbarara (Main Market)', commodity: 'Matooke (Big Bunch)', unit: 'Bunch', price: 28000, updated: '2025-07-18 10:45 AM' },
+            { market: 'Mbarara (Main Market)', commodity: 'Milk (Fresh)', unit: 'Liter', price: 1500, updated: '2025-07-18 10:45 AM' }, // Added non-vine-related for variety
+            { market: 'Mbarara (Main Market)', commodity: 'Maize (Grain)', unit: 'Kg', price: 1700, updated: '2025-07-18 10:45 AM' }
+        ];
+
+        function loadMarketPrices(filterMarket = 'all', filterCommodity = 'all') {
+            const tableBody = document.getElementById('marketPriceTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            const filteredData = marketData.filter(item => {
+                const matchesMarket = (filterMarket === 'all' || item.market.includes(filterMarket === 'kampala' ? 'Kampala' : filterMarket === 'gulu' ? 'Gulu' : filterMarket === 'mbale' ? 'Mbale' : filterMarket === 'mbarara' ? 'Mbarara' : ''));
+                const matchesCommodity = (filterCommodity === 'all' || item.commodity.toLowerCase().includes(filterCommodity));
+                return matchesMarket && matchesCommodity;
+            });
+
+            if (filteredData.length === 0) {
+                const noDataRow = tableBody.insertRow();
+                const cell = noDataRow.insertCell(0);
+                cell.colSpan = 5;
+                cell.textContent = 'No data available for the selected filters.';
+                cell.style.textAlign = 'center';
+            } else {
+                filteredData.forEach(item => {
+                    const row = tableBody.insertRow();
+                    row.insertCell(0).textContent = item.market;
+                    row.insertCell(1).textContent = item.commodity;
+                    row.insertCell(2).textContent = item.unit;
+                    row.insertCell(3).textContent = `UGX ${item.price.toLocaleString()}`;
+                    row.insertCell(4).textContent = item.updated;
+                });
+            }
+        }
+
+        // Event Listeners for filters
+        document.getElementById('filterPricesBtn').addEventListener('click', () => {
+            const selectedMarket = document.getElementById('marketSelect').value;
+            const selectedCommodity = document.getElementById('commoditySelect').value;
+            loadMarketPrices(selectedMarket, selectedCommodity);
+        });
+
+        // Initial load of market prices when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMarketPrices(); // Load all by default
+
+            // Smooth scrolling for anchor links (if any were added)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated'); 
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all relevant elements for animation
+            document.querySelectorAll('.feature-card, .stats-item, .card, .price-table').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize tooltips when components are loaded
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
