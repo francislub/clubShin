@@ -201,14 +201,69 @@ async function setupRoutes() {
   }
 }
 
+// Define all your HTML file routes explicitly
+const htmlFiles = [
+  "index.html",
+  "farmer-login.html",
+  "farmer-register.html",
+  "farmer-dashboard.html",
+  "farmer-markets.html",
+  "farmer-profile.html",
+  "farmer-settings.html",
+  "farmer-transactions.html",
+  "agent-login.html",
+  "agent-register.html",
+  "agent-dashboard.html",
+  "agent-analytics.html",
+  "disease-identification.html",
+  "pest-detection.html",
+  "control-methods.html",
+  "organic-solutions.html",
+  "weather.html",
+  "soil-testing.html",
+  "soil-improvement.html",
+  "Landcare.html",
+  "market.html",
+]
+
 // Serve HTML files
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"))
 })
 
-app.get("*.html", (req, res) => {
-  const fileName = req.path.substring(1) // Remove leading slash
-  res.sendFile(path.join(__dirname, fileName))
+// Handle all HTML file routes
+htmlFiles.forEach((file) => {
+  const route = file === "index.html" ? "/" : `/${file.replace(".html", "")}`
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(__dirname, file))
+  })
+
+  // Also handle with .html extension
+  app.get(`/${file}`, (req, res) => {
+    res.sendFile(path.join(__dirname, file))
+  })
+})
+
+// Handle routes without .html extension
+app.get("/:page", (req, res) => {
+  const page = req.params.page
+  const htmlFile = `${page}.html`
+
+  // Check if the HTML file exists in our list
+  if (htmlFiles.includes(htmlFile)) {
+    res.sendFile(path.join(__dirname, htmlFile))
+  } else {
+    // If not found, try to serve it anyway (in case it exists)
+    res.sendFile(path.join(__dirname, htmlFile), (err) => {
+      if (err) {
+        res.status(404).json({
+          error: "Page not found",
+          message: `The page "${page}" does not exist.`,
+          availablePages: htmlFiles.map((f) => f.replace(".html", "")),
+        })
+      }
+    })
+  }
 })
 
 // Error handling middleware
@@ -220,9 +275,15 @@ app.use((err, req, res, next) => {
   })
 })
 
-// 404 handler
+// 404 handler - this should be last
 app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" })
+  console.log(`404 - Route not found: ${req.method} ${req.path}`)
+  res.status(404).json({
+    error: "Route not found",
+    path: req.path,
+    method: req.method,
+    message: "The requested resource could not be found.",
+  })
 })
 
 // Start server
@@ -236,8 +297,13 @@ async function startServer() {
       console.log(`🚀 AgriTech AI System running on http://localhost:${PORT}`)
       console.log(`🏥 Health check: http://localhost:${PORT}/api/health`)
       console.log(`📊 Environment: ${process.env.NODE_ENV || "development"}`)
-      console.log(`🌱 Farmer Portal: http://localhost:${PORT}/farmer-login.html`)
-      console.log(`👨‍💼 Agent Portal: http://localhost:${PORT}/agent-login.html`)
+      console.log(`🌱 Farmer Portal: http://localhost:${PORT}/farmer-login`)
+      console.log(`👨‍💼 Agent Portal: http://localhost:${PORT}/agent-login`)
+      console.log("\n📋 Available Pages:")
+      htmlFiles.forEach((file) => {
+        const route = file.replace(".html", "")
+        console.log(`   http://localhost:${PORT}/${route}`)
+      })
       console.log("\n📋 Available API Endpoints:")
       console.log("   POST /api/auth/farmer/login")
       console.log("   POST /api/auth/agent/login")
