@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Insights - Kampala & Beyond</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        /* Custom CSS for Weather Page - EMBEDDED */
+
+        :root {
+            --primary-color: #007bff;
+            --info-color: #17a2b8; /* Main color for weather page */
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #6c757d !important; } /* Bootstrap default for muted */
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(to right, var(--info-color), #117a8b); /* Darker info color */
+            padding: 3rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 2.5rem 0;
+        }
+
+        /* Live Weather Section */
+        #live-weather .weather-icon-large {
+            width: 150px; /* Adjust size as needed */
+            height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.2));
+        }
+
+        #live-weather .weather-details {
+            padding-left: 15px;
+            border-left: 3px solid var(--info-color);
+        }
+        #live-weather .weather-details p.display-4 {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        #live-weather .weather-details p.lead {
+            text-transform: capitalize;
+            font-size: 1.6rem;
+        }
+        #live-weather ul li {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        #live-weather ul li i {
+            color: var(--info-color);
+            width: 25px; /* Align icons */
+        }
+
+        /* Forecast Cards */
+        #forecast-container .card {
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        #forecast-container .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        #forecast-container .forecast-icon {
+            width: 60px; /* Smaller icons for forecast */
+            height: 60px;
+            object-fit: contain;
+        }
+        #forecast-container .card h6 {
+            font-weight: bold;
+        }
+        #forecast-container .card p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        /* Seasonal Outlook & Warnings */
+        .alert {
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1rem 1.25rem;
+        }
+        .alert-heading {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .alert-heading i {
+            margin-right: 10px;
+        }
+
+        .animate-alert-entry {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInSlideUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Images within sections */
+        section img {
+            border-radius: 5px;
+            max-width: 100%;
+            height: auto;
+            display: block; /* Ensures it takes up full width of its container */
+            margin: 1rem auto; /* Center images */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+
+        /* Animation for fade-in on scroll (re-used from previous example) */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Styling */
+        #footer-container {
+            background-color: var(--dark-bg) !important;
+            color: white;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        #footer-container p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        #footer-container a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        #footer-container a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            #live-weather .weather-details {
+                border-left: none;
+                padding-left: 0;
+                text-align: center;
+            }
+            #live-weather .weather-icon-large {
+                width: 120px;
+                height: 120px;
+            }
+            #live-weather .weather-details p.display-4 {
+                font-size: 3.5rem;
+            }
+            #live-weather .weather-details p.lead {
+                font-size: 1.4rem;
+            }
+            #live-weather ul {
+                padding-left: 0;
+            }
+            #forecast-container .col {
+                flex: 0 0 50%; /* Two cards per row on small screens */
+                max-width: 50%;
+            }
+            .row-cols-md-3 > * {
+                flex: 0 0 auto;
+                width: 100%; /* Ensure full width for sections like Seasonal Outlook */
+            }
+        }
+
+        @media (max-width: 576px) {
+            #forecast-container .col {
+                flex: 0 0 100%; /* One card per row on extra small screens */
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-info text-white text-center py-4">
+        <div class="container">
+            <h1><i class="fas fa-umbrella-alt me-2"></i>Kampala Weather & Climate Insights</h1>
+            <p class="lead">Essential weather information and agricultural guidance for Uganda.</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+
+        <section id="live-weather" class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-info mb-4">Current Conditions in Kampala</h2>
+            <div class="row align-items-center bg-light p-4 rounded shadow-sm">
+                <div class="col-md-6 text-center mb-3 mb-md-0">
+                    <img id="current-weather-icon" src="https://openweathermap.org/img/wn/09d@4x.png" alt="Light Rain Showers" class="img-fluid weather-icon-large">
+                    <h3 id="current-location" class="mt-3">Kampala, Uganda</h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="weather-details">
+                        <p class="display-4 text-info"><span id="current-temperature">23</span>&deg;C</p>
+                        <p class="lead"><span id="current-description">Light Rain Showers</span></p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-tint me-2"></i>Humidity: <strong id="current-humidity">85</strong>%</li>
+                            <li><i class="fas fa-cloud-showers-heavy me-2"></i>Rainfall (Last 24h): <strong id="current-rainfall">8.2</strong> mm</li>
+                            <li><i class="fas fa-wind me-2"></i>Wind: <strong id="current-wind-speed">15</strong> km/h <span id="current-wind-direction">SE</span></li>
+                            <li><i class="fas fa-thermometer-half me-2"></i>Feels Like: <strong id="current-feels-like">25</strong>&deg;C</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="text-end mt-2 text-muted"><small>Last updated: <span id="last-updated">07:41 PM</span></small></p>
+        </section>
+
+        <hr>
+
+        <section id="seven-day-forecast" class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-info mb-4">Upcoming 7-Day Forecast</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-7 g-3" id="forecast-container">
+                <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Sat</h6>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Moderate Rain" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">24&deg;C</p>
+                        <small class="text-muted">Moderate Rain</small>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Sun</h6>
+                        <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="Light Showers" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">25&deg;C</p>
+                        <small class="text-muted">Light Showers</small>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Mon</h6>
+                        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="Overcast" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">26&deg;C</p>
+                        <small class="text-muted">Overcast</small>
+                    </div>
+                </div>
+                 <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Tue</h6>
+                        <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Partly Cloudy" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">27&deg;C</p>
+                        <small class="text-muted">Partly Cloudy</small>
+                    </div>
+                </div>
+                 <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Wed</h6>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Scattered Thunderstorms" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">24&deg;C</p>
+                        <small class="text-muted">Thunderstorms</small>
+                    </div>
+                </div>
+                 <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Thu</h6>
+                        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear Day" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">28&deg;C</p>
+                        <small class="text-muted">Clear Day</small>
+                    </div>
+                </div>
+                 <div class="col text-center">
+                    <div class="card h-100 shadow-sm p-2">
+                        <h6 class="card-title text-muted">Fri</h6>
+                        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="Broken Clouds" class="img-fluid my-2 forecast-icon">
+                        <p class="mb-0">27&deg;C</p>
+                        <small class="text-muted">Broken Clouds</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="seasonal-warnings" class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-info mb-4">Seasonal Outlooks & Critical Alerts</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm border-primary">
+                        <div class="card-header bg-primary text-white"><i class="fas fa-leaf me-2"></i>Seasonal Outlook (September-November 2025)</div>
+                        <div class="card-body">
+                            <p>As Uganda transitions into its **second major rainy season**, the period from September to November 2025 is expected to bring:</p>
+                            <ul>
+                                <li><strong>Rainfall:</strong> Most parts of the country, including Kampala, anticipate **above-average to average rainfall**. Peak rains are usually experienced in October and November. This will be beneficial for agriculture but also increases flood risk.</li>
+                                <li><strong>Temperatures:</strong> Generally warm and humid conditions. Daytime temperatures will average between 23-27&deg;C, with slightly cooler nights.</li>
+                                <li><strong>Agricultural Impact:</strong> This is the prime planting season for a wide range of crops. Farmers should prepare land and acquire seeds early. The increased rainfall will support crop growth but also requires vigilance against waterlogging and certain pests/diseases.</li>
+                            </ul>
+                            <img src="images/wet_season.jpg" alt="Wet Season Outlook" class="img-fluid rounded mt-3">
+                            <small class="text-muted d-block mt-2">Source: Uganda National Meteorological Authority (UNMA) & GHACOF-64 Outlook.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm border-danger">
+                        <div class="card-header bg-danger text-white"><i class="fas fa-bullhorn me-2"></i>Current Weather Warnings & Health Advisories</div>
+                        <div class="card-body">
+                            <div class="alert alert-warning animate-alert-entry" role="alert">
+                                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Flash Flood Advisory for Urban Areas (July 19-20, 2025)</h5>
+                                <p>Heavy, localized thunderstorms are forecast for parts of Kampala and Wakiso districts this weekend. There is a **high risk of flash floods** in low-lying areas and along drainage channels. Residents should avoid walking or driving through floodwaters. Secure property in flood-prone zones.</p>
+                                <hr>
+                                <p class="mb-0"><em>Issued: July 18, 2025, 7:00 PM EAT. Expires: July 20, 2025, 10:00 PM EAT.</em></p>
+                            </div>
+                            
+                            <div class="alert alert-info animate-alert-entry" role="alert">
+                                <h5 class="alert-heading"><i class="fas fa-mosquito-alt me-2"></i>Increased Malaria Risk Alert</h5>
+                                <p>With recent and anticipated rainfall, there's an increased prevalence of mosquito breeding sites. Take precautions against malaria: use mosquito nets, clear stagnant water around homes, and consider repellent, especially at dusk and dawn. Seek medical attention if symptoms appear.</p>
+                            </div>
+
+                            <img src="images/mosquito_warning.jpg" alt="Mosquito Warning Graphic" class="img-fluid rounded mt-3">
+                            <small class="text-muted d-block mt-2">Always refer to official UNMA alerts and Ministry of Health advisories for safety.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="agri-weather-advice" class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-success mb-4"><i class="fas fa-seedling me-2"></i>Climate-Resilient Farming in Uganda</h2>
+            <p class="lead text-center">Adapting farming practices to Uganda's dynamic weather patterns is key to sustainable agriculture and food security.</p>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-success">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="fas fa-calendar-alt me-2"></i>Optimizing Planting & Harvesting</h5>
+                            <p>With the onset of the second rainy season, focus on **timely planting** to fully utilize rainfall. For crops ready for harvest, prioritize quick drying and proper storage to prevent post-harvest losses due to high humidity and unexpected showers.</p>
+                            <img src="images/drought_resilience.jpg" alt="Optimizing Planting" class="img-fluid rounded mt-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-warning">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning"><i class="fas fa-bug me-2"></i>Pest & Disease Vigilance</h5>
+                            <p>Increased humidity and rainfall create favorable conditions for pests (e.g., armyworms, aphids) and fungal diseases. Implement **integrated pest management** techniques. Regularly scout fields, use resistant varieties, and apply appropriate treatments early.</p>
+                            <img src="images/disease_monitoring.jpg" alt="Pest & Disease Monitoring" class="img-fluid rounded mt-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary"><i class="fas fa-globe-americas me-2"></i>Soil & Water Conservation</h5>
+                            <p>During heavy rains, prevent soil erosion on sloped lands by practicing **contour plowing and terracing**. Enhance soil health with organic matter to improve water infiltration and retention. Consider simple water harvesting structures for future dry spells.</p>
+                            <img src="images/soil_conservation.jpg" alt="Soil & Water Conservation" class="img-fluid rounded mt-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-muted"><small>Always cross-reference with local agricultural extension officers for specific advice tailored to your farm and region. Consult UNMA for localized weather patterns.</small></p>
+        </section>
+
+    </div> <div id="footer-container" class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Your Website Name. All rights reserved.</p>
+            <p>Weather data provided by <a href="https://openweathermap.org/" target="_blank" class="text-white">OpenWeatherMap</a>.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* Custom JavaScript - EMBEDDED */
+        document.addEventListener('DOMContentLoaded', function() {
+            // === CONFIGURATION ===
+            const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY'; // <--- REPLACE THIS WITH YOUR ACTUAL API KEY
+            const CITY_NAME = 'Kampala'; // You can make this dynamic later
+            const COUNTRY_CODE = 'UG'; // Uganda
+            const UNITS = 'metric'; // 'metric' for Celsius, 'imperial' for Fahrenheit
+
+            // OpenWeatherMap API Endpoints
+            const CURRENT_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME},${COUNTRY_CODE}&units=${UNITS}&appid=${API_KEY}`;
+            const FORECAST_WEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME},${COUNTRY_CODE}&units=${UNITS}&appid=${API_KEY}`;
+
+            // === ELEMENTS ===
+            const currentWeatherIcon = document.getElementById('current-weather-icon');
+            const currentLocation = document.getElementById('current-location');
+            const currentTemperature = document.getElementById('current-temperature');
+            const currentDescription = document.getElementById('current-description');
+            const currentHumidity = document.getElementById('current-humidity');
+            const currentRainfall = document.getElementById('current-rainfall');
+            const currentWindSpeed = document.getElementById('current-wind-speed');
+            const currentWindDirection = document.getElementById('current-wind-direction');
+            const currentFeelsLike = document.getElementById('current-feels-like');
+            const lastUpdated = document.getElementById('last-updated');
+            const forecastContainer = document.getElementById('forecast-container');
+
+            // === FETCH CURRENT WEATHER DATA ===
+            async function fetchCurrentWeather() {
+                try {
+                    const response = await fetch(CURRENT_WEATHER_URL);
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            throw new Error('Unauthorized: Invalid API Key. Please check your OpenWeatherMap API key.');
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    displayCurrentWeather(data);
+                } catch (error) {
+                    console.error('Error fetching current weather:', error);
+                    // Fallback to pre-filled placeholder data if API fails
+                    currentLocation.textContent = "Kampala, Uganda";
+                    currentTemperature.textContent = "23";
+                    currentDescription.textContent = "Data Unavailable";
+                    currentHumidity.textContent = "85";
+                    currentRainfall.textContent = "8.2";
+                    currentWindSpeed.textContent = "15";
+                    currentWindDirection.textContent = "SE";
+                    currentFeelsLike.textContent = "25";
+                    lastUpdated.textContent = "Error";
+                    currentWeatherIcon.src = "https://openweathermap.org/img/wn/09d@4x.png"; // Fallback icon
+                }
+            }
+
+            function displayCurrentWeather(data) {
+                currentLocation.textContent = `${data.name}, ${data.sys.country}`;
+                currentTemperature.textContent = Math.round(data.main.temp);
+                currentDescription.textContent = data.weather[0].description;
+                currentHumidity.textContent = data.main.humidity;
+                currentFeelsLike.textContent = Math.round(data.main.feels_like);
+                currentWindSpeed.textContent = Math.round(data.wind.speed * 3.6); // Convert m/s to km/h
+                currentWindDirection.textContent = getWindDirection(data.wind.deg);
+
+                // Rainfall: OpenWeatherMap current weather only provides '1h' or '3h' rainfall if it occurred recently.
+                currentRainfall.textContent = data.rain && data.rain['1h'] ? data.rain['1h'] : '0';
+                if (data.rain && data.rain['3h']) {
+                    currentRainfall.textContent = data.rain['3h'];
+                } else if (!data.rain) {
+                    currentRainfall.textContent = '0';
+                }
+
+                // Weather Icon mapping
+                const iconCode = data.weather[0].icon;
+                currentWeatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@4x.png`; // OpenWeatherMap icon URL
+                currentWeatherIcon.alt = data.weather[0].description;
+
+                lastUpdated.textContent = new Date(data.dt * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            // === FETCH 7-DAY FORECAST DATA ===
+            async function fetchForecastWeather() {
+                try {
+                    const response = await fetch(FORECAST_WEATHER_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    displayForecastWeather(data);
+                } catch (error) {
+                    console.error('Error fetching forecast weather:', error);
+                    // Fallback to pre-filled placeholders if API fails (already in HTML)
+                }
+            }
+
+            function displayForecastWeather(data) {
+                forecastContainer.innerHTML = ''; // Clear existing cards/placeholders
+
+                const dailyForecasts = {};
+                const today = new Date();
+                today.setHours(0,0,0,0); // Set to start of today for comparison
+
+                data.list.forEach(item => {
+                    const date = new Date(item.dt * 1000);
+                    date.setHours(0,0,0,0); // Set to start of day for grouping
+
+                    const dayKey = date.toISOString().split('T')[0]; // YYYY-MM-DD
+
+                    if (!dailyForecasts[dayKey]) {
+                        dailyForecasts[dayKey] = {
+                            minTemp: Infinity,
+                            maxTemp: -Infinity,
+                            description: '',
+                            icon: '',
+                            date: date,
+                            middayTemp: null,
+                            middayDescription: null,
+                            middayIcon: null
+                        };
+                    }
+
+                    dailyForecasts[dayKey].minTemp = Math.min(dailyForecasts[dayKey].minTemp, item.main.temp_min);
+                    dailyForecasts[dayKey].maxTemp = Math.max(dailyForecasts[dayKey].maxTemp, item.main.temp_max);
+
+                    const itemHour = new Date(item.dt * 1000).getHours();
+                    if (itemHour >= 12 && itemHour <= 15 && dailyForecasts[dayKey].middayTemp === null) {
+                        dailyForecasts[dayKey].middayTemp = item.main.temp;
+                        dailyForecasts[dayKey].middayDescription = item.weather[0].description;
+                        dailyForecasts[dayKey].middayIcon = item.weather[0].icon;
+                    }
+                });
+
+                let dayCount = 0;
+                Object.keys(dailyForecasts).sort().forEach(dayKey => {
+                    if (dayCount >= 7) return;
+                    
+                    const dayData = dailyForecasts[dayKey];
+                    const displayTemp = dayData.middayTemp !== null ? Math.round(dayData.middayTemp) : Math.round((dayData.minTemp + dayData.maxTemp) / 2);
+                    const displayDescription = dayData.middayDescription || 'N/A';
+                    const displayIcon = dayData.middayIcon || '01d';
+
+                    const dayName = dayData.date.toLocaleDateString('en-US', { weekday: 'short' });
+
+                    const cardHtml = `
+                        <div class="col text-center animate-on-scroll">
+                            <div class="card h-100 shadow-sm p-2">
+                                <h6 class="card-title text-muted">${dayName}</h6>
+                                <img src="https://openweathermap.org/img/wn/${displayIcon}@2x.png" alt="${displayDescription}" class="img-fluid my-2 forecast-icon">
+                                <p class="mb-0">${displayTemp}&deg;C</p>
+                                <small class="text-muted">${displayDescription}</small>
+                            </div>
+                        </div>
+                    `;
+                    forecastContainer.insertAdjacentHTML('beforeend', cardHtml);
+                    dayCount++;
+                });
+
+                document.querySelectorAll('#forecast-container .animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            // === HELPER FUNCTIONS ===
+            function getWindDirection(deg) {
+                if (deg > 337.5 || deg <= 22.5) return 'N';
+                if (deg > 22.5 && deg <= 67.5) return 'NE';
+                if (deg > 67.5 && deg <= 112.5) return 'E';
+                if (deg > 112.5 && deg <= 157.5) return 'SE';
+                if (deg > 157.5 && deg <= 202.5) return 'S';
+                if (deg > 202.5 && deg <= 247.5) return 'SW';
+                if (deg > 247.5 && deg <= 292.5) return 'W';
+                if (deg > 292.5 && deg <= 337.5) return 'NW';
+                return '';
+            }
+
+            // === ANIMATION ON SCROLL ===
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        if (!entry.target.classList.contains('animate-alert-entry')) {
+                            observer.unobserve(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe initial sections
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // === INITIAL DATA FETCH ON LOAD ===
+            fetchCurrentWeather();
+            fetchForecastWeather();
+        });
+    </script>
+</body>
+</html>
