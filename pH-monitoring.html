@@ -5,100 +5,575 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgriTech AI - Smart Farming Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff; /* Primary blue on hover */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080?text=Agricultural+Innovation') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 56px; /* Adjust for fixed navbar height */
+        }
+
+        .hero-section h1 {
+            font-size: 3.8em;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Animation for Hero Section elements */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+
+        .animate-fade-in.delay-1 { animation-delay: 0.3s; }
+        .animate-fade-in.delay-2 { animation-delay: 0.6s; }
+        .animate-fade-in.delay-3 { animation-delay: 0.9s; }
+        .animate-fade-in.delay-4 { animation-delay: 1.2s; }
+        .animate-fade-in.delay-5 { animation-delay: 1.5s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .feature-card i {
+            color: #007bff; /* Default icon color */
+        }
+
+        /* pH Monitor Section Specific Styling */
+        .ph-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto; /* Center the monitor */
+        }
+
+        .ph-display {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        #current-ph {
+            font-size: 4em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .ph-indicator {
+            width: 100%;
+            height: 30px;
+            background-color: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        #ph-level-bar {
+            height: 100%;
+            width: 50%; /* Initial width */
+            background: linear-gradient(to right, #dc3545, #ffc107, #28a745);
+            border-radius: 15px;
+            transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Changed to background-color */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ph-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            padding: 0 5px;
+        }
+
+        .ph-labels span:nth-child(1) { color: #dc3545; }
+        .ph-labels span:nth-child(2) { color: #ffc107; }
+        .ph-labels span:nth-child(3) { color: #28a745; }
+
+        .status-message {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .update-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .update-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .update-button:active {
+            background-color: #004085;
+            transform: translateY(0);
+        }
+
+        /* Gallery Section */
+        .gallery-item img {
+            border-radius: 8px;
+            object-fit: cover;
+            height: 250px; /* Uniform height for images */
+        }
+
+        .gallery-item .card-body {
+            padding-top: 20px;
+        }
+
+        /* Contact Section */
+        #contact .form-control-lg {
+            border-radius: 0.5rem;
+        }
+
+        #contact .btn-primary {
+            background-color: #28a745; /* Green button */
+            border-color: #28a745;
+        }
+
+        #contact .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529 !important; /* Darker footer */
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff !important;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-section p {
+                font-size: 1.2em;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            #current-ph {
+                font-size: 3em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Container -->
-    <div id="header-container"></div>
-     
-    <div class="container">
-        <h1>Real-time pH Monitor</h1>
-        <div class="ph-display">
-            <div class="ph-value" id="current-ph">7.0</div>
-            <div class="ph-indicator">
-                <div class="ph-level" id="ph-level-bar"></div>
-            </div>
-            <div class="ph-labels">
-                <span>0 (Acidic)</span>
-                <span>7 (Neutral)</span>
-                <span>14 (Alkaline)</span>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>AgriTech AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ph-monitor-section">pH Monitor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="status-message" id="ph-status">pH is neutral.</div>
-        <button class="update-button" id="update-ph-button">Update pH Reading</button>
-    </div>
+    </nav>
 
+<<<<<<< HEAD
    <!-- Footer Container -->
     <div id="footer-container"></div>
  
+=======
+    <header id="hero" class="hero-section d-flex align-items-center text-white text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold animate-fade-in">Revolutionizing Agriculture with AI</h1>
+            <p class="lead mt-4 animate-fade-in delay-1">Smart solutions for a sustainable and productive future.</p>
+            <a href="#features" class="btn btn-primary btn-lg mt-4 animate-fade-in delay-2">Learn More <i class="fas fa-chevron-right ms-2"></i></a>
+        </div>
+    </header>
+
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Our Smart Farming Features</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col animate-fade-in">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-seedling fa-3x text-success mb-3"></i>
+                            <h5 class="card-title fw-bold">Crop Health Monitoring</h5>
+                            <p class="card-text">Utilize AI to detect diseases, nutrient deficiencies, and optimize growth conditions for healthier crops.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-water fa-3x text-info mb-3"></i>
+                            <h5 class="card-title fw-bold">Automated Irrigation</h5>
+                            <p class="card-text">Smart irrigation systems that adapt to real-time weather data and soil moisture levels, saving water and resources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm border-0 feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title fw-bold">Precision Farming</h5>
+                            <p class="card-text">AI-driven insights for precise fertilization, pest control, and yield prediction, maximizing efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ph-monitor-section" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Real-time Soil pH Monitor</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 animate-fade-in delay-1">
+                    <div class="ph-container card shadow-lg p-4">
+                        <div class="ph-display">
+                            <div class="ph-value" id="current-ph">7.0</div>
+                            <div class="ph-indicator">
+                                <div class="ph-level" id="ph-level-bar"></div>
+                            </div>
+                            <div class="ph-labels">
+                                <span>0 (Acidic)</span>
+                                <span>7 (Neutral)</span>
+                                <span>14 (Alkaline)</span>
+                            </div>
+                        </div>
+                        <div class="status-message mt-4 mb-4" id="ph-status">pH is neutral.</div>
+                        <button class="update-button btn btn-success btn-lg w-100" id="update-ph-button">Update pH Reading</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">AgriTech in Action</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col animate-fade-in">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Smart+Irrigation" class="card-img-top" alt="Smart Irrigation">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Automated Watering</h5>
+                            <p class="card-text">Efficient water delivery precisely where and when needed.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Drone+Monitoring" class="card-img-top" alt="Drone Monitoring">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Aerial Crop Analysis</h5>
+                            <p class="card-text">Drones provide detailed insights into crop health and growth.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Sensor+Network" class="card-img-top" alt="Sensor Network">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Connected Sensors</h5>
+                            <p class="card-text">Real-time data collection from a network of intelligent sensors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-3">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=AI+Analytics" class="card-img-top" alt="AI Analytics">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Data-Driven Decisions</h5>
+                            <p class="card-text">AI processes data to give actionable advice for farmers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-4">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Sustainable+Farming" class="card-img-top" alt="Sustainable Farming">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Eco-Friendly Practices</h5>
+                            <p class="card-text">Optimize resources for sustainable and environmentally conscious agriculture.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-5">
+                    <div class="card h-100 shadow-sm border-0 gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Happy+Farmer" class="card-img-top" alt="Happy Farmer">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Empowering Farmers</h5>
+                            <p class="card-text">AgriTech AI makes farming smarter, easier, and more profitable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 animate-fade-in delay-1">
+                    <form id="contactForm">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="contactName" class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-lg" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control form-control-lg" id="contactSubject" placeholder="Subject of your message" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control form-control-lg" id="contactMessage" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white-50 py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 AgriTech AI. All rights reserved.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="text-white-50 mx-2"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="text-white-50 mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white-50 mx-2"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="#" class="text-white-50 mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+>>>>>>> c0ba154f36a9193889390fe0becc7b8c99f854f9
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
-    <script src="js/components.js"></script>
+    
     <script>
-        // Additional JavaScript for enhanced functionality
-        
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('contactName').value,
-                email: document.getElementById('contactEmail').value,
-                phone: document.getElementById('contactPhone').value,
-                type: document.getElementById('contactType').value,
-                subject: document.getElementById('contactSubject').value,
-                message: document.getElementById('contactMessage').value
-            };
-            
-            // Simulate form submission
-            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-            this.reset();
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all feature cards and sections
-        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Initialize tooltips when components are loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for components to load, then initialize tooltips
-            setTimeout(function() {
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl);
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Adjust scroll position for fixed navbar
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
-            }, 500);
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.animate-fade-in:not(.hero-section *)').forEach(el => {
+                observer.observe(el);
+            });
+
+            // pH Monitor Logic
+            const currentPhElement = document.getElementById('current-ph');
+            const phLevelBar = document.getElementById('ph-level-bar');
+            const phStatusElement = document.getElementById('ph-status');
+            const updatePhButton = document.getElementById('update-ph-button');
+
+            function updatePhMonitor() {
+                // Generate a random pH value between 0 and 14 for demonstration
+                const ph = (Math.random() * 14).toFixed(1);
+
+                currentPhElement.textContent = ph;
+
+                // Calculate width for the pH level bar (0-100%)
+                const barWidth = (ph / 14) * 100;
+                phLevelBar.style.width = `${barWidth}%`;
+
+                // Update status message and bar color based on pH
+                let statusMessage = '';
+                let barColor = '';
+
+                if (ph < 6.0) {
+                    statusMessage = 'pH is strongly acidic. Needs liming.';
+                    barColor = '#dc3545'; // Red
+                } else if (ph >= 6.0 && ph < 6.5) {
+                    statusMessage = 'pH is slightly acidic. Good for many crops.';
+                    barColor = '#fd7e14'; // Orange
+                } else if (ph >= 6.5 && ph <= 7.5) {
+                    statusMessage = 'pH is neutral. Ideal for most crops!';
+                    barColor = '#28a745'; // Green
+                } else if (ph > 7.5 && ph <= 8.0) {
+                    statusMessage = 'pH is slightly alkaline. May need acidification.';
+                    barColor = '#17a2b8'; // Cyan
+                } else { // ph > 8.0
+                    statusMessage = 'pH is strongly alkaline. Needs acidification.';
+                    barColor = '#007bff'; // Blue
+                }
+
+                phStatusElement.textContent = statusMessage;
+                phLevelBar.style.backgroundColor = barColor;
+            }
+
+            // Event listener for the button
+            updatePhButton.addEventListener('click', updatePhMonitor);
+
+            // Initial update when the page loads
+            updatePhMonitor();
+
+            // Update pH automatically every 5 seconds
+            setInterval(updatePhMonitor, 5000);
+
+            // Contact form handling
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form data (you would typically send this to a server)
+                const formData = {
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value
+                };
+
+                // Simulate form submission
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                this.reset(); // Clear the form
+            });
         });
     </script>
 </body>
-</html>      
+</html>
