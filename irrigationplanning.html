@@ -1,339 +1,494 @@
-:root {
-    --primary-color: #28a745; /* Green for success/primary actions */
-    --secondary-color: #007bff; /* Blue for info/secondary actions */
-    --info-color: #17a2b8; /* Teal for weather specific info */
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --light-bg: #f8f9fa;
-    --dark-bg: #343a40;
-    --card-bg: #ffffff;
-    --text-color: #333;
-    --text-light: #f8f9fa; /* For dark backgrounds */
-    --border-radius: 0.5rem; /* Rounded corners for cards and elements */
-    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    --transition-speed: 0.3s ease-in-out; /* Smooth transitions */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Awareness & Prevention - Uganda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_CODE.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Custom styles to enhance the Bootstrap theme */
+        :root {
+            --primary-color: #28a745; /* Green for success/primary actions - Matches Bootstrap success */
+            --secondary-color: #007bff; /* Blue for info/secondary actions - Matches Bootstrap primary */
+            --info-color: #17a2b8; /* Teal for weather specific info - Matches Bootstrap info */
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --text-light: #f8f9fa; /* For dark backgrounds */
+            --border-radius-lg: 0.75rem; /* Larger rounded corners */
+            --box-shadow-lg: 0 8px 25px rgba(0,0,0,0.15); /* Stronger shadow */
+            --transition-speed: 0.4s ease-in-out; /* Smooth transitions */
+        }
 
-/* Base Body Styling */
-body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-bg);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-}
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
 
-/* Container for responsiveness */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
+        /* Hero Section Styling */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/random/1600x600/?uganda,agriculture') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-lg);
+        }
 
-/* Header Styling */
-header {
-    background: linear-gradient(to right, var(--info-color), #117a8b); /* Darker info color */
-    padding: 3rem 0;
-    box-shadow: var(--box-shadow);
-    color: var(--text-light);
-    text-align: center;
-    position: relative; /* For potential absolute positioning of elements inside */
-    overflow: hidden; /* Clip any overflow from background effects */
-}
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem); /* Responsive font size */
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            margin-bottom: 1rem;
+        }
 
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://source.unsplash.com/random/1600x400/?weather-sky') no-repeat center center/cover; /* Dynamic background image */
-    opacity: 0.2; /* Subtle overlay */
-    z-index: 0;
-}
+        .hero-section p.lead {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-header .container {
-    position: relative;
-    z-index: 1; /* Ensure content is above the pseudo-element */
-}
+        /* Navbar Customization */
+        .navbar {
+            background-color: var(--dark-bg); /* Darker background for navbar */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-header h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for better readability */
-}
+        .navbar-brand, .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
 
-header p {
-    font-size: clamp(1.2rem, 3vw, 1.8rem); /* Responsive font size */
-    font-style: italic;
-    opacity: 0.9;
-}
+        .navbar-brand:hover, .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
 
-/* Section Spacing */
-section {
-    padding: 3.5rem 0; /* Increased padding for more breathing room */
-    position: relative;
-}
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
 
-/* Card Component - Reusable for various sections */
-.card {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 2rem;
-    margin-bottom: 2rem; /* Spacing between cards */
-    transition: transform var(--transition-speed); /* Smooth hover effect */
-}
+        /* Card Enhancements */
+        .card-custom {
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow-lg);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            overflow: hidden; /* Ensures content respects border-radius */
+            height: 100%; /* Ensure cards in a row have same height */
+        }
 
-.card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
+        .card-custom:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
 
-/* Live Weather Section */
-#live-weather {
-    text-align: center; /* Center alignment for the main weather display */
-}
+        .card-custom .card-body {
+            padding: 2rem;
+        }
 
-#live-weather .weather-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem; /* Space between elements */
-}
+        .card-custom .card-title {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
 
-#live-weather .weather-icon-large {
-    width: clamp(100px, 20vw, 180px); /* Responsive icon size */
-    height: clamp(100px, 20vw, 180px);
-    object-fit: contain;
-    filter: drop-shadow(5px 5px 8px rgba(0, 0, 0, 0.25)); /* Enhanced shadow */
-    transition: transform var(--transition-speed); /* Animation on load or interaction */
-}
+        .card-custom .card-text {
+            color: var(--text-color);
+        }
 
-#live-weather .weather-icon-large:hover {
-    transform: scale(1.05) rotate(5deg); /* Subtle playful effect on hover */
-}
+        /* Section Headings */
+        section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+        section p.lead {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #555;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
 
-#live-weather .weather-details {
-    padding-left: 20px; /* Increased padding */
-    border-left: 4px solid var(--info-color); /* Thicker border */
-    text-align: left; /* Align text within details */
-}
+        /* Icon Boxes */
+        .icon-box {
+            background-color: var(--card-bg);
+            border: 1px solid #eee;
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
 
-#live-weather .weather-details .temperature {
-    font-size: clamp(3rem, 8vw, 5rem); /* Very large, responsive temperature */
-    font-weight: 700;
-    color: var(--primary-color); /* Use primary color for temperature */
-    line-height: 1; /* Tightly packed */
-    margin-bottom: 0.5rem;
-}
+        .icon-box:hover {
+            background-color: #e6f7ef; /* Light green on hover */
+            border-color: var(--primary-color);
+        }
 
-#live-weather .weather-details .description {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    text-transform: capitalize; /* Ensure consistent capitalization */
-    color: var(--text-color);
-    margin-bottom: 1rem;
-}
+        .icon-box i {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
 
-#live-weather .weather-details .location-date {
-    font-size: 1.2rem;
-    color: #666;
-}
+        .icon-box h4 {
+            font-weight: bold;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
 
-/* Advanced Components: Forecast Grid */
-#forecast-section .forecast-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid columns */
-    gap: 1.5rem; /* Space between forecast items */
-}
+        /* Call to Action Section */
+        #cta-section {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 5rem 0;
+            text-align: center;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
 
-.forecast-item {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Lighter shadow for individual items */
-    padding: 1.5rem;
-    text-align: center;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-}
+        #cta-section h2 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
 
-.forecast-item:hover {
-    background-color: var(--light-bg);
-    transform: translateY(-3px);
-}
+        #cta-section .btn-light-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: var(--border-radius-lg);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
 
-.forecast-item .day {
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: var(--secondary-color);
-    margin-bottom: 0.75rem;
-}
+        #cta-section .btn-light-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
 
-.forecast-item .icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0.75rem;
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.1));
-}
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-bg);
+            color: rgba(255,255,255,0.7);
+            padding: 3rem 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
 
-.forecast-item .temp-range {
-    font-size: 1rem;
-    color: var(--text-color);
-}
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
 
-/* Search Bar Styling */
-.search-bar {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem; /* Space below search bar */
-    justify-content: center; /* Center the search bar */
-    align-items: center;
-}
+        footer a:hover {
+            color: var(--info-color);
+        }
 
-.search-bar input[type="text"] {
-    flex-grow: 1; /* Allow input to take up available space */
-    max-width: 400px;
-    padding: 0.8rem 1.2rem;
-    border: 2px solid var(--info-color);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-}
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 0;
+            }
+            .icon-box {
+                padding: 2rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p.lead {
+                font-size: 1rem;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            .icon-box i {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
 
-.search-bar input[type="text"]:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Focus ring */
-}
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hand-holding-medical me-2"></i> Disease Guard Uganda
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#human-diseases">Human Health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#farm-health">Farm Health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#prevention">Prevention</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-.search-bar button {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-}
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Protecting Health & Livelihoods in Uganda</h1>
+            <p class="lead">Empowering communities with knowledge on disease identification, prevention, and agricultural protection.</p>
+            <a href="#about" class="btn btn-primary btn-lg rounded-pill shadow-lg">Learn More <i class="fas fa-arrow-down ms-2"></i></a>
+        </div>
+    </header>
 
-.search-bar button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: translateY(-2px); /* Slight lift */
-}
+    <main>
+        <div class="container my-5">
 
-.search-bar button:active {
-    transform: translateY(0);
-    background-color: #1e7e34; /* Even darker on click */
-}
+            <section id="about" class="mb-5 py-5">
+                <h2 class="text-center mb-4">Understanding Disease</h2>
+                <p class="lead text-center">This page helps you identify common diseases, understand their signs, and learn effective prevention strategies. We've included specific advice for farmers to protect their crops and livestock, especially important for the agricultural backbone of Uganda.</p>
+                <div class="row text-center mt-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="icon-box">
+                            <i class="fas fa-microscope text-info mb-3"></i>
+                            <h4>Infectious Diseases</h4>
+                            <p>Caused by pathogens like bacteria, viruses, fungi, or parasites. They can spread from person to person, animal to animal, or through the environment.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="icon-box">
+                            <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+                            <h4>Non-Infectious Diseases</h4>
+                            <p>Caused by environmental factors (e.g., pollution), nutritional deficiencies, lifestyle choices, or genetics. These are not typically contagious.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-/* Utility Classes (examples) */
-.text-center {
-    text-align: center;
-}
+            <hr class="my-5">
 
-.mb-4 {
-    margin-bottom: 2rem;
-}
+            <section id="human-diseases" class="mb-5 py-5">
+                <h2 class="text-center mb-4">Common Human Diseases & Symptoms</h2>
+                <p class="lead text-center">Knowing the signs can lead to early diagnosis and better outcomes. Here are some prevalent health concerns in Uganda.</p>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-mosquito text-danger me-2"></i> Malaria</h5>
+                                <p class="card-text">**Symptoms:** Fever, chills, headache, muscle aches, fatigue, nausea, vomiting, diarrhea.</p>
+                                <p class="card-text">**Prevention:** Use treated mosquito nets, indoor residual spraying, repellent, prompt diagnosis and treatment.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-water text-primary me-2"></i> Typhoid Fever</h5>
+                                <p class="card-text">**Symptoms:** Prolonged fever, fatigue, headache, nausea, abdominal pain, constipation or diarrhea.</p>
+                                <p class="card-text">**Prevention:** Drink safe water, practice good hygiene (handwashing), proper sanitation, cook food thoroughly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-ribbon text-info me-2"></i> HIV/AIDS</h5>
+                                <p class="card-text">**Symptoms:** Flu-like symptoms initially, then can be asymptomatic for years. Later stages involve weight loss, chronic diarrhea, opportunistic infections.</p>
+                                <p class="card-text">**Prevention:** Safe sexual practices, use of condoms, pre-exposure prophylaxis (PrEP), avoiding needle sharing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-lungs text-warning me-2"></i> Tuberculosis (TB)</h5>
+                                <p class="card-text">**Symptoms:** Persistent cough (2+ weeks), chest pain, fever, night sweats, weight loss, fatigue.</p>
+                                <p class="card-text">**Prevention:** Early diagnosis and treatment, BCG vaccine (for children), good ventilation, covering coughs/sneezes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-child text-primary me-2"></i> Childhood Immunizable Diseases</h5>
+                                <p class="card-text">**Examples:** Measles, Polio, Diphtheria, Whooping Cough, Tetanus.</p>
+                                <p class="card-text">**Prevention:** Ensure children receive all routine vaccinations as per the national immunization schedule.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-.mt-4 {
-    margin-top: 2rem;
-}
+            <hr class="my-5">
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    header {
-        padding: 2rem 0;
-    }
+            <section id="farm-health" class="mb-5 py-5">
+                <h2 class="text-center mb-4">Protecting Your Farm: Crop & Livestock Health</h2>
+                <p class="lead text-center">For Ugandan farmers, healthy crops and livestock mean healthy livelihoods. Learn to spot and prevent common agricultural diseases.</p>
+                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-seedling text-success me-2"></i> Cassava Brown Streak Disease (CBSD)</h5>
+                                <p class="card-text">**Signs:** Yellowing along leaf veins, brown streaks on stems, root rot and necrosis rendering tubers inedible.</p>
+                                <p class="card-text">**Prevention:** Use disease-free planting material, practice crop rotation, remove and destroy infected plants, control whiteflies.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-tree text-brown me-2" style="color: #8B4513;"></i> Coffee Wilt Disease (CWD)</h5>
+                                <p class="card-text">**Signs:** Sudden wilting of leaves, rapid defoliation, blackening of stems from base upwards, eventual death of the tree.</p>
+                                <p class="card-text">**Prevention:** Plant resistant varieties, prune correctly, use clean tools, uproot and burn infected trees immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-piggy-bank text-danger me-2"></i> African Swine Fever (ASF)</h5>
+                                <p class="card-text">**Signs:** High fever, loss of appetite, skin reddening, bleeding from nose/rectum, uncoordinated movements, high mortality.</p>
+                                <p class="card-text">**Prevention:** Strict biosecurity measures, restrict movement of pigs/pork, no current vaccine, quarantine new animals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-cow text-warning me-2"></i> Foot-and-Mouth Disease (FMD)</h5>
+                                <p class="card-text">**Signs:** Blisters on tongue, lips, gums, nostrils, teats, and between hooves; lameness, excessive salivation, reduced milk yield.</p>
+                                <p class="card-text">**Prevention:** Vaccination, quarantine infected animals, disinfection of premises and equipment, control animal movement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    header h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
+            <hr class="my-5">
 
-    header p {
-        font-size: clamp(1rem, 4vw, 1.3rem);
-    }
+            <section id="prevention" class="mb-5 py-5">
+                <h2 class="text-center mb-4">Empowering Prevention Strategies</h2>
+                <p class="lead text-center">Prevention is always better than cure. Simple practices can make a huge difference in protecting both human and agricultural health.</p>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-hand-washing fa-4x text-info mb-3"></i>
+                                <h5 class="card-title">Hygiene & Sanitation</h5>
+                                <p class="card-text">Regular handwashing with soap and water, safe disposal of waste, clean water sources, and proper latrine use are fundamental.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-shield-alt fa-4x text-primary mb-3"></i>
+                                <h5 class="card-title">Vaccination & Immunization</h5>
+                                <p class="card-text">Ensure all recommended human vaccinations are up-to-date. For livestock, follow veterinary vaccination schedules diligently.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-utensils fa-4x text-success mb-3"></i>
+                                <h5 class="card-title">Food Safety & Nutrition</h5>
+                                <p class="card-text">Proper food handling, cooking, and storage. A balanced diet strengthens immunity for both humans and animals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-vector-square fa-4x text-secondary mb-3"></i>
+                                <h5 class="card-title">Vector Control</h5>
+                                <p class="card-text">Control mosquitoes (nets, repellents), flies, rodents, and other disease-carrying vectors in homes and on farms.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-tractor fa-4x text-warning mb-3"></i>
+                                <h5 class="card-title">Farm Biosecurity</h5>
+                                <p class="card-text">Strict measures to prevent disease entry and spread on farms: controlled access, disinfection, quarantine for new animals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom text-center">
+                            <div class="card-body">
+                                <i class="fas fa-stethoscope fa-4x text-danger mb-3"></i>
+                                <h5 class="card-title">Early Detection & Reporting</h5>
+                                <p class="card-text">Be vigilant for symptoms. Report suspected human or animal diseases to local health workers or veterinary officers promptly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    #live-weather .weather-details {
-        padding-left: 0;
-        border-left: none;
-        text-align: center; /* Center details on smaller screens */
-    }
+            <hr class="my-5">
 
-    #live-weather .weather-display {
-        flex-direction: column; /* Stack elements vertically */
-    }
+            <section id="cta-section" class="py-5 rounded my-5">
+                <div class="container">
+                    <h2 class="text-light mb-4">Join the Fight Against Disease!</h2>
+                    <p class="lead text-light">Knowledge is your most powerful tool. Stay informed and play your part in building healthier communities and more resilient farms across Uganda.</p>
+                    <a href="#" class="btn btn-light-outline btn-lg mt-3">Contact Us for More Information</a>
+                </div>
+            </section>
 
-    .search-bar {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
+        </div>
+    </main>
 
-    .search-bar input[type="text"],
-    .search-bar button {
-        width: 100%;
-        max-width: 300px; /* Constrain width on small screens */
-    }
-}
+    <footer class="mt-5">
+        <div class="container">
+            <p>&copy; 2025 Disease Guard Uganda. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>Developed with <i class="fas fa-heart text-danger"></i> for a healthier Uganda.</p>
+        </div>
+    </footer>
 
-@media (max-width: 480px) {
-    .card {
-        padding: 1.5rem;
-    }
-
-    .forecast-item {
-        padding: 1rem;
-    }
-}
-
-/* Animation for initial load (example) */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-on-load {
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-/* Scroll to top button (conceptual) */
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: var(--box-shadow);
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-    z-index: 1000;
-    opacity: 0; /* Hidden by default, shown with JS */
-    pointer-events: none; /* Disable interaction when hidden */
-}
-
-.scroll-to-top.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.scroll-to-top:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
