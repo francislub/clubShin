@@ -1,0 +1,339 @@
+:root {
+    --primary-color: #28a745; /* Green for success/primary actions */
+    --secondary-color: #007bff; /* Blue for info/secondary actions */
+    --info-color: #17a2b8; /* Teal for weather specific info */
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-bg: #f8f9fa;
+    --dark-bg: #343a40;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --text-light: #f8f9fa; /* For dark backgrounds */
+    --border-radius: 0.5rem; /* Rounded corners for cards and elements */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    --transition-speed: 0.3s ease-in-out; /* Smooth transitions */
+}
+
+/* Base Body Styling */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Container for responsiveness */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(to right, var(--info-color), #117a8b); /* Darker info color */
+    padding: 3rem 0;
+    box-shadow: var(--box-shadow);
+    color: var(--text-light);
+    text-align: center;
+    position: relative; /* For potential absolute positioning of elements inside */
+    overflow: hidden; /* Clip any overflow from background effects */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://source.unsplash.com/random/1600x400/?weather-sky') no-repeat center center/cover; /* Dynamic background image */
+    opacity: 0.2; /* Subtle overlay */
+    z-index: 0;
+}
+
+header .container {
+    position: relative;
+    z-index: 1; /* Ensure content is above the pseudo-element */
+}
+
+header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for better readability */
+}
+
+header p {
+    font-size: clamp(1.2rem, 3vw, 1.8rem); /* Responsive font size */
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Section Spacing */
+section {
+    padding: 3.5rem 0; /* Increased padding for more breathing room */
+    position: relative;
+}
+
+/* Card Component - Reusable for various sections */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    margin-bottom: 2rem; /* Spacing between cards */
+    transition: transform var(--transition-speed); /* Smooth hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Live Weather Section */
+#live-weather {
+    text-align: center; /* Center alignment for the main weather display */
+}
+
+#live-weather .weather-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Space between elements */
+}
+
+#live-weather .weather-icon-large {
+    width: clamp(100px, 20vw, 180px); /* Responsive icon size */
+    height: clamp(100px, 20vw, 180px);
+    object-fit: contain;
+    filter: drop-shadow(5px 5px 8px rgba(0, 0, 0, 0.25)); /* Enhanced shadow */
+    transition: transform var(--transition-speed); /* Animation on load or interaction */
+}
+
+#live-weather .weather-icon-large:hover {
+    transform: scale(1.05) rotate(5deg); /* Subtle playful effect on hover */
+}
+
+#live-weather .weather-details {
+    padding-left: 20px; /* Increased padding */
+    border-left: 4px solid var(--info-color); /* Thicker border */
+    text-align: left; /* Align text within details */
+}
+
+#live-weather .weather-details .temperature {
+    font-size: clamp(3rem, 8vw, 5rem); /* Very large, responsive temperature */
+    font-weight: 700;
+    color: var(--primary-color); /* Use primary color for temperature */
+    line-height: 1; /* Tightly packed */
+    margin-bottom: 0.5rem;
+}
+
+#live-weather .weather-details .description {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    text-transform: capitalize; /* Ensure consistent capitalization */
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+#live-weather .weather-details .location-date {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Advanced Components: Forecast Grid */
+#forecast-section .forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid columns */
+    gap: 1.5rem; /* Space between forecast items */
+}
+
+.forecast-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Lighter shadow for individual items */
+    padding: 1.5rem;
+    text-align: center;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.forecast-item:hover {
+    background-color: var(--light-bg);
+    transform: translateY(-3px);
+}
+
+.forecast-item .day {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+.forecast-item .icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.75rem;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+.forecast-item .temp-range {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem; /* Space below search bar */
+    justify-content: center; /* Center the search bar */
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1; /* Allow input to take up available space */
+    max-width: 400px;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--info-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Focus ring */
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.search-bar button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+.search-bar button:active {
+    transform: translateY(0);
+    background-color: #1e7e34; /* Even darker on click */
+}
+
+/* Utility Classes (examples) */
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 2rem 0;
+    }
+
+    header h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    header p {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+
+    #live-weather .weather-details {
+        padding-left: 0;
+        border-left: none;
+        text-align: center; /* Center details on smaller screens */
+    }
+
+    #live-weather .weather-display {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .search-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .search-bar input[type="text"],
+    .search-bar button {
+        width: 100%;
+        max-width: 300px; /* Constrain width on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .forecast-item {
+        padding: 1rem;
+    }
+}
+
+/* Animation for initial load (example) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-on-load {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Scroll to top button (conceptual) */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    z-index: 1000;
+    opacity: 0; /* Hidden by default, shown with JS */
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-to-top:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}

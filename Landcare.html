@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainable Land Care - Your Farm's Future</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome for icons. Replace 'your-fontawesome-kit.js' with your actual kit URL or use a public CDN if available -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
     <style>
         /* Custom CSS for Land Care Page - EMBEDDED */
 
@@ -142,6 +143,29 @@
                 height: 150px;
             }
         }
+
+        /* Quick Links Styling */
+        #quick-links {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        #quick-links h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        #quick-links .list-inline-item a {
+            color: var(--info-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        #quick-links .list-inline-item a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +186,27 @@
             </p>
         </section>
 
+        <!-- Quick Links Section - Allows internal navigation -->
+        <section id="quick-links" class="text-center animate-on-scroll">
+            <h3>Jump to Key Practices:</h3>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item me-3">
+                    <a href="#soil-testing-section" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-flask me-1"></i> Soil Testing
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="#soil-improvement" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-hand-holding-heart me-1"></i> Soil Improvement
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="#water-management" class="btn btn-outline-info btn-sm rounded-pill">
+                        <i class="fas fa-water me-1"></i> Water Management
+                    </a>
+                </li>
+            </ul>
+        </section>
         <hr class="my-5">
 
         <section id="core-practices" class="mb-5">
@@ -169,8 +214,8 @@
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
                 <div class="col animate-on-scroll">
-                    <div class="card h-100 feature-card">
-                        <img src="images/soil_testing.jpg" class="card-img-top" alt="Farmer taking soil sample">
+                    <div class="card h-100 feature-card" id="soil-testing-section"> <!-- ID ADDED FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x200/28a745/ffffff?text=Soil+Testing" class="card-img-top" alt="Farmer taking soil sample" onerror="this.onerror=null;this.src='https://placehold.co/400x200/28a745/ffffff?text=Soil+Testing';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-flask me-2"></i>Soil Testing</h5>
                             <p class="card-text">
@@ -185,7 +230,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/ph_monitoring.jpg" class="card-img-top" alt="pH meter in soil">
+                        <img src="https://placehold.co/400x200/17a2b8/ffffff?text=pH+Monitoring" class="card-img-top" alt="pH meter in soil" onerror="this.onerror=null;this.src='https://placehold.co/400x200/17a2b8/ffffff?text=pH+Monitoring';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-superscript me-2"></i>pH Monitoring</h5>
                             <p class="card-text">
@@ -200,7 +245,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/nutrient_analysis.jpg" class="card-img-top" alt="Healthy plant with rich leaves">
+                        <img src="https://placehold.co/400x200/ffc107/ffffff?text=Nutrient+Analysis" class="card-img-top" alt="Healthy plant with rich leaves" onerror="this.onerror=null;this.src='https://placehold.co/400x200/ffc107/ffffff?text=Nutrient+Analysis';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-vial me-2"></i>Nutrient Analysis</h5>
                             <p class="card-text">
@@ -214,8 +259,8 @@
                 </div>
 
                 <div class="col animate-on-scroll">
-                    <div class="card h-100 feature-card">
-                        <img src="images/soil_improvement.jpg" class="card-img-top" alt="Compost pile with rich soil">
+                    <div class="card h-100 feature-card" id="soil-improvement"> <!-- ID ADDED HERE FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x200/28a745/ffffff?text=Soil+Improvement" class="card-img-top" alt="Compost pile with rich soil" onerror="this.onerror=null;this.src='https://placehold.co/400x200/28a745/ffffff?text=Soil+Improvement';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-hand-holding-heart me-2"></i>Soil Improvement</h5>
                             <p class="card-text">
@@ -230,7 +275,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/crop_rotation.jpg" class="card-img-top" alt="Different crops growing in strips">
+                        <img src="https://placehold.co/400x200/17a2b8/ffffff?text=Crop+Rotation" class="card-img-top" alt="Different crops growing in strips" onerror="this.onerror=null;this.src='https://placehold.co/400x200/17a2b8/ffffff?text=Crop+Rotation';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-sync-alt me-2"></i>Crop Rotation</h5>
                             <p class="card-text">
@@ -245,7 +290,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/cover_crops.jpg" class="card-img-top" alt="Green cover crop field">
+                        <img src="https://placehold.co/400x200/ffc107/ffffff?text=Cover+Crops" class="card-img-top" alt="Green cover crop field" onerror="this.onerror=null;this.src='https://placehold.co/400x200/ffc107/ffffff?text=Cover+Crops';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-leaf me-2"></i>Cover Crops</h5>
                             <p class="card-text">
@@ -260,7 +305,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/conservation_tillage.jpg" class="card-img-top" alt="Farm field with crop residue">
+                        <img src="https://placehold.co/400x200/dc3545/ffffff?text=Conservation+Tillage" class="card-img-top" alt="Farm field with crop residue" onerror="this.onerror=null;this.src='https://placehold.co/400x200/dc3545/ffffff?text=Conservation+Tillage';">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-tractor me-2"></i>Conservation Tillage</h5>
                             <p class="card-text">
@@ -284,7 +329,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/irrigation_planning.jpg" class="card-img-top" alt="Drip irrigation system in a field">
+                        <img src="https://placehold.co/400x200/17a2b8/ffffff?text=Irrigation+Planning" class="card-img-top" alt="Drip irrigation system in a field" onerror="this.onerror=null;this.src='https://placehold.co/400x200/17a2b8/ffffff?text=Irrigation+Planning';">
                         <div class="card-body">
                             <h5 class="card-title text-info"><i class="fas fa-water me-2"></i>Irrigation Planning</h5>
                             <p class="card-text">
@@ -299,7 +344,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/water_conservation.jpg" class="card-img-top" alt="Rainwater harvesting barrel">
+                        <img src="https://placehold.co/400x200/28a745/ffffff?text=Water+Conservation" class="card-img-top" alt="Rainwater harvesting barrel" onerror="this.onerror=null;this.src='https://placehold.co/400x200/28a745/ffffff?text=Water+Conservation';">
                         <div class="card-body">
                             <h5 class="card-title text-info"><i class="fas fa-hand-holding-water me-2"></i>Water Conservation</h5>
                             <p class="card-text">
@@ -314,7 +359,7 @@
 
                 <div class="col animate-on-scroll">
                     <div class="card h-100 feature-card">
-                        <img src="images/drainage_systems.jpg" class="card-img-top" alt="Agricultural drainage ditch">
+                        <img src="https://placehold.co/400x200/17a2b8/ffffff?text=Drainage+Systems" class="card-img-top" alt="Agricultural drainage ditch" onerror="this.onerror=null;this.src='https://placehold.co/400x200/17a2b8/ffffff?text=Drainage+Systems';">
                         <div class="card-body">
                             <h5 class="card-title text-info"><i class="fas fa-drain me-2"></i>Drainage Systems</h5>
                             <p class="card-text">
@@ -338,7 +383,9 @@
             <a href="contact.html" class="btn btn-success btn-lg"><i class="fas fa-phone-alt me-2"></i>Contact Us for Expert Advice</a>
         </section>
 
-    </div> <div id="footer-container" class="bg-dark text-white text-center py-4 mt-5">
+    </div> 
+    
+    <div id="footer-container" class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
             <p>&copy; <span id="current-year-landcare"></span> Your Website Name. All rights reserved.</p>
             <p>Empowering sustainable agriculture in Uganda.</p>
@@ -353,7 +400,385 @@
             // Set current year in footer
             document.getElementById('current-year-landcare').textContent = new Date().getFullYear();
 
-            // Smooth scrolling for anchor links (if you add internal navigation)
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        // Stop observing once animated, unless you want it to re-animate on scroll back up
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all feature cards and sections for animation
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drainage Systems - Smart Water Management for Your Farm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --primary-color: #28a745; /* Success color for primary (green) */
+            --info-color: #17a2b8; /* Info color for water theme */
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --header-bg-color: #17a2b8; /* Info color for header */
+            --header-gradient: linear-gradient(to right, #17a2b8, #138496);
+            --button-hover-dark: #138496; /* Darker info color for button hover */
+        }
+
+        /* --- Global Body Styles --- */
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Bootstrap Color Overrides --- */
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #6c757d !important; }
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        /* --- Header Styling --- */
+        header {
+            background: var(--header-gradient);
+            padding: 3rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: white;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* --- Section Spacing --- */
+        section {
+            padding: 4rem 0;
+        }
+
+        /* --- Card Styling --- */
+        .feature-card, .card {
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .feature-card img, .card img {
+            max-width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: bold;
+            color: var(--info-color); /* Use info color for card titles */
+            font-size: 1.3rem;
+        }
+        .feature-card .card-body p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: #6c757d;
+            padding: 1rem 1.25rem;
+        }
+
+        /* --- Animation for fade-in on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Call to Action Section --- */
+        .cta-section {
+            background-color: #e0f7fa; /* Light blue-green for CTA */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 3rem;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+        .cta-section .btn-info {
+            background-color: var(--info-color);
+            border-color: var(--info-color);
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .cta-section .btn-info:hover {
+            background-color: var(--button-hover-dark);
+            border-color: var(--button-hover-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 3rem 0;
+            font-size: 0.95rem;
+            border-top: 5px solid var(--info-color); /* Blue accent line */
+            text-align: center;
+        }
+        footer p {
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+            header p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .feature-card img, .card img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .cta-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-drain me-2"></i>Optimizing Farm Drainage Systems</h1>
+            <p class="lead">Ensuring healthy roots and productive land by managing excess water.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-info mb-4">Why Effective Drainage Matters</h2>
+            <p class="text-center lead px-lg-5">
+                Excess water in the soil, known as waterlogging, can suffocate plant roots, lead to nutrient loss, and create conditions favorable for diseases. Proper drainage is essential for maintaining soil structure, aeration, and overall crop health, especially in areas prone to heavy rainfall or poor natural drainage.
+            </p>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="drainage-methods" class="mb-5">
+            <h2 class="text-center text-info mb-4">Key Drainage Methods for Your Farm</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Raised+Beds" class="card-img-top" alt="Raised garden beds" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Raised+Beds';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-layer-group me-2"></i>Raised Beds</h5>
+                            <p class="card-text">
+                                Elevating your planting area above the natural ground level improves drainage and prevents water from pooling around roots. This method is excellent for small to medium-sized farms and gardens.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Simple and effective for small areas.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Surface+Drains" class="card-img-top" alt="Open drainage ditch in a field" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Surface+Drains';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-water-ladder me-2"></i>Surface Drains (Open Ditches)</h5>
+                            <p class="card-text">
+                                Creating shallow channels or ditches across your field helps collect and divert excess surface water away from crops. This is a common and cost-effective method for larger fields.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Directing excess water away.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/ffc107/ffffff?text=French+Drains" class="card-img-top" alt="Cross-section of a French drain" onerror="this.onerror=null;this.src='https://placehold.co/400x220/ffc107/ffffff?text=French+Drains';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-ruler-combined me-2"></i>French Drains (Subsurface)</h5>
+                            <p class="card-text">
+                                These involve burying a perforated pipe in a gravel-filled trench. They are highly effective for removing subsurface water and are less disruptive to farming operations once installed.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Hidden solution for persistent wetness.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/dc3545/ffffff?text=Terracing" class="card-img-top" alt="Agricultural terraces on a hillside" onerror="this.onerror=null;this.src='https://placehold.co/400x220/dc3545/ffffff?text=Terracing';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-mountain me-2"></i>Terracing (for Slopes)</h5>
+                            <p class="card-text">
+                                On sloped land, terracing creates level platforms that reduce water runoff speed, prevent erosion, and allow water to infiltrate the soil more effectively, improving overall water management.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Controlling runoff on inclines.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Drainage+Maintenance" class="card-img-top" alt="Farmer clearing a drain" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Drainage+Maintenance';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tools me-2"></i>Maintenance & Monitoring</h5>
+                            <p class="card-text">
+                                Regular inspection and clearing of drainage systems are crucial. Blockages can render systems ineffective. Monitoring soil moisture levels can also help identify areas needing drainage improvements.
+                            </p>
+                        </d>
+                        <div class="card-footer">
+                            <small>Keep systems clear and effective.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="text-center cta-section animate-on-scroll">
+            <h3 class="text-info mb-3">Need Expert Advice on Drainage?</h3>
+            <p class="lead">
+                Implementing the right drainage system can significantly boost your farm's resilience and productivity. Our experts can help you assess your land and design tailored solutions.
+            </p>
+            <a href="contact.html" class="btn btn-info btn-lg"><i class="fas fa-phone-alt me-2"></i>Get a Drainage Consultation</a>
+        </section>
+
+    </main> 
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year-drainage"></span> AgriTech AI. All rights reserved.</p>
+            <p>Empowering sustainable agriculture in Uganda.</p>
+            <p><a href="mailto:info@agritechai.com" class="text-white">info@agritechai.com</a> | +256 7XXXXXXXX</p>
+            <div class="social-links mt-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-drainage').textContent = new Date().getFullYear();
+
+            // Smooth scrolling for anchor links (if any internal links are added later)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -382,21 +807,443 @@
                 });
             }, observerOptions);
 
-            // Observe all feature cards and sections
+            // Observe all sections and cards for animation
             document.querySelectorAll('.animate-on-scroll').forEach(el => {
                 observer.observe(el);
             });
+        });
+    </script>
+</body>
+</html>
 
-            // Initialize tooltips (if any are used - not explicitly added here, but good to have)
-            // Example for future use: <button data-bs-toggle="tooltip" title="Some info">Hover Me</button>
-            /*
-            setTimeout(function() { // Delay to ensure DOM is ready
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Crops - Enriching Your Soil Naturally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons - Using a stable CDN for reliability -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --primary-color: #28a745; /* Success color for primary (green) */
+            --info-color: #17a2b8;
+            --success-color: #28a745; /* Main theme color for this page */
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --header-bg-color: #28a745; /* Success color for header */
+            --header-gradient: linear-gradient(to right, #28a745, #218838);
+            --button-hover-dark: #218838; /* Darker green for button hover */
+        }
+
+        /* --- Global Body Styles --- */
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Bootstrap Color Overrides --- */
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #6c757d !important; }
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        /* --- Header Styling --- */
+        header {
+            background: var(--header-gradient);
+            padding: 3rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: white;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* --- Section Spacing --- */
+        section {
+            padding: 4rem 0;
+        }
+
+        /* --- Card Styling --- */
+        .feature-card, .card {
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .feature-card img, .card img {
+            max-width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: bold;
+            color: var(--success-color); /* Use success color for card titles */
+            font-size: 1.3rem;
+        }
+        .feature-card .card-body p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: #6c757d;
+            padding: 1rem 1.25rem;
+        }
+
+        /* --- Animation for fade-in on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Call to Action Section --- */
+        .cta-section {
+            background-color: #e8f5e9; /* Light green for CTA */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 3rem;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+        .cta-section .btn-success {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .cta-section .btn-success:hover {
+            background-color: var(--button-hover-dark);
+            border-color: var(--button-hover-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 3rem 0;
+            font-size: 0.95rem;
+            border-top: 5px solid var(--success-color); /* Green accent line */
+            text-align: center;
+        }
+        footer p {
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+            header p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .feature-card img, .card img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .cta-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-leaf me-2"></i>The Power of Cover Crops</h1>
+            <p class="lead">Enhancing soil health, suppressing weeds, and boosting your farm's resilience naturally.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-success mb-4">Why Cover Crops Are Essential</h2>
+            <p class="text-center lead px-lg-5">
+                Cover crops are plants grown primarily to protect and enrich the soil rather than for harvest. They are a cornerstone of sustainable agriculture, offering a multitude of benefits that improve farm productivity and environmental health.
+            </p>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="benefits-section" class="mb-5">
+            <h2 class="text-center text-success mb-4">Key Benefits of Using Cover Crops</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Soil+Erosion+Control" class="card-img-top" alt="Field with cover crop preventing erosion" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Soil+Erosion+Control';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-wind me-2"></i>Prevent Soil Erosion</h5>
+                            <p class="card-text">
+                                Cover crops provide a protective layer over the soil, shielding it from the impact of rain and wind, significantly reducing soil erosion and preserving valuable topsoil.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Protecting your most valuable asset.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Organic+Matter" class="card-img-top" alt="Rich, dark soil with organic matter" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Organic+Matter';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-seedling me-2"></i>Increase Organic Matter</h5>
+                            <p class="card-text">
+                                As cover crops grow and are later incorporated into the soil, they add organic matter, improving soil structure, water retention, and nutrient-holding capacity.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Building healthier, more fertile soil.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/ffc107/ffffff?text=Weed+Suppression" class="card-img-top" alt="Dense cover crop suppressing weeds" onerror="this.onerror=null;this.src='https://placehold.co/400x220/ffc107/ffffff?text=Weed+Suppression';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-weed me-2"></i>Suppress Weeds</h5>
+                            <p class="card-text">
+                                Dense cover crop growth outcompetes weeds for light, water, and nutrients, reducing weed pressure and the need for herbicides.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Natural weed control.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/dc3545/ffffff?text=Nitrogen+Fixation" class="card-img-top" alt="Legume roots with nitrogen nodules" onerror="this.onerror=null;this.src='https://placehold.co/400x220/dc3545/ffffff?text=Nitrogen+Fixation';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-atom me-2"></i>Fix Nitrogen (Legumes)</h5>
+                            <p class="card-text">
+                                Leguminous cover crops (like clover or vetch) form symbiotic relationships with bacteria that convert atmospheric nitrogen into a form usable by plants, reducing the need for synthetic nitrogen fertilizers.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Fertilizing your soil naturally.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Pest+Disease+Control" class="card-img-top" alt="Beneficial insects on a plant" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Pest+Disease+Control';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-bug-slash me-2"></i>Pest & Disease Control</h5>
+                            <p class="card-text">
+                                Some cover crops can disrupt pest life cycles, attract beneficial insects, or suppress plant diseases, contributing to a healthier farm ecosystem.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Promoting a balanced ecosystem.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="types-and-implementation" class="mb-5">
+            <h2 class="text-center text-success mb-4">Types of Cover Crops & Implementation</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Cover+Crop+Types" class="card-img-top" alt="Various cover crop seeds" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Cover+Crop+Types';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-list me-2"></i>Common Types</h5>
+                            <p class="card-text">
+                                Cover crops are broadly categorized into:
+                                <ul>
+                                    <li>**Legumes:** (e.g., clover, vetch, cowpeas) for nitrogen fixation.</li>
+                                    <li>**Grasses:** (e.g., rye, oats, sorghum) for biomass, erosion control, and nutrient scavenging.</li>
+                                    <li>**Broadleaves:** (e.g., radish, mustard) for breaking up compaction and suppressing weeds.</li>
+                                </ul>
+                                Often, mixtures are used to achieve multiple benefits.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Choose the right crop for your goal.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Planting+Schedule" class="card-img-top" alt="Calendar with planting dates" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Planting+Schedule';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-calendar-alt me-2"></i>When to Plant</h5>
+                            <p class="card-text">
+                                The best time to plant cover crops depends on your main crop rotation and climate. They are typically planted after the main harvest in the fall, or during fallow periods between cash crops, to grow over winter or a short season.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Timing is key for maximum benefit.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/ffc107/ffffff?text=Termination+Methods" class="card-img-top" alt="Tractor tilling cover crop" onerror="this.onerror=null;this.src='https://placehold.co/400x220/ffc107/ffffff?text=Termination+Methods';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-cut me-2"></i>Termination Methods</h5>
+                            <p class="card-text">
+                                Cover crops need to be terminated (killed) before planting the next cash crop. Common methods include mowing, rolling/crimping, tillage, or winter-kill (if the climate allows).
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Preparing for the next growing season.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="text-center cta-section animate-on-scroll">
+            <h3 class="text-success mb-3">Ready to Integrate Cover Crops?</h3>
+            <p class="lead">
+                Implementing cover crops can be a game-changer for your farm's long-term health and productivity. Contact our agricultural experts for personalized advice on selecting and managing the right cover crops for your specific needs.
+            </p>
+            <a href="contact.html" class="btn btn-success btn-lg"><i class="fas fa-phone-alt me-2"></i>Get a Cover Crop Consultation</a>
+        </section>
+
+    </main> 
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year-cover-crops"></span> AgriTech AI. All rights reserved.</p>
+            <p>Empowering sustainable agriculture in Uganda.</p>
+            <p><a href="mailto:info@agritechai.com" class="text-white">info@agritechai.com</a> | +256 7XXXXXXXX</p>
+            <div class="social-links mt-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-cover-crops').textContent = new Date().getFullYear();
+
+            // Smooth scrolling for anchor links (if any internal links are added later)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
-            }, 500);
-            */
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections and cards for animation
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
