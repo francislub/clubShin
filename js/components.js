@@ -94,7 +94,7 @@ class ComponentLoader {
 
     <!-- Markets -->
     <li class="nav-item">
-      <a class="nav-link" href="farmer-markets.html">
+      <a class="nav-link" href="markets.html">
         <i class="fas fa-store me-1"></i>Markets
       </a>
     </li>
@@ -324,8 +324,8 @@ class ComponentLoader {
         const dashboardLink = navLinks.querySelector('a[href="farmer-dashboard.html"]')
         if (dashboardLink) dashboardLink.href = "farmer-dashboard.html"
 
-        const marketsLink = navLinks.querySelector('a[href="farmer-markets.html"]')
-        if (marketsLink) marketsLink.href = "farmer-markets.html"
+        const marketsLink = navLinks.querySelector('a[href="markets.html"]')
+        if (marketsLink) marketsLink.href = "markets.html"
       }
 
       if (profileLink) profileLink.href = "farmer-profile.html"
@@ -363,7 +363,7 @@ class ComponentLoader {
           dashboardLink.innerHTML = '<i class="fas fa-tachometer-alt me-1"></i>Dashboard'
         }
 
-        const marketsLink = navLinks.querySelector('a[href="farmer-markets.html"]')
+        const marketsLink = navLinks.querySelector('a[href="markets.html"]')
         if (marketsLink) {
           marketsLink.href = "agent-analytics.html"
           marketsLink.innerHTML = '<i class="fas fa-chart-line me-1"></i>Analytics'
@@ -470,9 +470,17 @@ class ComponentLoader {
       </ul>
     </li>
 
+    <!-- team -->
+    <li class="nav-item">
+      <a class="nav-link" href="team.html">
+        <i class="fas fa-tachometer-alt me-1"></i>Club Members
+      </a>
+    </li>
+
+
     <!-- Markets -->
     <li class="nav-item">
-      <a class="nav-link" href="farmer-markets.html">
+      <a class="nav-link" href="markets.html">
         <i class="fas fa-store me-1"></i>Markets
       </a>
     </li>
@@ -502,6 +510,7 @@ class ComponentLoader {
       console.log("ComponentLoader.configureMobileNav: Applying farmer-specific mobile nav links.")
       if (mobileHome) mobileHome.onclick = () => (window.location.href = "farmer-dashboard.html")
       if (mobileMarkets) mobileMarkets.onclick = () => (window.location.href = "farmer-markets.html")
+      if (mobileMarkets) mobileMarkets.onclick = () => (window.location.href = "markets.html")
       if (mobilePredictions)
         mobilePredictions.onclick = () => (window.location.href = "farmer-dashboard.html#prediction")
       if (mobileTransactions) mobileTransactions.onclick = () => (window.location.href = "farmer-transactions.html")
