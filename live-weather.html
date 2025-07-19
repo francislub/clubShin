@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variables for easy color management */
+        :root {
+            --primary-color: #28a745; /* Green */
+            --secondary-color: #007bff; /* Blue */
+            --dark-color: #212529;
+            --light-bg: #f8f9fa;
+            --white-color: #ffffff;
+            --text-color: #333;
+            --heading-color: #2c3e50;
+        }
+
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: var(--light-bg);
+        }
+
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700; /* Bolder headings */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            transition: background-color 0.4s ease-in-out, padding 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .navbar.scrolled {
+            background-color: rgba(33, 37, 41, 0.95) !important; /* Slightly transparent dark */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem; /* Larger brand name */
+            color: var(--white-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative; /* For underline effect */
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1577708709506-c87a5538e12c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 56px; /* Adjust for fixed navbar height */
+            color: var(--white-color);
+            position: relative;
+            overflow: hidden; /* For pseudo-elements */
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            animation: pulseBackground 10s infinite alternate;
+        }
+
+        @keyframes pulseBackground {
+            0% { transform: scale(1); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        .hero-section h1 {
+            font-size: 4.5em; /* Larger heading */
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6); /* Stronger shadow */
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .hero-section p {
+            font-size: 1.7em; /* Larger lead paragraph */
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .hero-section .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 15px 40px; /* Larger button */
+            font-size: 1.3em;
+            border-radius: 50px; /* Pill shape */
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .hero-section .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-5px) scale(1.02); /* More pronounced hover */
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Animation for all sections and elements */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+        }
+        .animate-fade-in.animated { /* Class added by JS when in view */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-fade-in.delay-1 { transition-delay: 0.1s; }
+        .animate-fade-in.delay-2 { transition-delay: 0.2s; }
+        .animate-fade-in.delay-3 { transition-delay: 0.3s; }
+        .animate-fade-in.delay-4 { transition-delay: 0.4s; }
+        .animate-fade-in.delay-5 { transition-delay: 0.5s; }
+
+
+        /* Sections Styling */
+        section {
+            padding: 100px 0; /* More vertical padding */
+            position: relative;
+        }
+        section:nth-of-type(even) { /* Alternate background for sections */
+            background-color: var(--light-bg);
+        }
+        section:nth-of-type(odd) {
+            background-color: var(--white-color);
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Smoother animation */
+            border: none;
+            border-radius: 15px; /* More rounded corners */
+            overflow: hidden; /* For icon background */
+            position: relative;
+            background: var(--white-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-card::before { /* Background for icon area */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background-color: var(--primary-color);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%); /* Angled bottom edge */
+            z-index: 0;
+        }
+
+        .feature-card .card-body {
+            position: relative;
+            z-index: 1;
+            padding-top: 60px; /* Space for icon */
+        }
+
+        .feature-card i {
+            color: var(--white-color); /* White icon */
+            font-size: 3.8em; /* Larger icon */
+            position: absolute; /* Position over the angled background */
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.2); /* Subtle background for icon */
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px); /* More pronounced lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+        .feature-card:hover i {
+            transform: translateX(-50%) rotateY(180deg); /* Flip icon on hover */
+        }
+
+        /* pH Monitor Section Specific Styling */
+        .ph-container {
+            background-color: var(--white-color);
+            padding: 40px; /* More padding */
+            border-radius: 20px; /* More rounded */
+            text-align: center;
+            max-width: 550px; /* Slightly wider */
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .ph-display {
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: #f0f8ff;
+            border-radius: 15px;
+            border: 1px solid #cce5ff;
+            position: relative;
+            overflow: hidden; /* For glow effect */
+        }
+
+        .ph-display::before { /* Subtle glow effect */
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle at center, rgba(173, 216, 230, 0.2) 0%, transparent 60%);
+            z-index: 0;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        #current-ph {
+            font-size: 5em; /* Even larger pH value */
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ph-indicator {
+            width: 100%;
+            height: 40px; /* Even thicker bar */
+            background-color: #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        #ph-level-bar {
+            height: 100%;
+            width: 50%;
+            background-color: var(--primary-color);
+            border-radius: 20px;
+            transition: width 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), background-color 0.5s ease-in-out; /* Bouncy animation */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ph-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 1em;
+            color: #555;
+            padding: 0 10px;
+            font-weight: 600;
+        }
+        .ph-labels span {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .ph-labels span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background-color: currentColor;
+        }
+
+        .ph-labels span:nth-child(1) { color: #dc3545; }
+        .ph-labels span:nth-child(2) { color: #ffc107; }
+        .ph-labels span:nth-child(3) { color: #28a745; }
+
+        .status-message {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--heading-color);
+            background-color: #e2e6ea;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .update-button {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 18px 35px; /* Even larger button */
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .update-button:hover {
+            background-color: #218838;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
+        }
+        .update-button:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+        }
+
+        /* Soil Testing Methods Section */
+        #soil-testing {
+            background-color: #f0f9ed; /* Very light green background */
+        }
+
+        #soil-testing .card {
+            border: none;
+            border-radius: 15px; /* Consistent rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        #soil-testing .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        #soil-testing .card-header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            font-weight: 600;
+            font-size: 1.5em; /* Larger header text */
+            padding: 20px 25px;
+            border-bottom: none;
+            position: relative;
+        }
+        #soil-testing .card-header::after { /* Subtle wave effect */
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: var(--primary-color);
+            transform: skewY(2deg);
+            transform-origin: top left;
+            z-index: 0;
+        }
+
+        #soil-testing .card-body {
+            padding: 30px 25px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1; /* Ensure content is above header's pseudo-element */
+        }
+
+        #soil-testing p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        #soil-testing ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        #soil-testing ul li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #e9ecef; /* Dashed separator */
+            display: flex;
+            align-items: flex-start;
+            color: #343a40;
+            font-size: 1.1em;
+        }
+        #soil-testing ul li:last-child {
+            border-bottom: none;
+        }
+
+        #soil-testing ul li i {
+            color: var(--primary-color);
+            font-size: 1.3em; /* Slightly larger icons */
+            margin-right: 20px;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
+
+        #soil-testing h3 {
+            color: var(--heading-color);
+            font-size: 1.8em; /* Larger sub-headings */
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0; /* Solid separator */
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            border: none;
+            border-radius: 15px; /* Consistent rounded corners */
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            object-fit: cover;
+            height: 280px; /* Slightly taller images */
+            width: 100%;
+            transition: transform 0.4s ease; /* Zoom on hover */
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .card-body {
+            padding: 25px;
+            background-color: var(--white-color);
+        }
+        .gallery-item .card-title {
+            color: var(--heading-color);
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+        .gallery-item .card-text {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1510473957-c0e862c76a91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            color: var(--white-color);
+            padding: 100px 0;
+        }
+
+        #contact .form-control-lg, #contact .form-select-lg {
+            border-radius: 10px; /* More rounded inputs */
+            border: 1px solid rgba(255,255,255,0.4); /* Stronger border */
+            background-color: rgba(255,255,255,0.15); /* More visible background */
+            color: var(--white-color);
+            padding: 12px 20px; /* More padding */
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+        #contact .form-control-lg::placeholder, #contact .form-select-lg option {
+            color: rgba(255,255,255,0.8);
+        }
+        #contact .form-control-lg:focus, #contact .form-select-lg:focus {
+            background-color: rgba(255,255,255,0.25);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.35); /* Stronger focus glow */
+            color: var(--white-color);
+        }
+        #contact .form-select-lg {
+            -webkit-appearance: none; /* Remove default arrow */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1em center;
+            background-size: 0.8em 0.8em;
+        }
+
+        #contact .form-label {
+            color: #e0e0e0;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        #contact .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 15px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        #contact .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color) !important;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 50px; /* More padding */
+            padding-bottom: 30px;
+            font-size: 0.95em;
+        }
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons a {
+            font-size: 1.8rem; /* Larger social icons */
+            margin: 0 12px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-3px) scale(1.1); /* Lift and grow effect */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-section h1 {
+                font-size: 3.5em;
+            }
+            .hero-section p {
+                font-size: 1.4em;
+            }
+            section {
+                padding: 80px 0;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+            .feature-card::before {
+                height: 100px;
+            }
+            .feature-card .card-body {
+                padding-top: 50px;
+            }
+            .feature-card i {
+                font-size: 3.2em;
+                top: 20px;
+            }
+            #current-ph {
+                font-size: 4em;
+            }
+            .update-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+            #soil-testing .card-header {
+                font-size: 1.3em;
+                padding: 15px 20px;
+            }
+            #soil-testing h3 {
+                font-size: 1.5em;
+            }
+            .gallery-item img {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .hero-section h1 {
+                font-size: 2.8em;
+            }
+            .hero-section p {
+                font-size: 1.1em;
+            }
+            .hero-section .btn-primary {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+            section {
+                padding: 60px 0;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .ph-container {
+                padding: 30px;
+            }
+            #current-ph {
+                font-size: 3.5em;
+            }
+            .update-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            #soil-testing .card {
+                margin-bottom: 20px;
+            }
+            #soil-testing .card-header {
+                font-size: 1.2em;
+            }
+            #soil-testing h3 {
+                font-size: 1.3em;
+            }
+            #soil-testing ul li {
+                font-size: 1em;
+                padding: 10px 0;
+            }
+            .gallery-item img {
+                height: 200px;
+            }
+            #contact .btn-primary {
+                padding: 12px 40px;
+                font-size: 1.1em;
+            }
+            .social-icons a {
+                font-size: 1.4rem;
+                margin: 0 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .hero-section p {
+                font-size: 0.95em;
+            }
+            .feature-card .card-body {
+                padding-top: 40px;
+            }
+            .feature-card i {
+                font-size: 2.8em;
+                top: 15px;
+            }
+            .ph-container {
+                padding: 20px;
+            }
+            #current-ph {
+                font-size: 3em;
+            }
+            .status-message {
+                font-size: 1.1em;
+            }
+            .ph-labels {
+                font-size: 0.85em;
+                padding: 0;
+            }
+            #soil-testing .card-header::after {
+                transform: skewY(1deg); /* Less pronounced wave on mobile */
+            }
+            #soil-testing .card-body {
+                padding: 20px;
+            }
+            #contact .form-control-lg, #contact .form-select-lg {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+            #contact .btn-primary {
+                padding: 10px 30px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>AgriTech AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ph-monitor-section">pH Monitor</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#soil-testing">Soil Testing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section d-flex align-items-center text-white text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold animate-fade-in">Revolutionizing Agriculture with AI</h1>
+            <p class="lead mt-4 animate-fade-in delay-1">Smart solutions for a sustainable and productive future.</p>
+            <a href="#features" class="btn btn-primary btn-lg mt-4 animate-fade-in delay-2">Explore Solutions <i class="fas fa-chevron-right ms-2"></i></a>
+        </div>
+    </header>
+
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 animate-fade-in">Our Smart Farming Features</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-seedling"></i>
+                            <h5 class="card-title fw-bold">Crop Health Monitoring</h5>
+                            <p class="card-text">Utilize AI to detect diseases, nutrient deficiencies, and optimize growth conditions for healthier crops.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-water"></i>
+                            <h5 class="card-title fw-bold">Automated Irrigation</h5>
+                            <p class="card-text">Smart irrigation systems that adapt to real-time weather data and soil moisture levels, saving water and resources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-3">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot"></i>
+                            <h5 class="card-title fw-bold">Precision Farming</h5>
+                            <p class="card-text">AI-driven insights for precise fertilization, pest control, and yield prediction, maximizing efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ph-monitor-section" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 animate-fade-in">Real-time Soil pH Monitor</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 animate-fade-in delay-1">
+                    <div class="ph-container card shadow-lg p-4">
+                        <div class="ph-display">
+                            <div class="ph-value" id="current-ph">7.0</div>
+                            <div class="ph-indicator">
+                                <div class="ph-level" id="ph-level-bar"></div>
+                            </div>
+                            <div class="ph-labels">
+                                <span>0 (Acidic)</span>
+                                <span>7 (Neutral)</span>
+                                <span>14 (Alkaline)</span>
+                            </div>
+                        </div>
+                        <div class="status-message mt-4 mb-4" id="ph-status">pH is neutral.</div>
+                        <button class="update-button btn btn-success btn-lg w-100" id="update-ph-button">Update pH Reading</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soil-testing" class="py-5">
+        <div class="container animate-fade-in delay-2">
+            <h2 class="text-center mb-5">Soil Testing Methods</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg p-4">
+                        <div class="card-header">
+                            Importance of Soil Testing
+                        </div>
+                        <div class="card-body">
+                            <p>Soil testing is a crucial step for effective crop management and sustainable agriculture. It provides valuable information about the nutrient status, pH level, and organic matter content of the soil, helping farmers make informed decisions about fertilization and soil amendments.</p>
+                            <p>Regular soil testing helps in:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Optimizing nutrient application, preventing over-fertilization.</li>
+                                <li><i class="fas fa-check-circle"></i> Identifying nutrient deficiencies or excesses.</li>
+                                <li><i class="fas fa-check-circle"></i> Maintaining optimal soil pH for specific crops.</li>
+                                <li><i class="fas fa-check-circle"></i> Improving crop yield and quality.</li>
+                                <li><i class="fas fa-check-circle"></i> Protecting the environment by reducing nutrient runoff.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg p-4">
+                        <div class="card-header">
+                            Common Soil Testing Methods
+                        </div>
+                        <div class="card-body">
+                            <h3>1. Laboratory Analysis</h3>
+                            <p>This is the most comprehensive and accurate method. Soil samples are sent to accredited laboratories for detailed analysis. They can test for a wide range of parameters including:</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-flask"></i> <strong>pH Level:</strong> Measures soil acidity or alkalinity.</li>
+                                <li class="list-group-item"><i class="fas fa-leaf"></i> <strong>Macronutrients:</strong> Nitrogen (N), Phosphorus (P), Potassium (K).</li>
+                                <li class="list-group-item"><i class="fas fa-microscope"></i> <strong>Micronutrients:</strong> Iron, Manganese, Zinc, Copper, Boron, Molybdenum, Chlorine.</li>
+                                <li class="list-group-item"><i class="fas fa-layer-group"></i> <strong>Organic Matter Content:</strong> Indicates soil health and water retention capacity.</li>
+                                <li class="list-group-item"><i class="fas fa-exchange-alt"></i> <strong>Cation Exchange Capacity (CEC):</strong> Measures soil's ability to hold nutrients.</li>
+                                <li class="list-group-item"><i class="fas fa-tint"></i> <strong>Salinity:</strong> Important for irrigation management.</li>
+                            </ul>
+
+                            <h3 class="mt-4">2. Portable Soil Test Kits</h3>
+                            <p>These kits allow for on-site, quick assessments. While less precise than lab tests, they provide immediate results for basic parameters like pH, N, P, and K. They are useful for quick checks and small-scale farming.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-toolbox"></i> <strong>Ease of Use:</strong> Simple to operate, often involving colorimetric reactions.</li>
+                                <li class="list-group-item"><i class="fas fa-tachometer-alt"></i> <strong>Instant Results:</strong> Provides immediate feedback, allowing for quick adjustments.</li>
+                                <li class="list-group-item"><i class="fas fa-coins"></i> <strong>Cost-Effective:</strong> Generally cheaper than repeated lab tests.</li>
+                            </ul>
+
+                            <h3 class="mt-4">3. Digital Soil Meters/Sensors</h3>
+                            <p>Modern technology offers digital meters and sensors that can provide real-time data on soil moisture, pH, temperature, and sometimes even nutrient levels. These are increasingly used in precision agriculture for continuous monitoring.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-chart-line"></i> <strong>Real-time Data:</strong> Continuous monitoring for dynamic insights.</li>
+                                <li class="list-group-item"><i class="fas fa-mobile-alt"></i> <strong>Connectivity:</strong> Many connect to smartphones or cloud platforms.</li>
+                                <li class="list-group-item"><i class="fas fa-cogs"></i> <strong>Automation Integration:</strong> Can be integrated with automated irrigation and fertilization systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 animate-fade-in">AgriTech in Action</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1596208920959-b1d5c22501a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Smart Irrigation">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Automated Watering</h5>
+                            <p class="card-text">Efficient water delivery precisely where and when needed, reducing waste.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1510414842594-ead62d705c1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Drone Monitoring">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Aerial Crop Analysis</h5>
+                            <p class="card-text">Drones provide detailed insights into crop health and growth patterns from above.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-3">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1601662528769-37365675f7e7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sensor Network">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Connected Sensors</h5>
+                            <p class="card-text">Real-time data collection from a network of intelligent sensors in the field.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-4">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1621601614088-75aa5408d667?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="AI Analytics">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Data-Driven Decisions</h5>
+                            <p class="card-text">AI processes data to give actionable advice for optimized farm management.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-5">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544265780-e88385208b04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sustainable Farming">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Eco-Friendly Practices</h5>
+                            <p class="card-text">Optimize resource usage for sustainable and environmentally conscious agriculture.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-6">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517482352869-d4199c4a5c53?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Happy Farmer">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Empowering Farmers</h5>
+                            <p class="card-text">AgriTech AI makes farming smarter, easier, and more profitable for everyone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 text-white animate-fade-in">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 animate-fade-in delay-1">
+                    <form id="contactForm">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="contactName" class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-lg" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                         <div class="mb-4">
+                            <label for="contactPhone" class="form-label">Phone (Optional)</label>
+                            <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="+256 7XX XXX XXX">
+                        </div>
+                         <div class="mb-4">
+                            <label for="contactType" class="form-label">Inquiry Type</label>
+                            <select class="form-select form-select-lg" id="contactType" required>
+                                <option selected disabled value="">Select Type</option>
+                                <option value="product_inquiry">Product Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control form-control-lg" id="contactSubject" placeholder="Subject of your message" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control form-control-lg" id="contactMessage" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 AgriTech AI. All rights reserved.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) { // Add scrolled class after 50px scroll
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links (adjusted for fixed navbar)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        // Use setTimeout to ensure navbar height is calculated after potential class changes
+                        setTimeout(() => {
+                            const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; // Added extra padding
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100); // Small delay
+                    }
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px' // Start animation a bit earlier
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated'); // Add 'animated' class
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.animate-fade-in').forEach(el => {
+                // Only observe elements outside the hero, as hero elements have initial animation
+                if (!el.closest('.hero-section')) {
+                    observer.observe(el);
+                }
+            });
+
+
+            // pH Monitor Logic
+            const currentPhElement = document.getElementById('current-ph');
+            const phLevelBar = document.getElementById('ph-level-bar');
+            const phStatusElement = document.getElementById('ph-status');
+            const updatePhButton = document.getElementById('update-ph-button');
+
+            function updatePhMonitor() {
+                // Generate a more realistic random pH value (e.g., concentrated around neutral but can vary)
+                let ph = (Math.random() * 8 + 3).toFixed(1); // pH between 3.0 and 11.0
+                if (Math.random() > 0.8) { // 20% chance of extreme values
+                    ph = (Math.random() < 0.5 ? Math.random() * 3 : Math.random() * 3 + 11).toFixed(1);
+                }
+
+                currentPhElement.textContent = ph;
+
+                // Calculate width for the pH level bar (0-100%)
+                const barWidth = (ph / 14) * 100;
+                phLevelBar.style.width = `${barWidth}%`;
+
+                // Update status message and bar color based on pH
+                let statusMessage = '';
+                let barColor = '';
+
+                if (ph < 5.5) {
+                    statusMessage = 'Strongly Acidic: Needs liming and organic matter.';
+                    barColor = '#dc3545'; // Red
+                } else if (ph >= 5.5 && ph < 6.0) {
+                    statusMessage = 'Moderately Acidic: Consider liming for optimal growth.';
+                    barColor = '#ffc107'; // Yellow
+                } else if (ph >= 6.0 && ph <= 7.5) {
+                    statusMessage = 'Neutral/Slightly Acidic: Ideal for most crops!';
+                    barColor = '#28a745'; // Green
+                } else if (ph > 7.5 && ph <= 8.5) {
+                    statusMessage = 'Moderately Alkaline: May need acidification for some crops.';
+                    barColor = '#007bff'; // Blue
+                } else { // ph > 8.5
+                    statusMessage = 'Strongly Alkaline: Requires significant acidification.';
+                    barColor = '#6f42c1'; // Purple
+                }
+
+                phStatusElement.textContent = statusMessage;
+                phLevelBar.style.backgroundColor = barColor;
+            }
+
+            // Event listener for the button
+            updatePhButton.addEventListener('click', updatePhMonitor);
+
+            // Initial update when the page loads
+            updatePhMonitor();
+
+            // Update pH automatically every 5 seconds
+            setInterval(updatePhMonitor, 5000);
+
+            // Contact form handling
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form data
+                const formData = {
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    type: document.getElementById('contactType').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value
+                };
+
+                // Simulate form submission
+                alert('Thank you for your message, ' + formData.name + '! We\'ll get back to you within 24 hours regarding your ' + formData.type + ' inquiry.');
+                this.reset(); // Clear the form
+            });
+        });
+    </script>
+</body>
+</html>
