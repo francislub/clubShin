@@ -10,11 +10,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOIL IMPROVEMENT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
     <style>
         body {
             background-color: hsl(0, 23%, 97%); /* Light gray background */
@@ -39,7 +34,7 @@
         .method-1 .card-header { background-color: #28a745; } /* Green */
         .method-2 .card-header { background-color: #007bff; } /* Blue */
         .method-3 .card-header { background-color: #ffc107; color: #343a40; } /* Amber */
-        .method-4 .card-header { background-color: #dc3545; } /* Red */
+        .method-4 .card-header { background-color: hwb(110 11% 5%); } /* Red */
         .method-5 .card-header { background-color: #6f42c1; } /* Purple */
         .advantage-list {
             list-style-type: disc;
@@ -51,6 +46,9 @@
     </style>
 </head>
 <body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
     <div class="container mt-5">
         <h1 class="text-center mb-5 display-4 text-success">Enhancing Soil Fertility</h1>
 
@@ -137,6 +135,77 @@
         </div>
     </div>
 
+    <!-- Footer Container -->
+    <div id="container"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
 </body>
 </html>

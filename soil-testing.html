@@ -157,94 +157,817 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Comprehensive Soil Testing Methods</h1>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech AI - Smart Farming Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        <p>Soil testing is a crucial step in understanding the health and fertility of soil, whether for agriculture, construction, environmental assessment, or gardening. It provides valuable insights into nutrient availability, pH levels, soil texture, and the presence of contaminants. Below is a detailed list of various soil testing methods, categorized for clarity.</p>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #f8f9fa; /* Light background for the whole page */
+        }
 
-        <h2>1. Physical Soil Testing Methods</h2>
-        <ul>
-            <li><strong>Soil Sampling:</strong> The foundational step for any test. Involves collecting representative soil samples from various depths and locations.</li>
-            <li><strong>Texture Analysis (Feel Method):</strong> A quick, qualitative field test to determine sand, silt, and clay proportions by feeling moist soil.</li>
-            <li><strong>Hydrometer Method:</strong> A laboratory method for quantitative determination of particle size distribution (sand, silt, clay) based on sedimentation rates.</li>
-            <li><strong>Sieve Analysis:</strong> Used to determine the distribution of larger soil particles (sand and gravel) by passing soil through a series of sieves.</li>
-            <li><strong>Bulk Density:</strong> Measures the mass of dry soil per unit volume, indicating soil compaction and porosity.</li>
-            <li><strong>Particle Density:</strong> Measures the density of solid soil particles, without pore space.</li>
-            <li><strong>Water Infiltration Rate:</strong> Measures how quickly water penetrates the soil, indicating permeability and drainage.</li>
-            <li><strong>Porosity:</strong> Calculates the percentage of void space in the soil, related to aeration and water retention.</li>
-            <li><strong>Aggregate Stability:</strong> Assesses the ability of soil aggregates to withstand disruptive forces like water, indicating soil structure health.</li>
-            <li><strong>Color Test:</strong> Visual inspection to infer organic matter content, drainage, and aeration.</li>
-            <li><strong>Odor Test:</strong> Can indicate the presence of anaerobic conditions or certain biological activities.</li>
-        </ul>
+        /* Navigation Bar */
+        .navbar {
+            transition: background-color 0.3s ease;
+        }
 
-        <h2>2. Chemical Soil Testing Methods</h2>
-        <ul>
-            <li><strong>pH Test:</strong> Measures the acidity or alkalinity of the soil, critical for nutrient availability.
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Colorimetric Dyes/Test Kits:</strong> Simple, field-based kits using indicators that change color based on pH.</li>
-                    <li class="list-group-item"><strong>pH Meter:</strong> Laboratory or field instrument for precise pH measurement using an electrode.</li>
-                </ul>
-            </li>
-            <li><strong>Nutrient Analysis:</strong> Measures the concentration of essential plant nutrients.
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Macronutrients (N, P, K):</strong>
-                        <ul class="list-group">
-                            <li class="list-group-item"><strong>Nitrogen (N):</strong> Kjeldahl method (total N), Nitrate-N and Ammonium-N (colorimetric or ion-selective electrode).</li>
-                            <li class="list-group-item"><strong>Phosphorus (P):</strong> Bray P1, Olsen P, Mehlich 3 (different extraction methods based on soil pH), typically measured by colorimetry.</li>
-                            <li class="list-group-item"><strong>Potassium (K):</strong> Ammonium acetate extraction, measured by flame photometry or ICP-OES.</li>
-                        </ul>
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #28a745; /* Green on hover for AgriTech feel */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1577708709506-c87a5538e12c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 56px; /* Adjust for fixed navbar height */
+        }
+
+        .hero-section h1 {
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-section p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #f1f1f1;
+        }
+
+        .hero-section .btn-primary {
+            background-color: #28a745; /* Green button */
+            border-color: #28a745;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .hero-section .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        /* Animation for Hero Section elements */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+
+        .animate-fade-in.delay-1 { animation-delay: 0.3s; }
+        .animate-fade-in.delay-2 { animation-delay: 0.6s; }
+        .animate-fade-in.delay-3 { animation-delay: 0.9s; }
+        .animate-fade-in.delay-4 { animation-delay: 1.2s; }
+        .animate-fade-in.delay-5 { animation-delay: 1.5s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 80px 0;
+            position: relative; /* For animations */
+        }
+
+        section h2 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .feature-card i {
+            color: #28a745; /* Green icon color */
+            font-size: 3.5em; /* Slightly larger icons */
+            margin-bottom: 20px;
+        }
+
+        /* pH Monitor Section Specific Styling */
+        .ph-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto; /* Center the monitor */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .ph-display {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f0f8ff; /* Light blue background for display area */
+            border-radius: 10px;
+            border: 1px solid #cce5ff; /* Subtle blue border */
+        }
+
+        #current-ph {
+            font-size: 4.5em; /* Larger pH value */
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .ph-indicator {
+            width: 100%;
+            height: 35px; /* Thicker bar */
+            background-color: #e9ecef;
+            border-radius: 17px; /* Match bar height / 2 */
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        #ph-level-bar {
+            height: 100%;
+            width: 50%; /* Initial width */
+            background-color: #28a745; /* Default green for neutral */
+            border-radius: 17px;
+            transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ph-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            padding: 0 5px;
+        }
+
+        .ph-labels span:nth-child(1) { color: #dc3545; font-weight: bold;}
+        .ph-labels span:nth-child(2) { color: #ffc107; font-weight: bold;}
+        .ph-labels span:nth-child(3) { color: #28a745; font-weight: bold;}
+
+        .status-message {
+            font-size: 1.3em; /* Larger status message */
+            font-weight: 500;
+            color: #495057;
+            background-color: #e2e6ea;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .update-button {
+            background-color: #28a745; /* AgriTech green */
+            color: white;
+            padding: 15px 30px; /* Larger button */
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .update-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .update-button:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .gallery-item img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 250px; /* Uniform height for images */
+            width: 100%;
+        }
+
+        .gallery-item .card-body {
+            padding: 20px;
+            background-color: #fff;
+        }
+        .gallery-item .card-title {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .gallery-item .card-text {
+            color: #555;
+        }
+
+
+        /* Soil Testing Methods Section */
+        #soil-testing {
+            background-color: #f0f9ed; /* Very light green background */
+            padding-bottom: 80px;
+        }
+
+        #soil-testing .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 25px; /* Spacing between cards */
+        }
+        #soil-testing .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        #soil-testing .card-header {
+            background-color: #28a745; /* Green header */
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            padding: 15px 20px;
+        }
+
+        #soil-testing .card-body {
+            padding: 25px;
+            color: #495057;
+        }
+
+        #soil-testing ul {
+            list-style: none; /* Remove default bullets */
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        #soil-testing ul li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: flex-start;
+            color: #343a40;
+        }
+        #soil-testing ul li:last-child {
+            border-bottom: none;
+        }
+
+        #soil-testing ul li i {
+            color: #28a745; /* Green icon */
+            font-size: 1.2em;
+            margin-right: 15px;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            padding-top: 3px; /* Align with text */
+        }
+
+        #soil-testing h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1510473957-c0e862c76a91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: white;
+        }
+
+        #contact .form-control-lg {
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        #contact .form-control-lg::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        #contact .form-control-lg:focus {
+            background-color: rgba(255,255,255,0.2);
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+            color: white;
+        }
+
+        #contact .form-label {
+            color: #f1f1f1;
+            font-weight: 500;
+        }
+
+        #contact .btn-primary {
+            background-color: #28a745; /* Green button */
+            border-color: #28a745;
+            padding: 12px 40px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        #contact .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529 !important; /* Darker footer */
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .social-icons a:hover {
+            color: #28a745 !important; /* Green on hover */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-section p {
+                font-size: 1.2em;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            #current-ph {
+                font-size: 3em;
+            }
+            .update-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>AgriTech AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
                     </li>
-                    <li class="list-group-item"><strong>Secondary Nutrients (Ca, Mg, S):</strong> Measured by atomic absorption spectrophotometry (AAS) or inductively coupled plasma-optical emission spectrometry (ICP-OES).</li>
-                    <li class="list-group-item"><strong>Micronutrients (Fe, Mn, Zn, Cu, B, Mo, Cl):</strong> Measured by AAS or ICP-OES after specific extractions (e.g., DTPA for Fe, Mn, Zn, Cu).</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ph-monitor-section">pH Monitor</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#soil-testing">Soil Testing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
                 </ul>
-            </li>
-            <li><strong>Organic Matter Content:</strong> Measures the percentage of organic material in the soil.
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Loss-on-Ignition (LOI):</strong> Measures the weight loss after burning off organic matter at high temperatures.</li>
-                    <li class="list-group-item"><strong>Walkley-Black Method:</strong> Wet oxidation method using chromic acid.</li>
-                    <li class="list-group-item"><strong>Dumas Method (Combustion Analysis):</strong> High-temperature combustion to determine total carbon and nitrogen.</li>
-                </ul>
-            </li>
-            <li><strong>Cation Exchange Capacity (CEC):</strong> Measures the soil's ability to hold and exchange positively charged ions (nutrients). Typically determined by ammonium acetate extraction.</li>
-            <li><strong>Electrical Conductivity (EC):</strong> Measures the total soluble salts in the soil, indicating salinity levels.</li>
-            <li><strong>Salinity Tests:</strong> Specific tests for the presence of various salts (e.g., sodium, chloride).</li>
-            <li><strong>Heavy Metal Analysis:</strong> Detection and quantification of toxic elements (e.g., Lead, Cadmium, Arsenic) using AAS, ICP-OES, or X-ray fluorescence (XRF).</li>
-            <li><strong>Pesticide/Herbicide Residue Analysis:</strong> Advanced laboratory tests using chromatography (GC-MS, LC-MS) to detect chemical residues.</li>
-            <li><strong>Contaminant Screening:</strong> Broader tests for various pollutants depending on the site history.</li>
-        </ul>
+            </div>
+        </div>
+    </nav>
 
-        <h2>3. Biological Soil Testing Methods</h2>
-        <ul>
-            <li><strong>Soil Respiration Test:</strong> Measures CO2 efflux from the soil, indicating microbial activity.</li>
-            <li><strong>Microbial Biomass Carbon and Nitrogen:</strong> Quantifies the amount of carbon and nitrogen held within living microbial cells in the soil.</li>
-            <li><strong>Enzyme Activity Assays:</strong> Measures the activity of specific enzymes (e.g., dehydrogenase, phosphatase) as indicators of microbial health and nutrient cycling.</li>
-            <li><strong>DNA/RNA Sequencing:</strong> Advanced techniques to identify and quantify soil microbial communities (bacteria, fungi, archaea).</li>
-            <li><strong>Nematode Analysis:</strong> Identifies and quantifies plant-parasitic and beneficial nematodes in the soil.</li>
-            <li><strong>Earthworm Counts:</strong> A simple field method to assess earthworm populations, an indicator of soil health.</li>
-            <li><strong>Bioremediation Potential Tests:</strong> Assesses the capacity of native microorganisms to degrade specific pollutants.</li>
-        </ul>
+    <header id="hero" class="hero-section d-flex align-items-center text-white text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold animate-fade-in">Revolutionizing Agriculture with AI</h1>
+            <p class="lead mt-4 animate-fade-in delay-1">Smart solutions for a sustainable and productive future.</p>
+            <a href="#features" class="btn btn-primary btn-lg mt-4 animate-fade-in delay-2">Explore Solutions <i class="fas fa-chevron-right ms-2"></i></a>
+        </div>
+    </header>
 
-        <h2>4. In-Situ and Remote Sensing Methods</h2>
-        <ul>
-            <li><strong>Portable X-ray Fluorescence (pXRF):</strong> Field-portable instrument for rapid, non-destructive elemental analysis, especially for heavy metals.</li>
-            <li><strong>Near-Infrared Reflectance Spectroscopy (NIRS):</strong> Used for rapid assessment of organic matter, moisture, and some nutrient levels.</li>
-            <li><strong>Ground Penetrating Radar (GPR):</strong> Used to map soil layers, identify subsurface features, and assess compaction without excavation.</li>
-            <li><strong>Electrical Resistivity Tomography (ERT):</strong> Measures electrical resistivity of the soil to infer water content, soil type, and contaminant plumes.</li>
-            <li><strong>Satellite Imagery and GIS:</strong> Used for large-scale soil mapping, monitoring land use changes, and identifying areas of soil degradation.</li>
-            <li><strong>GPS-Guided Soil Sampling:</strong> Used to precisely map and collect samples from specific locations for precision agriculture.</li>
-        </ul>
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Our Smart Farming Features</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col animate-fade-in">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-seedling mb-3"></i>
+                            <h5 class="card-title fw-bold">Crop Health Monitoring</h5>
+                            <p class="card-text">Utilize AI to detect diseases, nutrient deficiencies, and optimize growth conditions for healthier crops.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-water mb-3"></i>
+                            <h5 class="card-title fw-bold">Automated Irrigation</h5>
+                            <p class="card-text">Smart irrigation systems that adapt to real-time weather data and soil moisture levels, saving water and resources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot mb-3"></i>
+                            <h5 class="card-title fw-bold">Precision Farming</h5>
+                            <p class="card-text">AI-driven insights for precise fertilization, pest control, and yield prediction, maximizing efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h2>5. Field Observation and Assessment</h2>
-        <ul>
-            <li><strong>Visual Soil Assessment (VSA):</strong> A qualitative method involving visual inspection of soil structure, color, roots, and presence of organisms.</li>
-            <li><strong>Digging a Soil Pit:</strong> Allows for direct observation of soil horizons, root distribution, and drainage characteristics.</li>
-            <li><strong>Compaction Test (Penetrometer):</strong> Measures soil resistance to penetration, indicating compaction levels.</li>
-            <li><strong>Worm Casts and Burrows:</strong> Presence indicates healthy biological activity.</li>
-        </ul>
+    <section id="ph-monitor-section" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Real-time Soil pH Monitor</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 animate-fade-in delay-1">
+                    <div class="ph-container card shadow-lg p-4">
+                        <div class="ph-display">
+                            <div class="ph-value" id="current-ph">7.0</div>
+                            <div class="ph-indicator">
+                                <div class="ph-level" id="ph-level-bar"></div>
+                            </div>
+                            <div class="ph-labels">
+                                <span>0 (Acidic)</span>
+                                <span>7 (Neutral)</span>
+                                <span>14 (Alkaline)</span>
+                            </div>
+                        </div>
+                        <div class="status-message mt-4 mb-4" id="ph-status">pH is neutral.</div>
+                        <button class="update-button btn btn-success btn-lg w-100" id="update-ph-button">Update pH Reading</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <p>The choice of soil testing method depends on the specific objectives, budget, and desired level of detail. A combination of methods often provides the most comprehensive understanding of soil conditions.</p>
-    </div>
+    <section id="soil-testing" class="py-5">
+        <div class="container animate-fade-in delay-2">
+            <h2 class="text-center mb-5 display-4 fw-bold">Soil Testing Methods</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg p-4">
+                        <div class="card-header">
+                            Importance of Soil Testing
+                        </div>
+                        <div class="card-body">
+                            <p>Soil testing is a crucial step for effective crop management and sustainable agriculture. It provides valuable information about the nutrient status, pH level, and organic matter content of the soil, helping farmers make informed decisions about fertilization and soil amendments.</p>
+                            <p>Regular soil testing helps in:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Optimizing nutrient application, preventing over-fertilization.</li>
+                                <li><i class="fas fa-check-circle"></i> Identifying nutrient deficiencies or excesses.</li>
+                                <li><i class="fas fa-check-circle"></i> Maintaining optimal soil pH for specific crops.</li>
+                                <li><i class="fas fa-check-circle"></i> Improving crop yield and quality.</li>
+                                <li><i class="fas fa-check-circle"></i> Protecting the environment by reducing nutrient runoff.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg p-4">
+                        <div class="card-header">
+                            Common Soil Testing Methods
+                        </div>
+                        <div class="card-body">
+                            <h3>1. Laboratory Analysis</h3>
+                            <p>This is the most comprehensive and accurate method. Soil samples are sent to accredited laboratories for detailed analysis. They can test for a wide range of parameters including:</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-flask"></i> <strong>pH Level:</strong> Measures soil acidity or alkalinity.</li>
+                                <li class="list-group-item"><i class="fas fa-leaf"></i> <strong>Macronutrients:</strong> Nitrogen (N), Phosphorus (P), Potassium (K).</li>
+                                <li class="list-group-item"><i class="fas fa-microscope"></i> <strong>Micronutrients:</strong> Iron, Manganese, Zinc, Copper, Boron, Molybdenum, Chlorine.</li>
+                                <li class="list-group-item"><i class="fas fa-layer-group"></i> <strong>Organic Matter Content:</strong> Indicates soil health and water retention capacity.</li>
+                                <li class="list-group-item"><i class="fas fa-exchange-alt"></i> <strong>Cation Exchange Capacity (CEC):</strong> Measures soil's ability to hold nutrients.</li>
+                                <li class="list-group-item"><i class="fas fa-tint"></i> <strong>Salinity:</strong> Important for irrigation management.</li>
+                            </ul>
+
+                            <h3 class="mt-4">2. Portable Soil Test Kits</h3>
+                            <p>These kits allow for on-site, quick assessments. While less precise than lab tests, they provide immediate results for basic parameters like pH, N, P, and K. They are useful for quick checks and small-scale farming.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-toolbox"></i> <strong>Ease of Use:</strong> Simple to operate, often involving colorimetric reactions.</li>
+                                <li class="list-group-item"><i class="fas fa-tachometer-alt"></i> <strong>Instant Results:</strong> Provides immediate feedback, allowing for quick adjustments.</li>
+                                <li class="list-group-item"><i class="fas fa-coins"></i> <strong>Cost-Effective:</strong> Generally cheaper than repeated lab tests.</li>
+                            </ul>
+
+                            <h3 class="mt-4">3. Digital Soil Meters/Sensors</h3>
+                            <p>Modern technology offers digital meters and sensors that can provide real-time data on soil moisture, pH, temperature, and sometimes even nutrient levels. These are increasingly used in precision agriculture for continuous monitoring.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-chart-line"></i> <strong>Real-time Data:</strong> Continuous monitoring for dynamic insights.</li>
+                                <li class="list-group-item"><i class="fas fa-mobile-alt"></i> <strong>Connectivity:</strong> Many connect to smartphones or cloud platforms.</li>
+                                <li class="list-group-item"><i class="fas fa-cogs"></i> <strong>Automation Integration:</strong> Can be integrated with automated irrigation and fertilization systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="gallery" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">AgriTech in Action</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col animate-fade-in">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1596208920959-b1d5c22501a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Smart Irrigation">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Automated Watering</h5>
+                            <p class="card-text">Efficient water delivery precisely where and when needed, reducing waste.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-1">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1510414842594-ead62d705c1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Drone Monitoring">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Aerial Crop Analysis</h5>
+                            <p class="card-text">Drones provide detailed insights into crop health and growth patterns from above.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-2">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1601662528769-37365675f7e7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sensor Network">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Connected Sensors</h5>
+                            <p class="card-text">Real-time data collection from a network of intelligent sensors in the field.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-3">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1621601614088-75aa5408d667?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="AI Analytics">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Data-Driven Decisions</h5>
+                            <p class="card-text">AI processes data to give actionable advice for optimized farm management.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-4">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544265780-e88385208b04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Sustainable Farming">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Eco-Friendly Practices</h5>
+                            <p class="card-text">Optimize resource usage for sustainable and environmentally conscious agriculture.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-fade-in delay-5">
+                    <div class="card h-100 shadow-sm gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517482352869-d4199c4a5c53?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Happy Farmer">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Empowering Farmers</h5>
+                            <p class="card-text">AgriTech AI makes farming smarter, easier, and more profitable for everyone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 display-4 fw-bold animate-fade-in">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 animate-fade-in delay-1">
+                    <form id="contactForm">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="contactName" class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-lg" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                         <div class="mb-4">
+                            <label for="contactPhone" class="form-label">Phone (Optional)</label>
+                            <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="+256 7XX XXX XXX">
+                        </div>
+                         <div class="mb-4">
+                            <label for="contactType" class="form-label">Inquiry Type</label>
+                            <select class="form-select form-select-lg" id="contactType" required>
+                                <option selected disabled value="">Select Type</option>
+                                <option value="product_inquiry">Product Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control form-control-lg" id="contactSubject" placeholder="Subject of your message" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control form-control-lg" id="contactMessage" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 AgriTech AI. All rights reserved.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="mx-2"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Adjust scroll position for fixed navbar
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.animate-fade-in:not(.hero-section *)').forEach(el => {
+                observer.observe(el);
+            });
+
+            // pH Monitor Logic
+            const currentPhElement = document.getElementById('current-ph');
+            const phLevelBar = document.getElementById('ph-level-bar');
+            const phStatusElement = document.getElementById('ph-status');
+            const updatePhButton = document.getElementById('update-ph-button');
+
+            function updatePhMonitor() {
+                // Generate a random pH value between 0 and 14 for demonstration
+                const ph = (Math.random() * 14).toFixed(1);
+
+                currentPhElement.textContent = ph;
+
+                // Calculate width for the pH level bar (0-100%)
+                const barWidth = (ph / 14) * 100;
+                phLevelBar.style.width = `${barWidth}%`;
+
+                // Update status message and bar color based on pH
+                let statusMessage = '';
+                let barColor = '';
+
+                if (ph < 6.0) {
+                    statusMessage = 'pH is strongly acidic. Needs liming.';
+                    barColor = '#dc3545'; // Red
+                } else if (ph >= 6.0 && ph < 6.5) {
+                    statusMessage = 'pH is slightly acidic. Good for many crops.';
+                    barColor = '#fd7e14'; // Orange
+                } else if (ph >= 6.5 && ph <= 7.5) {
+                    statusMessage = 'pH is neutral. Ideal for most crops!';
+                    barColor = '#28a745'; // Green
+                } else if (ph > 7.5 && ph <= 8.0) {
+                    statusMessage = 'pH is slightly alkaline. May need acidification.';
+                    barColor = '#17a2b8'; // Cyan
+                } else { // ph > 8.0
+                    statusMessage = 'pH is strongly alkaline. Needs acidification.';
+                    barColor = '#007bff'; // Blue
+                }
+
+                phStatusElement.textContent = statusMessage;
+                phLevelBar.style.backgroundColor = barColor;
+            }
+
+            // Event listener for the button
+            updatePhButton.addEventListener('click', updatePhMonitor);
+
+            // Initial update when the page loads
+            updatePhMonitor();
+
+            // Update pH automatically every 5 seconds
+            setInterval(updatePhMonitor, 5000);
+
+            // Contact form handling
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form data (you would typically send this to a server)
+                const formData = {
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    type: document.getElementById('contactType').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value
+                };
+
+                // Simulate form submission
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                this.reset(); // Clear the form
+            });
+        });
+    </script>
 </body>
 </html>
