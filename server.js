@@ -201,14 +201,131 @@ async function setupRoutes() {
   }
 }
 
-// Serve HTML files
+// Define all your HTML file routes explicitly
+const htmlFiles = [
+  "index.html",
+  "farmer-login.html",
+  "farmer-register.html",
+  "farmer-dashboard.html",
+  "farmer-markets.html",
+  "farmer-profile.html",
+  "farmer-settings.html",
+  "farmer-transactions.html",
+  "agent-login.html",
+  "agent-register.html",
+  "agent-dashboard.html",
+  "agent-analytics.html",
+  "disease-identification.html",
+  "pest-detection.html",
+  "control-methods.html",
+  "organic-solutions.html",
+  "weather.html",
+  "soil-testing.html",
+  "soil-improvement.html",
+  "Landcare.html",
+  "market.html",
+]
+
+// Serve HTML files - Root route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"))
 })
 
-app.get("*.html", (req, res) => {
-  const fileName = req.path.substring(1) // Remove leading slash
-  res.sendFile(path.join(__dirname, fileName))
+// Handle all HTML file routes with proper error handling
+htmlFiles.forEach((file) => {
+  const routeName = file.replace(".html", "")
+
+  // Route without .html extension
+  app.get(`/${routeName}`, (req, res) => {
+    const filePath = path.join(__dirname, file)
+    res.sendFile(filePath, (err) => {
+      if (err) {
+        console.error(`Error serving ${file}:`, err)
+        res.status(404).send(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Page Not Found</title>
+            <style>
+              body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+              .error { color: #e74c3c; }
+              .links { margin-top: 20px; }
+              .links a { margin: 0 10px; color: #3498db; text-decoration: none; }
+            </style>
+          </head>
+          <body>
+            <h1 class="error">404 - Page Not Found</h1>
+            <p>The page "${routeName}" could not be found.</p>
+            <div class="links">
+              <a href="/">Home</a>
+              <a href="/farmer-login">Farmer Login</a>
+              <a href="/agent-login">Agent Login</a>
+              <a href="/disease-identification">Disease ID</a>
+              <a href="/soil-testing">Soil Testing</a>
+            </div>
+          </body>
+          </html>
+        `)
+      }
+    })
+  })
+
+  // Route with .html extension
+  app.get(`/${file}`, (req, res) => {
+    const filePath = path.join(__dirname, file)
+    res.sendFile(filePath, (err) => {
+      if (err) {
+        console.error(`Error serving ${file}:`, err)
+        res.status(404).send(`Page not found: ${file}`)
+      }
+    })
+  })
+})
+
+// Catch-all route for any other requests to HTML-like paths
+app.get("/:page", (req, res) => {
+  const page = req.params.page
+
+  // Skip API routes
+  if (page.startsWith("api")) {
+    return res.status(404).json({ error: "API route not found" })
+  }
+
+  const htmlFile = `${page}.html`
+  const filePath = path.join(__dirname, htmlFile)
+
+  // Try to serve the file
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(`File not found: ${htmlFile}`)
+      res.status(404).send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Page Not Found</title>
+          <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+            .error { color: #e74c3c; }
+            .available { margin-top: 30px; }
+            .available ul { list-style: none; padding: 0; }
+            .available li { margin: 5px 0; }
+            .available a { color: #3498db; text-decoration: none; }
+          </style>
+        </head>
+        <body>
+          <h1 class="error">404 - Page Not Found</h1>
+          <p>The page "${page}" does not exist.</p>
+          <div class="available">
+            <h3>Available Pages:</h3>
+            <ul>
+              ${htmlFiles.map((f) => `<li><a href="/${f.replace(".html", "")}">${f.replace(".html", "").replace("-", " ").toUpperCase()}</a></li>`).join("")}
+            </ul>
+          </div>
+        </body>
+        </html>
+      `)
+    }
+  })
 })
 
 // Error handling middleware
@@ -220,9 +337,15 @@ app.use((err, req, res, next) => {
   })
 })
 
-// 404 handler
+// 404 handler - this should be last
 app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" })
+  console.log(`404 - Route not found: ${req.method} ${req.path}`)
+  res.status(404).json({
+    error: "Route not found",
+    path: req.path,
+    method: req.method,
+    message: "The requested resource could not be found.",
+  })
 })
 
 // Start server
@@ -236,8 +359,13 @@ async function startServer() {
       console.log(`🚀 AgriTech AI System running on http://localhost:${PORT}`)
       console.log(`🏥 Health check: http://localhost:${PORT}/api/health`)
       console.log(`📊 Environment: ${process.env.NODE_ENV || "development"}`)
-      console.log(`🌱 Farmer Portal: http://localhost:${PORT}/farmer-login.html`)
-      console.log(`👨‍💼 Agent Portal: http://localhost:${PORT}/agent-login.html`)
+      console.log(`🌱 Farmer Portal: http://localhost:${PORT}/farmer-login`)
+      console.log(`👨‍💼 Agent Portal: http://localhost:${PORT}/agent-login`)
+      console.log("\n📋 Available Pages:")
+      htmlFiles.forEach((file) => {
+        const route = file.replace(".html", "")
+        console.log(`   http://localhost:${PORT}/${route}`)
+      })
       console.log("\n📋 Available API Endpoints:")
       console.log("   POST /api/auth/farmer/login")
       console.log("   POST /api/auth/agent/login")

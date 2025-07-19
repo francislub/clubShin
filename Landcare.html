@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Land Care - Your Farm's Future</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        /* Custom CSS for Land Care Page - EMBEDDED */
+
+        :root {
+            --primary-color: #28a745; /* Success color for primary (green) */
+            --info-color: #17a2b8;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #6c757d !important; } /* Bootstrap default for muted */
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(to right, var(--success-color), #218838); /* Green gradient */
+            padding: 3rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 2.5rem 0;
+        }
+
+        /* Card Styling */
+        .feature-card, .card {
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .feature-card img, .card img {
+            max-width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Crop to fit */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .feature-card .card-body p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* Animation for fade-in on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Styling */
+        #footer-container {
+            background-color: var(--dark-bg) !important;
+            color: white;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        #footer-container p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        #footer-container a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        #footer-container a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .feature-card img, .card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <h1><i class="fas fa-tree me-2"></i>Nurturing Our Soil: Sustainable Land Care</h1>
+            <p class="lead">Empowering Ugandan farmers with knowledge for healthy land and abundant harvests.</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-primary mb-4">Why Land Care Matters to You</h2>
+            <p class="text-center lead px-lg-5">
+                Healthy soil is the foundation of successful farming. By adopting sustainable land care practices, you can improve soil fertility, conserve water, manage pests, and ensure consistent, high-quality yields for generations to come. Explore these essential practices below.
+            </p>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="core-practices" class="mb-5">
+            <h2 class="text-center text-primary mb-4">Fundamental Practices for Soil Health</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/soil_testing.jpg" class="card-img-top" alt="Farmer taking soil sample">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-flask me-2"></i>Soil Testing</h5>
+                            <p class="card-text">
+                                Understand what's in your soil! Soil testing reveals its nutrient content, pH level, and organic matter. This helps you apply the right amount of fertilizers and amendments, saving costs and preventing nutrient imbalances.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Essential for informed decisions.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/ph_monitoring.jpg" class="card-img-top" alt="pH meter in soil">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-superscript me-2"></i>pH Monitoring</h5>
+                            <p class="card-text">
+                                Soil pH determines how well plants can absorb nutrients. Monitoring it helps you adjust acidity or alkalinity (e.g., using lime or sulfur) to create optimal conditions for your specific crops, maximizing their growth potential.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Key to nutrient availability.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/nutrient_analysis.jpg" class="card-img-top" alt="Healthy plant with rich leaves">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-vial me-2"></i>Nutrient Analysis</h5>
+                            <p class="card-text">
+                                Go beyond basic tests! Nutrient analysis identifies specific deficiencies or excesses of vital elements like Nitrogen, Phosphorus, and Potassium. This allows for targeted fertilization, boosting yield and crop quality.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Precision feeding for your crops.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/soil_improvement.jpg" class="card-img-top" alt="Compost pile with rich soil">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-hand-holding-heart me-2"></i>Soil Improvement</h5>
+                            <p class="card-text">
+                                Build a healthier soil structure. Incorporate organic matter like compost, well-rotted manure, or crop residues. This improves water retention, aeration, and supports beneficial soil microbes for long-term fertility.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Invest in your soil's future.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/crop_rotation.jpg" class="card-img-top" alt="Different crops growing in strips">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-sync-alt me-2"></i>Crop Rotation</h5>
+                            <p class="card-text">
+                                Don't plant the same crop in the same place every season! Rotating different crop families helps break pest and disease cycles, improves nutrient cycling, and reduces soil erosion, leading to higher yields.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Nature's way of pest control.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/cover_crops.jpg" class="card-img-top" alt="Green cover crop field">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-leaf me-2"></i>Cover Crops</h5>
+                            <p class="card-text">
+                                Plant non-cash crops (like legumes or grasses) in fallow periods. They protect soil from erosion, suppress weeds, add organic matter, and can even fix nitrogen naturally, enriching the soil for your next main crop.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Living mulch for a healthy farm.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/conservation_tillage.jpg" class="card-img-top" alt="Farm field with crop residue">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tractor me-2"></i>Conservation Tillage</h5>
+                            <p class="card-text">
+                                Reduce plowing and leave crop residues on the soil surface. This minimizes soil disturbance, prevents erosion, conserves moisture, and improves soil structure and beneficial microbial activity over time.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Less disturbance, more life.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="water-management" class="mb-5">
+            <h2 class="text-center text-info mb-4">Smart Water Management for Your Farm</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/irrigation_planning.jpg" class="card-img-top" alt="Drip irrigation system in a field">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-water me-2"></i>Irrigation Planning</h5>
+                            <p class="card-text">
+                                Apply water wisely. Plan your irrigation based on crop needs, soil type, and weather forecasts. Efficient methods like drip irrigation or precise timing can save water, energy, and improve crop health.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Water where and when it's needed.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/water_conservation.jpg" class="card-img-top" alt="Rainwater harvesting barrel">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-hand-holding-water me-2"></i>Water Conservation</h5>
+                            <p class="card-text">
+                                Every drop counts! Implement practices like mulching to reduce evaporation, build small bunds to retain rainwater, and explore rainwater harvesting for dry spells. Conserving water protects this vital resource.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Safeguarding a precious resource.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="images/drainage_systems.jpg" class="card-img-top" alt="Agricultural drainage ditch">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-drain me-2"></i>Drainage Systems</h5>
+                            <p class="card-text">
+                                Prevent waterlogging that harms roots. For areas prone to excessive wetness, consider simple drainage solutions like raised beds, surface drains, or even French drains to ensure proper aeration and prevent root rot.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Managing excess moisture.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="text-center bg-light p-4 rounded shadow-sm animate-on-scroll">
+            <h3 class="text-success mb-3">Ready to Transform Your Farm?</h3>
+            <p class="lead">
+                Implementing these practices can significantly enhance your farm's productivity and resilience. For more detailed guidance, connect with your local agricultural extension officers.
+            </p>
+            <a href="contact.html" class="btn btn-success btn-lg"><i class="fas fa-phone-alt me-2"></i>Contact Us for Expert Advice</a>
+        </section>
+
+    </div> <div id="footer-container" class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; <span id="current-year-landcare"></span> Your Website Name. All rights reserved.</p>
+            <p>Empowering sustainable agriculture in Uganda.</p>
+            <p><a href="mailto:info@yourwebsite.com" class="text-white">info@yourwebsite.com</a> | +256 7XXXXXXXX</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-landcare').textContent = new Date().getFullYear();
+
+            // Smooth scrolling for anchor links (if you add internal navigation)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all feature cards and sections
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize tooltips (if any are used - not explicitly added here, but good to have)
+            // Example for future use: <button data-bs-toggle="tooltip" title="Some info">Hover Me</button>
+            /*
+            setTimeout(function() { // Delay to ensure DOM is ready
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+            */
+        });
+    </script>
+</body>
+</html>
