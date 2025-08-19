@@ -11,6 +11,8 @@ import farmerRegister from "./api/auth/farmer/register.js"
 import farmerLogin from "./api/auth/farmer/login.js"
 import marketsHandler from "./api/markets.js"
 import productsHandler from "./api/products.js"
+import marketComparisonHandler from "./api/market-comparison.js"
+import predictPriceHandler from "./api/predict-price.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -76,6 +78,12 @@ app.all("/api/products", (req, res) => {
   productsHandler(req, res)
 })
 
+app.all("/api/products/by-name/:productName", (req, res) => {
+  console.log("[v0] Products API by name route accessed")
+  req.params.productName = req.params.productName
+  productsHandler(req, res)
+})
+
 app.all("/api/products/:productName", (req, res) => {
   console.log("[v0] Products API with product name route accessed")
   productsHandler(req, res)
@@ -83,6 +91,35 @@ app.all("/api/products/:productName", (req, res) => {
 
 app.all("/api/products/market/:marketId", (req, res) => {
   console.log("[v0] Products API with market ID route accessed")
+  productsHandler(req, res)
+})
+
+// Agent-specific routes for markets and products
+// Agent Markets API routes
+app.all("/api/agent/markets", (req, res) => {
+  console.log("[v0] Agent markets API route accessed")
+  marketsHandler(req, res)
+})
+
+app.all("/api/agent/markets/:id", (req, res) => {
+  console.log("[v0] Agent markets API with ID route accessed")
+  req.query.id = req.params.id
+  marketsHandler(req, res)
+})
+
+// Agent Products API routes
+app.all("/api/agent/products", (req, res) => {
+  console.log("[v0] Agent products API route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/agent/products/:productName", (req, res) => {
+  console.log("[v0] Agent products API with product name route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/agent/products/market/:marketId", (req, res) => {
+  console.log("[v0] Agent products API with market ID route accessed")
   productsHandler(req, res)
 })
 
@@ -134,6 +171,18 @@ app.use(express.static(__dirname))
 app.get("/", (req, res) => {
   console.log("[v0] Root route accessed, serving index.html")
   res.sendFile(path.join(__dirname, "index.html"))
+})
+
+// Market comparison API
+app.all("/api/market-comparison", (req, res) => {
+  console.log("[v0] Market comparison API route accessed")
+  marketComparisonHandler(req, res)
+})
+
+// Price prediction API
+app.all("/api/predict-price", (req, res) => {
+  console.log("[v0] Price prediction API route accessed")
+  predictPriceHandler(req, res)
 })
 
 // 404 handler
