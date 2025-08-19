@@ -1,67 +1,119 @@
 import { MongoClient } from "mongodb"
 import dotenv from "dotenv"
 
-// Load environment variables
 dotenv.config()
-
-const MONGODB_URI = process.env.MONGODB_URI
-
-if (!MONGODB_URI) {
-  console.error("❌ MONGODB_URI is not defined in environment variables")
-  console.log("💡 Please check your .env file and ensure MONGODB_URI is set")
-  console.log("📝 Example: MONGODB_URI=mongodb://localhost:27017/agritech")
-  process.exit(1)
-}
 
 let client = null
 let db = null
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017"
+const DB_NAME = process.env.DB_NAME || "agritech_ai"
+
 export async function connectDB() {
   try {
-    if (!client) {
-      console.log("🔌 Connecting to MongoDB...")
-      console.log("📍 URI:", MONGODB_URI.replace(/\/\/.*@/, "//***:***@"))
+    console.log("[v0] Attempting to connect to MongoDB...")
+    console.log("[v0] MongoDB URI:", MONGODB_URI.replace(/\/\/.*@/, "//***:***@"))
 
-      client = new MongoClient(MONGODB_URI, {
-        maxPoolSize: 10,
-        serverSelectionTimeoutMS: 5000,
-        socketTimeoutMS: 45000,
-      })
-
-      await client.connect()
-      db = client.db("agritech")
-
-      // Test the connection
-      await db.admin().ping()
-      console.log("✅ Database connection established successfully")
+    if (client && client.topology && client.topology.isConnected()) {
+      console.log("[v0] Database already connected")
+      return db
     }
+
+    client = new MongoClient(MONGODB_URI, {
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 10000,
+    })
+
+    await client.connect()
+    db = client.db(DB_NAME)
+
+    console.log("[v0] ✅ Successfully connected to MongoDB database:", DB_NAME)
+
+    // Test the connection
+    await db.admin().ping()
+    console.log("[v0] ✅ Database ping successful")
+
     return db
   } catch (error) {
-    console.error("❌ Database connection failed:", error.message)
-
-    if (error.message.includes("Invalid scheme")) {
-      console.log("\n💡 MongoDB URL Format Help:")
-      console.log("✅ Local MongoDB: mongodb://localhost:27017/agritech")
-      console.log("✅ MongoDB Atlas: mongodb+srv://username:password@cluster.mongodb.net/agritech")
-      console.log("\n🔧 Current MONGODB_URI:", MONGODB_URI || "undefined")
-    }
-
+    console.error("[v0] ❌ MongoDB connection error:", error.message)
     throw error
   }
 }
 
 export function getDB() {
   if (!db) {
-    throw new Error("❌ Database not connected. Call connectDB() first.")
+    console.error("[v0] ❌ Database not connected. Call connectDB() first.")
+    throw new Error("Database not connected. Call connectDB() first.")
   }
+  console.log("[v0] 📊 Database instance retrieved")
   return db
 }
 
 export async function closeDB() {
-  if (client) {
-    await client.close()
-    client = null
-    db = null
-    console.log("🔌 Database connection closed")
+  try {
+    if (client) {
+      console.log("[v0] 🔌 Closing database connection...")
+      await client.close()
+      client = null
+      db = null
+      console.log("[v0] ✅ Database connection closed successfully")
+    }
+  } catch (error) {
+    console.error("[v0] ❌ Error closing database connection:", error.message)
+    throw error
+  }
+}
+
+// Collection helpers with logging
+export async function getCollection(collectionName) {
+  console.log(`[v0] 📋 Accessing collection: ${collectionName}`)
+  const database = getDB()
+  return database.collection(collectionName)
+}
+
+// Initialize collections and indexes
+export async function initializeCollections() {
+  try {
+    console.log("[v0] 🏗️ Initializing database collections...")
+    const database = getDB()
+
+    // Create collections if they don't exist
+    const collections = ["users", "farmers", "agents", "markets", "products", "transactions", "predictions"]
+
+    for (const collectionName of collections) {
+      try {
+        await database.createCollection(collectionName)
+        console.log(`[v0] ✅ Collection '${collectionName}' created/verified`)
+      } catch (error) {
+        if (error.code === 48) {
+          console.log(`[v0] ℹ️ Collection '${collectionName}' already exists`)
+        } else {
+          throw error
+        }
+      }
+    }
+
+    // Create indexes for better performance
+    console.log("[v0] 🔍 Creating database indexes...")
+
+    // User indexes
+    await database.collection("users").createIndex({ email: 1 }, { unique: true })
+    await database.collection("farmers").createIndex({ email: 1 }, { unique: true })
+    await database.collection("agents").createIndex({ email: 1 }, { unique: true })
+
+    // Market indexes
+    await database.collection("markets").createIndex({ name: 1 })
+    await database.collection("markets").createIndex({ agentId: 1 })
+
+    // Product indexes
+    await database.collection("products").createIndex({ name: 1 })
+    await database.collection("products").createIndex({ marketId: 1 })
+    await database.collection("products").createIndex({ agentId: 1 })
+
+    console.log("[v0] ✅ Database initialization completed successfully")
+  } catch (error) {
+    console.error("[v0] ❌ Error initializing collections:", error.message)
+    throw error
   }
 }
