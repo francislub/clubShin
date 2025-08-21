@@ -2,284 +2,213 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Effective Drainage Systems - Supporting Health & Agriculture in Uganda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_CODE.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    
     <style>
-        /* Custom styles to enhance the Bootstrap theme */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         :root {
-            --primary-color: #007bff; /* Blue - good for water/drainage themes */
-            --secondary-color: #6c757d; /* Grey */
-            --info-color: #17a2b8; /* Teal */
-            --success-color: #28a745; /* Green */
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
             --warning-color: #ffc107;
             --danger-color: #dc3545;
-            --light-bg: #f8f9fa;
-            --dark-bg: #343a40;
-            --card-bg: #ffffff;
-            --text-color: #333;
-            --text-light: #f8f9fa; /* For dark backgrounds */
-            --border-radius-lg: 0.75rem; /* Larger rounded corners */
-            --box-shadow-lg: 0 8px 25px rgba(0,0,0,0.15); /* Stronger shadow */
-            --transition-speed: 0.4s ease-in-out; /* Smooth transitions */
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --text-color: #212529;
+            --light-bg-color: #f8f9fa;
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
             color: var(--text-color);
-            background-color: var(--light-bg);
-            scroll-behavior: smooth; /* Smooth scroll for anchor links */
+            background-color: var(--light-bg-color);
+            line-height: 1.7;
         }
 
-        /* Navbar Customization */
-        .navbar {
-            background-color: var(--dark-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
         }
 
-        .navbar-brand, .nav-link {
-            color: var(--text-light) !important;
-            font-weight: 500;
-            transition: color var(--transition-speed);
-        }
-
-        .navbar-brand:hover, .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .navbar-toggler {
-            border-color: rgba(255,255,255,0.1);
-        }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        /* Hero Section Styling */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/random/1600x900/?drainage,agriculture,uganda') no-repeat center center/cover;
-            color: var(--text-light);
-            padding: 8rem 0;
-            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x1080/007bff/FFFFFF?text=Drainage+System+Uganda');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
-            box-shadow: var(--box-shadow-lg);
+            color: white;
+            padding: 100px 0;
         }
-        .hero-section .row {
-            min-height: 75vh; /* Adjust as needed */
-            align-items: center; /* Vertically center content */
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
         }
 
         .hero-section h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem); /* Responsive font size */
-            font-weight: 700;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .hero-section p.lead {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-section p {
+            font-weight: 300;
         }
 
-        .hero-image img {
-            max-height: 400px; /* Constrain image size */
-            object-fit: contain;
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
         }
 
-        /* Section Headings */
-        section h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: bold;
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-light {
+            border-color: white;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
             color: var(--primary-color);
-            margin-bottom: 2rem;
-        }
-        section p.lead {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #555;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 3rem;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Feature Cards (re-purposed from previous design) */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
         .feature-card {
-            background-color: var(--card-bg);
-            border: none;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            height: 100%;
-            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* Align content to top */
-            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border-top: 5px solid var(--primary-color);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .feature-card i {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
         .feature-card h3 {
-            font-weight: bold;
-            color: var(--dark-bg);
+            font-weight: 600;
+            color: var(--dark-color);
             margin-bottom: 1rem;
         }
 
-        /* Animated fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Statistics/Highlights Section */
         .stats-section {
             background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 4rem 0;
+            color: white;
+            padding: 5rem 0;
             text-align: center;
-        }
-        .stats-item h3 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-        }
-        .stats-item p {
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
         }
 
-        /* Impact Section */
+        .stats-item h3 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .stats-item p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .card-custom {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .card-custom .card-title {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
         .impact-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 1.5rem;
         }
+
         .impact-item i {
-            font-size: 2.5rem;
-            color: var(--success-color);
-            margin-right: 1.5rem;
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary-color);
             flex-shrink: 0;
         }
-        .impact-item .text-content h4 {
-            color: var(--dark-bg);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .impact-item .text-content p {
-            font-size: 1rem;
-            color: var(--text-color);
+
+        .impact-item h4 {
+            margin-bottom: 0.25rem;
+            font-weight: 600;
         }
 
-        /* Call to Action */
-        #contact-section {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x400/?construction,uganda') no-repeat center center/cover;
-            color: var(--text-light);
-            padding: 5rem 0;
-            text-align: center;
-            border-radius: var(--border-radius-lg);
-            margin-top: 5rem;
-            box-shadow: var(--box-shadow-lg);
-        }
-        #contact-section h2 {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-        #contact-section .btn-light-outline {
-            background-color: transparent;
-            border: 2px solid var(--text-light);
-            color: var(--text-light);
-            padding: 0.8rem 2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: var(--border-radius-lg);
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-        }
-        #contact-section .btn-light-outline:hover {
-            background-color: var(--text-light);
-            color: var(--primary-color);
+        .impact-item p {
+            margin-bottom: 0;
+            font-weight: 300;
         }
 
-        /* Form styling in contact section */
-        #contact-form-section .form-control {
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards cubic-bezier(0.19, 1, 0.22, 1);
         }
-        #contact-form-section .form-select {
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-        }
-        #contact-form-section .btn-primary {
-            padding: 0.8rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: var(--border-radius-lg);
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-water me-2"></i> Drainage Solutions Uganda
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#importance">Why Drainage Systems?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#types">Types of Drainage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#benefits">Benefits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#challenges">Challenges & Solutions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-form-section">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <header id="hero" class="hero-section">
         <div class="container">
@@ -302,8 +231,7 @@
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
                     <div class="hero-image text-center fade-in animated">
-                        <img src="https://via.placeholder.com/500x400/007bff/FFFFFF?text=Modern+Drainage+System" alt="Modern Drainage System Illustration" class="img-fluid rounded shadow-lg">
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -313,7 +241,7 @@
         <div class="container my-5 py-5">
 
             <section id="importance" class="mb-5 py-5">
-                <h2 class="text-center mb-4 fade-in">Why are Effective Drainage Systems So Important?</h2>
+                <h2 class="text-center mb-4 section-title fade-in">Why are Effective Drainage Systems So Important?</h2>
                 <p class="lead text-center mb-5 fade-in">
                     Proper water management through well-maintained **drainage systems** isn't just about avoiding floods; it's about safeguarding public health, ensuring agricultural productivity, and protecting infrastructure across Uganda. A robust **drainage system** is the backbone of sustainable development.
                 </p>
@@ -366,14 +294,13 @@
             <hr class="my-5">
 
             <section id="types" class="mb-5 py-5">
-                <h2 class="text-center mb-4 fade-in">Key Types of Drainage Systems</h2>
+                <h2 class="text-center mb-4 section-title fade-in">Key Types of Drainage Systems</h2>
                 <p class="lead text-center mb-5 fade-in">
                     From simple ditches to complex underground networks, various **drainage systems** are designed to manage water flow efficiently and effectively, adapting to diverse land uses and environmental needs.
                 </p>
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 order-lg-2 fade-in">
-                        <img src="https://via.placeholder.com/600x400/17a2b8/FFFFFF?text=Effective+Surface+Drainage" class="img-fluid rounded shadow-lg" alt="Surface Drainage">
-                    </div>
+                        </div>
                     <div class="col-lg-6 order-lg-1 fade-in">
                         <h3><i class="fas fa-th-list me-2 text-info"></i> Surface Drainage Systems</h3>
                         <p>These **drainage systems** manage water runoff directly from the land surface, preventing pooling and directing excess water away. They are often the most visible and cost-effective **drainage solutions** for large areas.</p>
@@ -388,8 +315,7 @@
 
                 <div class="row align-items-center g-5 mt-5">
                     <div class="col-lg-6 fade-in">
-                        <img src="https://via.placeholder.com/600x400/007bff/FFFFFF?text=Subsurface+Drainage+Pipes" class="img-fluid rounded shadow-lg" alt="Subsurface Drainage">
-                    </div>
+                        </div>
                     <div class="col-lg-6 fade-in">
                         <h3><i class="fas fa-water-ladder me-2 text-primary"></i> Subsurface (Underground) Drainage Systems</h3>
                         <p>These **drainage systems** are designed to remove excess water from below the ground surface, crucial for preventing waterlogging, improving soil aeration, and stabilizing foundations. They are often less visible but highly effective **drainage solutions**.</p>
@@ -435,7 +361,7 @@
             <hr class="my-5">
 
             <section id="challenges" class="mb-5 py-5">
-                <h2 class="text-center mb-4 fade-in">Uganda's Drainage System Challenges & Sustainable Solutions</h2>
+                <h2 class="text-center mb-4 section-title fade-in">Uganda's Drainage System Challenges & Sustainable Solutions</h2>
                 <p class="lead text-center mb-5 fade-in">
                     Addressing unique local conditions is key to developing effective and lasting **drainage solutions** that serve both urban and rural areas across Uganda.
                 </p>
@@ -517,81 +443,79 @@
                 </div>
             </section>
 
-            <hr class="my-5">
-
-            <section id="contact-form-section" class="py-5">
-                <h2 class="text-center mb-4 fade-in">Get In Touch for Drainage Solutions</h2>
-                <p class="lead text-center mb-5 fade-in">
-                    Have questions about specific **drainage systems** for your farm, community, or home? Our experts are here to provide tailored advice and support.
-                </p>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="card card-custom p-4 fade-in">
-                            <div class="card-body">
-                                <form id="contactForm">
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <label for="contactName" class="form-label">Your Name</label>
-                                            <input type="text" class="form-control" id="contactName" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="contactEmail" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" id="contactEmail" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="contactPhone" class="form-label">Phone Number (Optional)</label>
-                                            <input type="tel" class="form-control" id="contactPhone">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="contactType" class="form-label">I am a...</label>
-                                            <select class="form-select" id="contactType" required>
-                                                <option selected disabled value="">Choose...</option>
-                                                <option value="farmer">Farmer</option>
-                                                <option value="community_leader">Community Leader</option>
-                                                <option value="homeowner">Homeowner</option>
-                                                <option value="business">Business Owner</option>
-                                                <option value="other">Other</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="contactSubject" class="form-label">Subject</label>
-                                            <input type="text" class="form-control" id="contactSubject" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="contactMessage" class="form-label">Your Message</label>
-                                            <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <button type="submit" class="btn btn-primary btn-lg mt-3">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
         </div>
     </main>
 
-    <footer class="mt-5">
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Drainage Solutions Uganda. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            <p>Committed to a healthier and more prosperous Uganda. <i class="fas fa-water text-primary"></i></p>
-        </div>
-    </footer>
+    <div id="container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_CODE.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
     <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Contact form handling (as provided in your snippet)
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
+            
+            // Get form data
             const formData = {
                 name: document.getElementById('contactName').value,
-                email
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
