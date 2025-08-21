@@ -20,9 +20,12 @@ export async function connectDB() {
     }
 
     client = new MongoClient(MONGODB_URI, {
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
-      connectTimeoutMS: 10000,
+      serverSelectionTimeoutMS: 30000, // Increased from 5000ms to 30000ms
+      connectTimeoutMS: 30000, // Increased from 10000ms to 30000ms
+      socketTimeoutMS: 30000, // Added socket timeout
+      maxPoolSize: 10, // Added connection pool size
+      retryWrites: true, // Enable retry writes
+      retryReads: true, // Enable retry reads
     })
 
     await client.connect()
@@ -37,6 +40,10 @@ export async function connectDB() {
     return db
   } catch (error) {
     console.error("[v0] ❌ MongoDB connection error:", error.message)
+    if (error.name === "MongoServerSelectionError") {
+      console.error("[v0] ❌ Server selection failed. Check if MongoDB is running and accessible.")
+      console.error("[v0] ❌ Connection string:", MONGODB_URI.replace(/\/\/.*@/, "//***:***@"))
+    }
     throw error
   }
 }

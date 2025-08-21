@@ -13,39 +13,36 @@ export default async function marketComparison(req, res) {
       case "GET":
         console.log("[v0] 📋 Fetching market comparison data...")
 
-        // Get all markets with their products and prices
-        const markets = await db.collection("markets").find({}).toArray()
-        console.log("[v0] ✅ Retrieved", markets.length, "markets")
+        const comparisonData = await db
+          .collection("products")
+          .aggregate([
+            {
+              $lookup: {
+                from: "markets",
+                localField: "marketId",
+                foreignField: "_id",
+                as: "market",
+              },
+            },
+            { $unwind: "$market" },
+            {
+              $project: {
+                productName: "$name",
+                marketId: "$marketId",
+                marketName: "$market.name",
+                location: "$market.location",
+                sellingPrice: 1, // Already in UGX
+                buyingPrice: 1, // Already in UGX
+                stock: 1,
+                trend: { $literal: "stable" }, // Default trend
+                _id: 1,
+              },
+            },
+          ])
+          .toArray()
 
-        const comparisonData = []
-
-        for (const market of markets) {
-          console.log("[v0] 🔍 Processing market:", market.name)
-
-          // Get products for this market
-          const products = await db.collection("products").find({ marketId: market._id }).toArray()
-
-          const marketData = {
-            marketId: market._id,
-            marketName: market.name,
-            location: market.location,
-            products: products.map((product) => ({
-              name: product.name,
-              sellingPrice: product.sellingPrice,
-              buyingPrice: product.buyingPrice,
-              stock: product.stock,
-            })),
-          }
-
-          comparisonData.push(marketData)
-        }
-
-        console.log("[v0] ✅ Market comparison data prepared successfully")
-        res.json({
-          success: true,
-          data: comparisonData,
-          timestamp: new Date().toISOString(),
-        })
+        console.log("[v0] ✅ Market comparison data prepared successfully:", comparisonData.length, "items")
+        res.json(comparisonData)
         break
 
       default:

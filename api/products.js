@@ -4,7 +4,20 @@ import { getDB } from "../utils/database.js"
 
 export default async function handler(req, res) {
   try {
-    const db = getDB()
+    console.log("[v0] Products API - Method:", req.method)
+    console.log("[v0] Products API - Headers:", req.headers.authorization ? "Token present" : "No token")
+
+    let db
+    try {
+      db = getDB()
+    } catch (dbError) {
+      console.error("[v0] ❌ Database connection failed:", dbError.message)
+      return res.status(503).json({
+        message: "Database service unavailable. Please try again later.",
+        error: "DB_CONNECTION_FAILED",
+      })
+    }
+
     const products = db.collection("products")
     const markets = db.collection("markets")
 
@@ -48,9 +61,24 @@ export default async function handler(req, res) {
     }
 
     if (req.method === "GET") {
-      // Get all products with market information
-      const allProducts = await products
+      // Get only products belonging to this agent
+      const token = req.headers.authorization?.split(" ")[1]
+      if (!token) {
+        console.log("[v0] No token provided for GET request")
+        return res.status(401).json({ message: "No token provided" })
+      }
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
+      console.log("[v0] Decoded token - ID:", decoded.id, "Type:", decoded.type)
+
+      if (decoded.type !== "agent") {
+        return res.status(403).json({ message: "Only agents can access products" })
+      }
+
+      // Get only products belonging to this agent
+      const agentProducts = await products
         .aggregate([
+          { $match: { agentId: new ObjectId(decoded.id) } },
           {
             $lookup: {
               from: "markets",
@@ -77,7 +105,8 @@ export default async function handler(req, res) {
         ])
         .toArray()
 
-      res.status(200).json(allProducts)
+      console.log("[v0] Found", agentProducts.length, "products for agent", decoded.id)
+      res.status(200).json(agentProducts)
     } else if (req.method === "POST") {
       // Create new product (agents only)
       const token = req.headers.authorization?.split(" ")[1]
@@ -118,6 +147,55 @@ export default async function handler(req, res) {
       await markets.updateOne({ _id: new ObjectId(marketId) }, { $inc: { productCount: 1 } })
 
       res.status(201).json({ message: "Product added successfully", productId: result.insertedId })
+    } else if (req.method === "PUT") {
+      // Update product (agents only)
+      const token = req.headers.authorization?.split(" ")[1]
+      if (!token) {
+        return res.status(401).json({ message: "No token provided" })
+      }
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
+      if (decoded.type !== "agent") {
+        return res.status(403).json({ message: "Only agents can update products" })
+      }
+
+      const productId = req.query.id || req.body.id
+      const { name, marketId, sellingPrice, buyingPrice, stock } = req.body
+
+      // Verify product belongs to agent
+      const existingProduct = await products.findOne({
+        _id: new ObjectId(productId),
+        agentId: new ObjectId(decoded.id),
+      })
+
+      if (!existingProduct) {
+        return res.status(404).json({ message: "Product not found or access denied" })
+      }
+
+      // Verify market belongs to agent if marketId is being changed
+      if (marketId && marketId !== existingProduct.marketId.toString()) {
+        const market = await markets.findOne({
+          _id: new ObjectId(marketId),
+          agentId: new ObjectId(decoded.id),
+        })
+
+        if (!market) {
+          return res.status(403).json({ message: "Market not found or access denied" })
+        }
+      }
+
+      const updateData = {
+        name,
+        marketId: new ObjectId(marketId),
+        sellingPrice: Number.parseFloat(sellingPrice),
+        buyingPrice: Number.parseFloat(buyingPrice),
+        stock: Number.parseInt(stock),
+        updatedAt: new Date(),
+      }
+
+      await products.updateOne({ _id: new ObjectId(productId) }, { $set: updateData })
+
+      res.status(200).json({ message: "Product updated successfully" })
     } else if (req.method === "DELETE") {
       // Delete product (agents only)
       const token = req.headers.authorization?.split(" ")[1]
@@ -145,7 +223,25 @@ export default async function handler(req, res) {
       res.status(405).json({ message: "Method not allowed" })
     }
   } catch (error) {
-    console.error("Products API error:", error)
-    res.status(500).json({ message: "Internal server error" })
+    console.error("[v0] ❌ Products API error:", error.message)
+
+    if (error.name === "MongoServerSelectionError") {
+      return res.status(503).json({
+        message: "Database connection failed. Please try again later.",
+        error: "DB_SERVER_SELECTION_ERROR",
+      })
+    }
+
+    if (error.name === "MongoTimeoutError") {
+      return res.status(504).json({
+        message: "Database operation timed out. Please try again.",
+        error: "DB_TIMEOUT_ERROR",
+      })
+    }
+
+    res.status(500).json({
+      message: "Internal server error",
+      error: "INTERNAL_SERVER_ERROR",
+    })
   }
 }

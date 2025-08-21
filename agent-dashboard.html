@@ -374,6 +374,88 @@
         </div>
     </div>
 
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <input type="hidden" id="editProductId">
+                        <div class="mb-3">
+                            <label for="editProductName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="editProductName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductMarket" class="form-label">Market</label>
+                            <select class="form-select" id="editProductMarket" required>
+                                <option value="">Select a market...</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="editSellingPrice" class="form-label">Selling Price (UGX/kg)</label>
+                                    <input type="number" class="form-control" id="editSellingPrice" step="100" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="editBuyingPrice" class="form-label">Buying Price (UGX/kg)</label>
+                                    <input type="number" class="form-control" id="editBuyingPrice" step="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editStockQuantity" class="form-label">Stock Quantity (kg)</label>
+                            <input type="number" class="form-control" id="editStockQuantity" step="0.1" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-warning" onclick="updateProduct()">Update Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Market Modal -->
+    <div class="modal fade" id="editMarketModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Edit Market</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editMarketForm">
+                        <input type="hidden" id="editMarketId">
+                        <div class="mb-3">
+                            <label for="editMarketName" class="form-label">Market Name</label>
+                            <input type="text" class="form-control" id="editMarketName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMarketLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="editMarketLocation" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMarketDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editMarketDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="updateMarket()">Update Market</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
     <script src="js/agent-dashboard.js"></script>
