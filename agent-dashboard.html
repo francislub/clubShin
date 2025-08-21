@@ -6,142 +6,290 @@
     <title>Agent Dashboard - AgriTech AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+        .currency-ugx {
+            color: #007bff;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-briefcase me-2"></i>AgriTech AI - Agent
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#" onclick="logout()">
-                    <i class="fas fa-sign-out-alt me-1"></i>Logout
-                </a>
+    <!-- Added sidebar navigation for agent portal -->
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar position-fixed d-none d-md-block" style="width: 250px; z-index: 1000;">
+            <div class="p-3">
+                <div class="text-center mb-4">
+                    <i class="fas fa-briefcase text-white" style="font-size: 2rem;"></i>
+                    <h5 class="text-white mt-2">Agent Portal</h5>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#markets">
+                            <i class="fas fa-store me-2"></i>My Markets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">
+                            <i class="fas fa-leaf me-2"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analytics">
+                            <i class="fas fa-chart-line me-2"></i>Analytics
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#transactions">
+                            <i class="fas fa-exchange-alt me-2"></i>Transactions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#farmers">
+                            <i class="fas fa-users me-2"></i>Farmers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#settings">
+                            <i class="fas fa-cog me-2"></i>Settings
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </nav>
+            <div class="mt-auto p-3">
+                <button class="btn btn-outline-light w-100" onclick="logout()">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </button>
+            </div>
+        </nav>
 
-    <div class="dashboard-header bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="display-6 fw-bold">Welcome, <span id="agentName">Agent</span>!</h1>
-                    <p class="lead">Manage markets and set competitive prices</p>
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand fw-bold" href="#">
+                        <i class="fas fa-briefcase me-2"></i>AgriTech AI - Agent
+                    </a>
+                    <div class="navbar-nav ms-auto">
+                        <span class="navbar-text me-3">
+                            <i class="fas fa-user-circle me-1"></i><span id="agentName">Agent</span>
+                        </span>
+                        <a class="nav-link d-md-none" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="dashboard-header bg-primary">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-6 fw-bold">Welcome, <span id="agentNameHeader">Agent</span>!</h1>
+                            <p class="lead">Manage markets and set competitive prices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid my-5">
+                <!-- Stats Cards -->
+                <div class="row mb-5">
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-primary text-white mx-auto">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4 id="myMarkets">0</h4>
+                            <p class="text-muted">My Markets</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-success text-white mx-auto">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h4 id="activeProducts">0</h4>
+                            <p class="text-muted">Active Products</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-warning text-white mx-auto">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 id="totalTransactions">0</h4>
+                            <p class="text-muted">Transactions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-info text-white mx-auto">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <!-- Updated revenue display to use UGX currency -->
+                            <h4 id="totalRevenue" class="currency-ugx">0 shs</h4>
+                            <p class="text-muted">Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-success w-100 py-3" data-bs-toggle="modal" data-bs-target="#createMarketModal">
+                                            <i class="fas fa-plus me-2"></i>Create New Market
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-info w-100 py-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                            <i class="fas fa-leaf me-2"></i>Add Product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Markets Management -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-store me-2"></i>My Markets</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="marketsList" class="row">
+                                    <!-- Dynamic content will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Management -->
+                <div class="row" id="products">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="fas fa-leaf me-2"></i>Product Management</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Market</th>
+                                                <!-- Updated table headers to show UGX currency -->
+                                                <th>Selling Price (UGX/kg)</th>
+                                                <th>Buying Price (UGX/kg)</th>
+                                                <th>Stock (kg)</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productsTable">
+                                            <!-- Dynamic content will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container my-5">
-        <!-- Stats Cards -->
-        <div class="row mb-5">
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-primary text-white mx-auto">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h4 id="myMarkets">0</h4>
-                    <p class="text-muted">My Markets</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-success text-white mx-auto">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h4 id="activeProducts">0</h4>
-                    <p class="text-muted">Active Products</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-warning text-white mx-auto">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4 id="totalTransactions">0</h4>
-                    <p class="text-muted">Transactions</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-info text-white mx-auto">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h4 id="totalRevenue">$0</h4>
-                    <p class="text-muted">Total Revenue</p>
-                </div>
-            </div>
+    <!-- Mobile Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header bg-primary text-white">
+            <h5 class="offcanvas-title">
+                <i class="fas fa-briefcase me-2"></i>Agent Portal
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
-
-        <!-- Quick Actions -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <button class="btn btn-success w-100 py-3" data-bs-toggle="modal" data-bs-target="#createMarketModal">
-                                    <i class="fas fa-plus me-2"></i>Create New Market
-                                </button>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <button class="btn btn-info w-100 py-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                                    <i class="fas fa-leaf me-2"></i>Add Product
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Markets Management -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="fas fa-store me-2"></i>My Markets</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="marketsList" class="row">
-                            <!-- Dynamic content will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Products Management -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-warning text-dark">
-                        <h5 class="mb-0"><i class="fas fa-leaf me-2"></i>Product Management</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Market</th>
-                                        <th>Selling Price</th>
-                                        <th>Buying Price</th>
-                                        <th>Stock</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productsTable">
-                                    <!-- Dynamic content will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="offcanvas-body bg-primary">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#markets">
+                        <i class="fas fa-store me-2"></i>My Markets
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#products">
+                        <i class="fas fa-leaf me-2"></i>Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#analytics">
+                        <i class="fas fa-chart-line me-2"></i>Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#transactions">
+                        <i class="fas fa-exchange-alt me-2"></i>Transactions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#farmers">
+                        <i class="fas fa-users me-2"></i>Farmers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#settings">
+                        <i class="fas fa-cog me-2"></i>Settings
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -200,20 +348,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="sellingPrice" class="form-label">Selling Price ($)</label>
-                                    <input type="number" class="form-control" id="sellingPrice" step="0.01" required>
+                                    <!-- Updated form labels to show UGX currency -->
+                                    <label for="sellingPrice" class="form-label">Selling Price (UGX/kg)</label>
+                                    <input type="number" class="form-control" id="sellingPrice" step="100" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="buyingPrice" class="form-label">Buying Price ($)</label>
-                                    <input type="number" class="form-control" id="buyingPrice" step="0.01" required>
+                                    <label for="buyingPrice" class="form-label">Buying Price (UGX/kg)</label>
+                                    <input type="number" class="form-control" id="buyingPrice" step="100" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="stockQuantity" class="form-label">Stock Quantity (kg)</label>
-                            <input type="number" class="form-control" id="stockQuantity" required>
+                            <input type="number" class="form-control" id="stockQuantity" step="0.1" required>
                         </div>
                     </form>
                 </div>
