@@ -1,7 +1,6 @@
-const { getDatabase } = require("../../../utils/database")
-const { ObjectId } = require("mongodb")
+import { getDB } from "../../../utils/database.js"
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   const { name } = req.query
 
   if (req.method !== "GET") {
@@ -11,7 +10,7 @@ async function handler(req, res) {
   try {
     console.log("[v0] 📦 Getting products by name:", name)
 
-    const db = await getDatabase()
+    const db = getDB()
 
     // Get products with market information
     const products = await db
@@ -52,5 +51,3 @@ async function handler(req, res) {
     })
   }
 }
-
-module.exports = handler

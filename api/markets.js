@@ -4,31 +4,37 @@ import { getDB } from "../utils/database.js"
 
 export default async function handler(req, res) {
   try {
+    console.log("[v0] Markets API route accessed")
     console.log("[v0] Markets API - Method:", req.method)
     console.log("[v0] Markets API - Headers:", req.headers.authorization ? "Token present" : "No token")
 
     const db = getDB()
+    console.log("[v0] 📊 Database instance retrieved")
     const markets = db.collection("markets")
 
     if (req.method === "GET") {
       const token = req.headers.authorization?.split(" ")[1]
-      if (!token) {
-        console.log("[v0] No token provided for GET request")
-        return res.status(401).json({ message: "No token provided" })
+
+      if (token) {
+        try {
+          const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
+          console.log("[v0] Decoded token - ID:", decoded.id, "Type:", decoded.type)
+
+          if (decoded.type === "agent") {
+            // Get only markets belonging to this agent
+            const agentMarkets = await markets.find({ agentId: new ObjectId(decoded.id) }).toArray()
+            console.log("[v0] Found", agentMarkets.length, "markets for agent", decoded.id)
+            return res.status(200).json(agentMarkets)
+          }
+        } catch (error) {
+          console.log("[v0] Token verification failed, proceeding with public access")
+        }
       }
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
-      console.log("[v0] Decoded token - ID:", decoded.id, "Type:", decoded.type)
-
-      if (decoded.type !== "agent") {
-        return res.status(403).json({ message: "Only agents can access markets" })
-      }
-
-      // Get only markets belonging to this agent
-      const agentMarkets = await markets.find({ agentId: new ObjectId(decoded.id) }).toArray()
-      console.log("[v0] Found", agentMarkets.length, "markets for agent", decoded.id)
-
-      res.status(200).json(agentMarkets)
+      console.log("[v0] Providing public access to all markets for farmers")
+      const allMarkets = await markets.find({}).toArray()
+      console.log("[v0] Found", allMarkets.length, "total markets")
+      res.status(200).json(allMarkets)
     } else if (req.method === "POST") {
       // Create new market (agents only)
       const token = req.headers.authorization?.split(" ")[1]

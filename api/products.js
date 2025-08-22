@@ -61,24 +61,55 @@ export default async function handler(req, res) {
     }
 
     if (req.method === "GET") {
-      // Get only products belonging to this agent
       const token = req.headers.authorization?.split(" ")[1]
-      if (!token) {
-        console.log("[v0] No token provided for GET request")
-        return res.status(401).json({ message: "No token provided" })
+
+      if (token) {
+        try {
+          const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
+          console.log("[v0] Decoded token - ID:", decoded.id, "Type:", decoded.type)
+
+          if (decoded.type === "agent") {
+            // Get only products belonging to this agent
+            const agentProducts = await products
+              .aggregate([
+                { $match: { agentId: new ObjectId(decoded.id) } },
+                {
+                  $lookup: {
+                    from: "markets",
+                    localField: "marketId",
+                    foreignField: "_id",
+                    as: "market",
+                  },
+                },
+                {
+                  $unwind: "$market",
+                },
+                {
+                  $project: {
+                    name: 1,
+                    sellingPrice: 1,
+                    buyingPrice: 1,
+                    stock: 1,
+                    marketId: 1,
+                    marketName: "$market.name",
+                    marketLocation: "$market.location",
+                    createdAt: 1,
+                  },
+                },
+              ])
+              .toArray()
+
+            console.log("[v0] Found", agentProducts.length, "products for agent", decoded.id)
+            return res.status(200).json(agentProducts)
+          }
+        } catch (error) {
+          console.log("[v0] Token verification failed, proceeding with public access")
+        }
       }
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
-      console.log("[v0] Decoded token - ID:", decoded.id, "Type:", decoded.type)
-
-      if (decoded.type !== "agent") {
-        return res.status(403).json({ message: "Only agents can access products" })
-      }
-
-      // Get only products belonging to this agent
-      const agentProducts = await products
+      console.log("[v0] Providing public access to all products for farmers")
+      const allProducts = await products
         .aggregate([
-          { $match: { agentId: new ObjectId(decoded.id) } },
           {
             $lookup: {
               from: "markets",
@@ -105,8 +136,8 @@ export default async function handler(req, res) {
         ])
         .toArray()
 
-      console.log("[v0] Found", agentProducts.length, "products for agent", decoded.id)
-      res.status(200).json(agentProducts)
+      console.log("[v0] Found", allProducts.length, "total products")
+      res.status(200).json(allProducts)
     } else if (req.method === "POST") {
       // Create new product (agents only)
       const token = req.headers.authorization?.split(" ")[1]
