@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import { getDB } from "../../../utils/database.js"
+import { connectDB } from "../../../utils/database.js"
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const db = getDB()
+    const db = await connectDB()
     const agents = db.collection("agents")
 
     const { email, password } = req.body
@@ -17,15 +17,19 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "Email and password are required" })
     }
 
+    console.log("[v0] Attempting agent login for:", email)
+
     // Find agent by email
     const agent = await agents.findOne({ email })
     if (!agent) {
+      console.log("[v0] Agent not found:", email)
       return res.status(401).json({ message: "Invalid credentials" })
     }
 
     // Check password
     const isValidPassword = await bcrypt.compare(password, agent.password)
     if (!isValidPassword) {
+      console.log("[v0] Invalid password for agent:", email)
       return res.status(401).json({ message: "Invalid credentials" })
     }
 
@@ -36,13 +40,14 @@ export default async function handler(req, res) {
       { expiresIn: "24h" },
     )
 
+    console.log("[v0] Agent login successful:", email)
     res.status(200).json({
       token,
       name: agent.name,
       email: agent.email,
     })
   } catch (error) {
-    console.error("Login error:", error)
+    console.error("[v0] Agent login error:", error)
     res.status(500).json({ message: "Internal server error" })
   }
 }
