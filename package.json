@@ -9,8 +9,7 @@
     "dev": "nodemon server.js",
     "init-db": "node scripts/init-database.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prisma:generate": "prisma generate",
-    "build": "echo 'No build step required'"
+    "prisma:generate": "prisma generate"
   },
   "keywords": [
     "agriculture",
