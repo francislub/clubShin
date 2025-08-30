@@ -1,0 +1,336 @@
+!(htmDOCTYPE)<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Transaction History - SmartFarm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745; /* A vibrant green for growth/success */
+            --dark-bg: #343a40; /* Dark background for header/footer */
+            --secondary-color: #007bff; /* A blue for professionalism/water */
+            --info-color: #17a2b8; /* A lighter blue for hover states */
+            --light-bg: #f8f9fa; /* Light background for sections */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-bg);
+        }
+
+        /* Custom Header Styling (if not loaded via JS) */
+        .main-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .main-header .navbar-brand {
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        .main-header .nav-link {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s ease;
+        }
+        .main-header .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Main Content Styling */
+        .container.my-5 {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2.fw-bold {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .table-responsive {
+            margin-top: 1.5rem;
+        }
+
+        .table {
+            --bs-table-bg: #fff;
+            --bs-table-striped-bg: var(--light-bg);
+            --bs-table-hover-bg: #f5f5f5;
+        }
+
+        .table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            vertical-align: middle;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .table tbody tr {
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--bs-table-hover-bg);
+        }
+
+        .badge {
+            padding: 0.5em 0.75em;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 0.35rem;
+        }
+
+        .badge-success { background-color: #28a745; color: white; } /* Bootstrap's success */
+        .badge-info { background-color: #17a2b8; color: white; } /* Bootstrap's info */
+        .badge-warning { background-color: #ffc107; color: #212529; } /* Bootstrap's warning */
+
+        /* Custom Footer Styling (your original CSS, adapted slightly for Bootstrap context) */
+        footer {
+            background-color: var(--dark-bg);
+            color: rgba(255,255,255,0.7);
+            padding: 3rem 0;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 3rem; /* Add some space above the footer */
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease; /* Using a direct value as var(--transition-speed) wasn't defined in your snippet */
+        }
+
+        footer a:hover {
+            color: var(--info-color);
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            margin: 0 0.5rem;
+        }
+
+        /* Responsive adjustments for the table */
+        @media (max-width: 768px) {
+            .container.my-5 {
+                padding: 1.5rem;
+            }
+            .table thead {
+                display: none; /* Hide table headers on small screens */
+            }
+            .table, .table tbody, .table tr, .table td {
+                display: block; /* Make table elements act as block elements */
+                width: 100%;
+            }
+            .table tr {
+                margin-bottom: 1rem;
+                border: 1px solid #dee2e6;
+                border-radius: 0.25rem;
+                padding: 1rem;
+            }
+            .table td {
+                text-align: right;
+                padding-left: 50%; /* Make space for pseudo-elements */
+                position: relative;
+            }
+            .table td::before {
+                content: attr(data-label); /* Use data-label for content */
+                position: absolute;
+                left: 0.75rem;
+                width: calc(50% - 1.5rem);
+                padding-right: 1rem;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--dark-bg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header-container" class="main-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">SmartFarm</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Farm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Transactions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Marketplace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold"><i class="fas fa-exchange-alt me-2"></i>Transaction History</h2>
+                <p class="text-muted">Track your buying and selling activities and manage your records.</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <input type="text" class="form-control" id="searchInput" placeholder="Search by item, type, or date...">
+            </div>
+            <div class="col-md-3 mb-3 mb-md-0">
+                <select class="form-select" id="transactionTypeFilter">
+                    <option value="">All Types</option>
+                    <option value="Buy">Buy</option>
+                    <option value="Sell">Sell</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" id="dateFilter">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>Item/Service</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Unit Price (UGX)</th>
+                        <th>Total Amount (UGX)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Transaction ID">SF00123</td>
+                        <td data-label="Date">2025-07-20</td>
+                        <td data-label="Item/Service">Drip Irrigation Kit (Small Farm)</td>
+                        <td data-label="Type"><span class="badge badge-info">Buy</span></td>
+                        <td data-label="Quantity">1</td>
+                        <td data-label="Unit Price (UGX)">350,000</td>
+                        <td data-label="Total Amount (UGX)">350,000</td>
+                        <td data-label="Status"><span class="badge badge-success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Transaction ID">SF00122</td>
+                        <td data-label="Date">2025-07-15</td>
+                        <td data-label="Item/Service">Maize (50kg bag)</td>
+                        <td data-label="Type"><span class="badge badge-warning">Sell</span></td>
+                        <td data-label="Quantity">10</td>
+                        <td data-label="Unit Price (UGX)">70,000</td>
+                        <td data-label="Total Amount (UGX)">700,000</td>
+                        <td data-label="Status"><span class="badge badge-success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Transaction ID">SF00121</td>
+                        <td data-label="Date">2025-07-10</td>
+                        <td data-label="Item/Service">Fertilizer (UREA 50kg)</td>
+                        <td data-label="Type"><span class="badge badge-info">Buy</span></td>
+                        <td data-label="Quantity">2</td>
+                        <td data-label="Unit Price (UGX)">120,000</td>
+                        <td data-label="Total Amount (UGX)">240,000</td>
+                        <td data-label="Status"><span class="badge badge-success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Transaction ID">SF00120</td>
+                        <td data-label="Date">2025-07-05</td>
+                        <td data-label="Item/Service">Tomatoes (crate)</td>
+                        <td data-label="Type"><span class="badge badge-warning">Sell</span></td>
+                        <td data-label="Quantity">5</td>
+                        <td data-label="Unit Price (UGX)">30,000</td>
+                        <td data-label="Total Amount (UGX)">150,000</td>
+                        <td data-label="Status"><span class="badge badge-success">Completed</span></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-4">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <footer id="footer-container">
+        <div class="container">
+            <p>&copy; 2025 SmartFarm. All rights reserved.</p>
+            <p>Empowering Ugandan Farmers</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
+    <script src="js/components.js"></script>
+    <script src="js/farmer-transactions.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const typeFilter = document.getElementById('transactionTypeFilter');
+            const dateFilter = document.getElementById('dateFilter');
+            const tableBody = document.querySelector('.table tbody');
+            const rows = tableBody.querySelectorAll('tr');
+
+            function filterTable() {
+                const searchText = searchInput.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedDate = dateFilter.value;
+
+                rows.forEach(row => {
+                    const id = row.cells[0].textContent.toLowerCase();
+                    const date = row.cells[1].textContent;
+                    const item = row.cells[2].textContent.toLowerCase();
+                    const type = row.cells[3].querySelector('.badge').textContent;
+
+                    const matchesSearch = searchText === '' || id.includes(searchText) || item.includes(searchText) || type.toLowerCase().includes(searchText) || date.includes(searchText);
+                    const matchesType = selectedType === '' || type === selectedType;
+                    const matchesDate = selectedDate === '' || date === selectedDate;
+
+                    if (matchesSearch && matchesType && matchesDate) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            searchInput.addEventListener('keyup', filterTable);
+            typeFilter.addEventListener('change', filterTable);
+            dateFilter.addEventListener('change', filterTable);
+        });
+    </script>
+</body>
+</html>
