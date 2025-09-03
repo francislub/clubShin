@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effective Drainage Systems - Supporting Health & Agriculture in Uganda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styles to enhance the Bootstrap theme */
+        :root {
+            --primary-color: #007bff; /* Blue - good for water/drainage themes */
+            --secondary-color: #6c757d; /* Grey */
+            --info-color: #17a2b8; /* Teal */
+            --success-color: #28a745; /* Green */
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --text-light: #f8f9fa; /* For dark backgrounds */
+            --border-radius-lg: 0.75rem; /* Larger rounded corners */
+            --box-shadow-lg: 0 8px 25px rgba(0,0,0,0.15); /* Stronger shadow */
+            --transition-speed: 0.4s ease-in-out; /* Smooth transitions */
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth; /* Smooth scroll for anchor links */
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: var(--dark-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/random/1600x900/?drainage,agriculture,uganda') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-lg);
+        }
+        .hero-section .row {
+            min-height: 75vh; /* Adjust as needed */
+            align-items: center; /* Vertically center content */
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem); /* Responsive font size */
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p.lead {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image img {
+            max-height: 400px; /* Constrain image size */
+            object-fit: contain;
+        }
+
+        /* Section Headings */
+        section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+        section p.lead {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #555;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+
+        /* Feature Cards (re-purposed from previous design) */
+        .feature-card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to top */
+            align-items: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .feature-card i {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-weight: bold;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        /* Animated fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Statistics/Highlights Section */
+        .stats-section {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .stats-item h3 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+        }
+        .stats-item p {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+        }
+
+        /* Impact Section */
+        .impact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .impact-item i {
+            font-size: 2.5rem;
+            color: var(--success-color);
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        .impact-item .text-content h4 {
+            color: var(--dark-bg);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .impact-item .text-content p {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Call to Action */
+        #contact-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x400/?construction,uganda') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 5rem 0;
+            text-align: center;
+            border-radius: var(--border-radius-lg);
+            margin-top: 5rem;
+            box-shadow: var(--box-shadow-lg);
+        }
+        #contact-section h2 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        #contact-section .btn-light-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: var(--border-radius-lg);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+        #contact-section .btn-light-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        /* Form styling in contact section */
+        #contact-form-section .form-control {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+        }
+        #contact-form-section .form-select {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+        }
+        #contact-form-section .btn-primary {
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: var(--border-radius-lg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+    
+
+    <main>
+        <div class="container my-5 py-5">
+
+            <section id="importance" class="mb-5 py-5">
+                <h2 class="text-center mb-4 fade-in">Why are Effective Drainage Systems So Important?</h2>
+                <p class="lead text-center mb-5 fade-in">
+                    Proper water management through well-maintained **drainage systems** isn't just about avoiding floods; it's about safeguarding public health, ensuring agricultural productivity, and protecting infrastructure across Uganda. A robust **drainage system** is the backbone of sustainable development. The **reasons for implementing effective drainage** are extensive and critical for a thriving society.
+                </p>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-umbrella-beach text-info"></i>
+                            <h3>Flood Prevention</h3>
+                            <p>Well-designed **drainage systems** channel excess water away efficiently, preventing devastating floods that can destroy homes, crops, and roads, especially during Uganda's intense rainy seasons. This is a primary **reason for drainage implementation** in flood-prone areas.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-leaf text-success"></i>
+                            <h3>Agricultural Health & Yield</h3>
+                            <p>Adequate **farm drainage systems** prevent **waterlogging**, which stifles plant growth, promotes root rot, and significantly reduces crop yields. This is absolutely essential for Uganda's farmers to maximize their harvests and is a key **reason for agricultural drainage**.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-lungs-virus text-danger"></i>
+                            <h3>Disease Control</h3>
+                            <p>Effective **drainage systems** reduce stagnant water bodies, which are primary breeding grounds for mosquitoes (carrying malaria) and other disease vectors, significantly improving public health outcomes. This proactive health measure is a crucial **reason for urban and rural drainage**. </p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-road text-secondary"></i>
+                            <h3>Infrastructure Protection</h3>
+                            <p>**Drainage infrastructure** safeguards roads, buildings, and other public and private assets from water damage, erosion, and structural compromise, extending their lifespan and reducing costly repairs. Protecting these vital assets is a fundamental **reason for investing in drainage**.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-hands-helping text-primary"></i>
+                            <h3>Community Well-being</h3>
+                            <p>Reliable **drainage systems** ensure safer, cleaner living environments by reducing water-related hazards, improving accessibility, and contributing to the overall quality of life for all residents. This direct impact on daily life is a compelling **reason for community-level drainage projects**.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-card fade-in">
+                            <i class="fas fa-flask text-warning"></i>
+                            <h3>Soil Preservation & Quality</h3>
+                            <p>Proper **drainage** minimizes soil erosion and nutrient runoff, helping to maintain soil fertility and structure, which is vital for long-term sustainable agriculture. Healthy soil is a key **reason for prioritizing effective land drainage**.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-5">
+
+            <section id="types" class="mb-5 py-5">
+                <h2 class="text-center mb-4 fade-in">Key Types of Drainage Systems</h2>
+                <p class="lead text-center mb-5 fade-in">
+                    From simple ditches to complex underground networks, various **drainage systems** are designed to manage water flow efficiently and effectively, adapting to diverse land uses and environmental needs. Understanding these **types of drainage** helps in selecting the most appropriate solution.
+                </p>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 order-lg-2 fade-in">
+                        <img src="/images/hhf.webp" class="img-fluid rounded shadow-lg" alt="Surface Drainage">
+                    </div>
+                    <div class="col-lg-6 order-lg-1 fade-in">
+                        <h3><i class="fas fa-th-list me-2 text-info"></i> Surface Drainage Systems</h3>
+                        <p>These **drainage systems** manage water runoff directly from the land surface, preventing pooling and directing excess water away. They are often the most visible and cost-effective **drainage solutions** for large areas, dealing with water primarily from rainfall.</p>
+                        <ul>
+                            <li><strong>Open Ditches/Canals:</strong> Simple, excavated channels that direct surface water away. Common for agricultural fields and rural road networks as primary **drainage infrastructure**. Their effectiveness is directly tied to their size and slope.</li>
+                            <li><strong>Grading/Land Forming:</strong> Carefully shaping the land to create natural slopes that guide water efficiently towards specific discharge points. This preventative **drainage technique** ensures water doesn't accumulate on flat surfaces.</li>
+                            <li><strong>Swales:</strong> Shallow, vegetated channels designed to collect and convey runoff while often filtering pollutants, providing an eco-friendly **drainage solution**. They reduce the velocity of water, allowing for infiltration.</li>
+                            <li><strong>Gutters & Downspouts:</strong> Essential components of building **drainage systems**, collecting rainwater from roofs and directing it away from foundations to prevent structural damage. They protect the immediate perimeter of structures.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row align-items-center g-5 mt-5">
+                    <div class="col-lg-6 fade-in">
+                        <img src="/images/hf.webp" class="img-fluid rounded shadow-lg" alt="Subsurface Drainage">
+                    </div>
+                    <div class="col-lg-6 fade-in">
+                        <h3><i class="fas fa-water-ladder me-2 text-primary"></i> Subsurface (Underground) Drainage Systems</h3>
+                        <p>These **drainage systems** are designed to remove excess water from below the ground surface, crucial for preventing waterlogging, improving soil aeration, and stabilizing foundations. They are often less visible but highly effective **drainage solutions**, addressing issues like high water tables and prolonged soil saturation.</p>
+                        <ul>
+                            <li><strong>Perforated Pipes (Drain Tiles):</strong> Buried pipes with holes that efficiently collect groundwater and carry it away. Widely used in agricultural fields to optimize soil moisture and prevent root rot, and in urban areas to lower the water table.</li>
+                            <li><strong>French Drains:</strong> Trenches filled with gravel and a perforated pipe, offering an effective way to manage subsurface water and redirect it from problem areas. They are excellent for dealing with water flowing downhill underground.</li>
+                            <li><strong>Sump Pumps:</strong> Used in basements, crawl spaces, or low-lying areas to actively pump collected water out and away from a structure, forming a vital part of residential **drainage systems** where gravity drainage isn't feasible.</li>
+                            <li><strong>Foundation Drains:</strong> Perforated pipes installed around building foundations to prevent water accumulation, hydrostatic pressure, and moisture damage, ensuring long-term structural integrity and preventing dampness.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-5">
+
+            <section id="causes" class="mb-5 py-5">
+                <h2 class="text-center mb-4 fade-in">Understanding the Causes of Drainage Problems</h2>
+                <p class="lead text-center mb-5 fade-in">
+                    Recognizing the root **causes** of poor drainage is the first step towards effective water management. Many factors contribute to areas becoming waterlogged or prone to flooding, leading to significant detrimental **effects**.
+                </p>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card card-custom h-100 fade-in">
+                            <div class="card-body">
+                                <h3 class="card-title text-danger"><i class="fas fa-frown-open me-2"></i> Natural Causes</h3>
+                                <ul class="list-unstyled">
+                                    <li class="impact-item">
+                                        <i class="fas fa-cloud-showers-heavy text-primary"></i>
+                                        <div class="text-content">
+                                            <h4>Heavy & Prolonged Rainfall</h4>
+                                            <p>Intense and extended periods of rain, common in Uganda's wet seasons, can simply overwhelm existing **drainage systems** not designed for such volumes. This is a primary **cause** of flash floods.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-layer-group text-secondary"></i>
+                                        <div class="text-content">
+                                            <h4>Soil Type & Topography</h4>
+                                            <p>Areas with heavy clay soils have poor permeability, meaning water struggles to infiltrate the ground. Flat or low-lying topography naturally impedes water flow, making **drainage** challenging. These are inherent **reasons** for drainage needs.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-mountain text-success"></i>
+                                        <div class="text-content">
+                                            <h4>High Water Table</h4>
+                                            <p>In certain regions, the groundwater level is naturally close to the surface. Even moderate rainfall can quickly lead to saturation and waterlogging, making robust **subsurface drainage systems** essential.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-custom h-100 fade-in">
+                            <div class="card-body">
+                                <h3 class="card-title text-warning"><i class="fas fa-tools me-2"></i> Human-Induced Causes</h3>
+                                <ul class="list-unstyled">
+                                    <li class="impact-item">
+                                        <i class="fas fa-dumpster-fire text-danger"></i>
+                                        <div class="text-content">
+                                            <h4>Improper Waste Disposal</h4>
+                                            <p>The rampant dumping of solid waste (plastics, organic matter) into **drainage channels** is a major **cause** of blockages, rendering vital **drainage infrastructure** useless and leading to localized flooding.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-city text-info"></i>
+                                        <div class="text-content">
+                                            <h4>Rapid & Unplanned Urbanization</h4>
+                                            <p>Converting natural, permeable land into concrete and asphalt surfaces for buildings and roads drastically increases stormwater runoff. This unplanned development often neglects adequate **drainage system** upgrades, creating new flood risks.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-tractor text-success"></i>
+                                        <div class="text-content">
+                                            <h4>Poor Agricultural Practices</h4>
+                                            <p>Unsustainable farming methods that lead to soil compaction or excessive erosion can hinder natural **drainage** and cause siltation of **drainage ditches**, reducing their effectiveness and contributing to waterlogging in fields.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-times-circle text-secondary"></i>
+                                        <div class="text-content">
+                                            <h4>Lack of Maintenance</h4>
+                                            <p>Even well-designed **drainage systems** fail without regular cleaning and maintenance. Neglect allows debris, silt, and vegetation to accumulate, significantly reducing capacity and leading to blockages and overflows.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5 fade-in">
+                    <h3 class="text-primary mb-3">Understanding the **Effects** of Poor Drainage</h3>
+                    <p class="mb-3">When drainage fails, the **effects** are severe and far-reaching:</p>
+                    <ul class="list-unstyled text-start d-inline-block text-lg-start">
+                        <li><i class="fas fa-exclamation-circle text-danger me-2"></i> **Health Risks:** Increased incidence of malaria, cholera, typhoid, and other waterborne diseases.</li>
+                        <li><i class="fas fa-tractor text-success me-2"></i> **Economic Losses:** Destroyed crops, livestock deaths, damage to homes and businesses, disruptions to transport and trade.</li>
+                        <li><i class="fas fa-times-circle text-warning me-2"></i> **Environmental Degradation:** Soil erosion, loss of biodiversity, and water pollution due to uncontrolled runoff.</li>
+                        <li><i class="fas fa-building text-info me-2"></i> **Infrastructure Damage:** Roads collapse, foundations crack, and bridges weaken, leading to costly repairs and safety hazards.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="my-5">
+
+            <section id="challenges" class="mb-5 py-5">
+                <h2 class="text-center mb-4 fade-in">Uganda's Drainage System Challenges & Sustainable Solutions</h2>
+                <p class="lead text-center mb-5 fade-in">
+                    Addressing unique local conditions is key to developing effective and lasting **drainage solutions** that serve both urban and rural areas across Uganda. Many challenges are direct **causes** of system failures.
+                </p>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card card-custom h-100 fade-in">
+                            <div class="card-body">
+                                <h3 class="card-title text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Overcoming Common Drainage Obstacles</h3>
+                                <ul class="list-unstyled">
+                                    <li class="impact-item">
+                                        <i class="fas fa-dumpster-fire text-danger"></i>
+                                        <div class="text-content">
+                                            <h4>Waste & Blockages</h4>
+                                            <p>Improper waste disposal and plastic pollution frequently clog existing **drainage channels**, rendering them ineffective and exacerbating flood risks. This is a prevalent human **cause** of system failure.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-cloud-showers-heavy text-primary"></i>
+                                        <div class="text-content">
+                                            <h4>Heavy Rainfall</h4>
+                                            <p>Uganda experiences intense and unpredictable rainy seasons, often overwhelming inadequate or poorly maintained **drainage systems**, leading to widespread flash floods. This natural phenomenon is a significant **reason** for robust drainage needs.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-city text-secondary"></i>
+                                        <div class="text-content">
+                                            <h4>Rapid & Unplanned Urbanization</h4>
+                                            <p>Converting natural, permeable land into concrete and asphalt surfaces for buildings and roads drastically increases stormwater runoff. This unplanned development often neglects adequate **drainage system** upgrades, creating new flood risks – a critical human-induced **cause**.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-seedling text-warning"></i>
+                                        <div class="text-content">
+                                            <h4>Soil Erosion & Siltation</h4>
+                                            <p>Poor land management practices contribute to severe soil erosion, causing **drainage systems** to silt up rapidly, reducing their capacity and requiring frequent maintenance. This environmental **cause** significantly impairs drainage efficiency.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card card-custom h-100 fade-in">
+                            <div class="card-body">
+                                <h3 class="card-title text-success"><i class="fas fa-lightbulb me-2"></i> Sustainable Drainage System Solutions</h3>
+                                <ul class="list-unstyled">
+                                    <li class="impact-item">
+                                        <i class="fas fa-hands-wash text-info"></i>
+                                        <div class="text-content">
+                                            <h4>Community Engagement & Education</h4>
+                                            <p>Educating and involving local communities in proper waste management and the routine maintenance of local **drainage channels** is crucial for long-term effectiveness. This directly addresses human-induced **causes** of blockages.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-hammer text-primary"></i>
+                                        <div class="text-content">
+                                            <h4>Investment in Resilient Infrastructure</h4>
+                                            <p>Prioritizing investment in the construction and upgrading of robust, well-designed **drainage systems** that can handle Uganda's specific rainfall patterns and terrain, thereby mitigating natural **causes** of flooding.</p>
+                                        </div>
+                                    <li class="impact-item">
+                                        <i class="fas fa-tree text-success"></i>
+                                        <div class="text-content">
+                                            <h4>Nature-Based Drainage Solutions</h4>
+                                            <p>Implementing green infrastructure like constructed wetlands, permeable pavements, rain gardens, and reforestation to naturally absorb and manage stormwater runoff, complementing traditional **drainage systems** and addressing ecological **causes** of water issues.</p>
+                                        </div>
+                                    </li>
+                                    <li class="impact-item">
+                                        <i class="fas fa-ruler-combined text-secondary"></i>
+                                        <div class="text-content">
+                                            <h4>Integrated Planning & Policy</h4>
+                                            <p>Developing and enforcing comprehensive urban and agricultural land-use master plans that integrate effective **drainage strategies** from the outset, ensuring sustainable growth and preventing future **causes** of drainage problems.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-5">
+
+            <section id="contact-form-section" class="py-5">
+                <h2 class="text-center mb-4 fade-in">Get In Touch for Drainage Solutions</h2>
+                <p class="lead text-center mb-5 fade-in">
+                    Have questions about specific **drainage systems** for your farm, community, or home? Understanding the **types, reasons, and causes** for effective drainage is our expertise. Our experts are here to provide tailored advice and support.
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card card-custom p-4 fade-in">
+                            <div class="card-body">
+                                <form id="contactForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="contactName" class="form-label">Your Name</label>
+                                            <input type="text" class="form-control" id="contactName" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="contactEmail" class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" id="contactEmail" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="contactPhone" class="form-label">Phone Number (Optional)</label>
+                                            <input type="tel" class="form-control" id="contactPhone">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="contactType" class="form-label">I am a...</label>
+                                            <select class="form-select" id="contactType" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="farmer">Farmer</option>
+                                                <option value="community_leader">Community Leader</option>
+                                                <option value="homeowner">Homeowner</option>
+                                                <option value="business">Business Owner</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="contactSubject" class="form-label">Subject</label>
+                                            <input type="text" class="form-control" id="contactSubject" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="contactMessage" class="form-label">Your Message</label>
+                                            <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-primary btn-lg mt-3">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="mt-5">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Drainage Solutions Uganda. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>Committed to a healthier and more prosperous Uganda. <i class="fas fa-water text-primary"></i></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_CODE.js" crossorigin="anonymous"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Contact form handling (as provided in your snippet)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+
+            // In a real application, you would send this 'formData' to a server using fetch() or XMLHttpRequest
+            console.log('Form data submitted:', formData);
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links (as provided in your snippet)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll (modified to target relevant elements)
+        const observerOptions = {
+            threshold: 0.1, /* Element is 10% visible */
+            rootMargin: '0px 0px -50px 0px' /* Start animation slightly before element is fully in view */
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated'); // Add 'animated' class
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements that should fade in
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips (as provided in your snippet)
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500); // Small delay to ensure all elements are rendered
+        });
+    </script>
+</body>
+</html>

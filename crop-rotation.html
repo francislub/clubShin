@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Rotation Fun! - Healthy Soil, Happy Harvests</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --primary-color: #388E3C; /* Darker green for main elements */
+            --secondary-color: #66BB6A; /* Lighter green for accents */
+            --info-color: #26C6DA;    /* Teal for water/sky/information */
+            --success-color: #4CAF50; /* Medium green for general success */
+            --warning-color: #FFCA28; /* Amber for sun/roots */
+            --danger-color: #EF5350;  /* Red for strong plants/energy */
+            --light-bg: #F9FBE7;      /* Very light yellow-green */
+            --dark-bg: #212121;       /* Dark grey for footer */
+            --card-bg: #FFFFFF;      /* White for cards */
+            --text-color: #333333;    /* Dark text */
+            --heading-color: #1B5E20; /* Even darker green for headings */
+
+            /* Specific colors for crop rotation cycle */
+            --legume-color: #DCEDC8; /* Lightest green for legumes */
+            --root-color: #FFF9C4;   /* Lightest yellow for root crops */
+            --leafy-color: #B2EBF2;  /* Lightest blue for leafy greens */
+            --fruit-color: #FFCCBC;  /* Lightest orange for fruit/seed crops */
+        }
+
+        /* --- Global Body Styles --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--success-color));
+            padding: 3rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* For header animation */
+        }
+        header h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            text-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        header p {
+            font-size: 1.6rem;
+            font-style: italic;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+        .back-to-main {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .back-to-main:hover {
+            background-color: rgba(255,255,255,0.4);
+            transform: translateX(-8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        /* --- Section Spacing --- */
+        section {
+            padding: 4.5rem 0;
+        }
+
+        /* --- Card Styling --- */
+        .feature-card, .card {
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: var(--card-bg);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .feature-card img, .card img {
+            max-width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            margin-bottom: 1.2rem;
+        }
+        .feature-card .card-body {
+            flex-grow: 1;
+            padding: 1.8rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .feature-card .card-body p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.95rem;
+            color: #6c757d;
+            padding: 1.25rem 1.8rem;
+        }
+
+        /* --- Animation for fade-in on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Crop Rotation Cycle Section --- */
+        #rotation-cycle {
+            background-color: #F0F4C3; /* Slightly different light background */
+            padding: 5rem 0;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+        .cycle-step {
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            min-height: 350px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            color: var(--text-color);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 3px solid transparent;
+        }
+        .cycle-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        .cycle-step h4 {
+            font-weight: bold;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+            color: var(--heading-color);
+        }
+        .cycle-step p {
+            font-size: 1.05rem;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        .cycle-step .icon-large {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .cycle-step.legume {
+            background-color: var(--legume-color);
+            border-color: #8BC34A; /* Lime green */
+        }
+        .cycle-step.legume .icon-large { color: #558B2F; } /* Darker green */
+
+        .cycle-step.root-crop {
+            background-color: var(--root-color);
+            border-color: #FFEB3B; /* Yellow */
+        }
+        .cycle-step.root-crop .icon-large { color: #FBC02D; } /* Darker yellow */
+
+        .cycle-step.leafy-fruit { /* Combined leafy green and fruit/seed */
+            background-color: var(--leafy-color);
+            border-color: #00BCD4; /* Cyan */
+        }
+        .cycle-step.leafy-fruit .icon-large { color: #00838F; } /* Darker cyan */
+
+
+        .cycle-arrow {
+            font-size: 5rem;
+            color: rgba(0, 0, 0, 0.2);
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            transition: color 0.3s ease;
+        }
+        .cycle-arrow:hover {
+            color: rgba(0, 0, 0, 0.4);
+        }
+        @media (min-width: 992px) {
+            .cycle-arrow {
+                margin: 0;
+            }
+        }
+        .cycle-image-container {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .cycle-image {
+            max-width: 90%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            border: 5px solid white;
+            transition: transform 0.3s ease;
+        }
+        .cycle-image:hover {
+            transform: scale(1.01);
+        }
+        .cycle-diagram-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        /* --- Soil Superpowers Section --- */
+        #soil-superpowers {
+            background: linear-gradient(to bottom right, #E8F5E9, #DCEDC8); /* Light green gradient */
+            border-radius: 20px;
+            padding: 4rem;
+            margin-top: 5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        #soil-superpowers h3 {
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .superpower-item {
+            display: flex;
+            align-items: flex-start; /* Align text to top */
+            gap: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .superpower-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .superpower-item i {
+            font-size: 3.5rem;
+            color: var(--info-color);
+            min-width: 60px;
+            text-align: center;
+            line-height: 1; /* Adjust for better vertical alignment */
+            padding-top: 5px; /* Fine-tune icon alignment */
+        }
+        .superpower-item h5 {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.35rem;
+        }
+        .superpower-item p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+
+
+        /* --- Call to Action Section --- */
+        .cta-section {
+            background: linear-gradient(to right, #C8E6C9, #A5D6A7); /* Light green gradient for CTA */
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 4rem;
+            margin-top: 5rem;
+            margin-bottom: 6rem;
+            text-align: center;
+        }
+        .cta-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+        .cta-section p {
+            font-size: 1.25rem;
+            color: #444;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-section .btn-success {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 10px;
+            padding: 14px 35px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .cta-section .btn-success:hover {
+            background-color: #2E7D32; /* Darker green on hover */
+            border-color: #2E7D32;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 3.5rem 0;
+            font-size: 0.98rem;
+            border-top: 8px solid var(--success-color); /* Green accent line */
+            text-align: center;
+            position: relative;
+        }
+        footer p {
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+        footer a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 12px;
+            transition: transform 0.3s ease;
+        }
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--success-color); /* Highlight social links on hover */
+        }
+        .back-to-top {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .back-to-top:hover {
+            background-color: rgba(255,255,255,0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1200px) {
+            header h1 { font-size: 3.2rem; }
+            header p { font-size: 1.4rem; }
+            .feature-card img, .card img { height: 200px; }
+            .cycle-step { min-height: 320px; padding: 25px; }
+            .cycle-step h4 { font-size: 1.5rem; }
+            .cycle-step .icon-large { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 992px) {
+            header h1 { font-size: 2.8rem; }
+            header p { font-size: 1.3rem; }
+            .cycle-arrow {
+                transform: rotate(90deg); /* Rotate arrows for vertical layout */
+                margin: 20px auto;
+            }
+            .back-to-main { top: 18px; left: 18px; padding: 8px 15px; font-size: 0.9rem; }
+            .cycle-step { min-height: 300px; }
+            #soil-superpowers, .cta-section { padding: 3rem; }
+            #soil-superpowers h3, .cta-section h3 { font-size: 2.2rem; }
+            .superpower-item { flex-direction: column; text-align: center; }
+            .superpower-item i { margin-bottom: 15px; padding-top: 0; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.2rem; }
+            .feature-card img, .card img { height: 180px; }
+            .cycle-step { min-height: 280px; padding: 20px; }
+            .cycle-step h4 { font-size: 1.4rem; }
+            .cycle-step p { font-size: 0.95rem; }
+            .superpower-item { padding: 20px; }
+            .superpower-item i { font-size: 3rem; }
+            .superpower-item h5 { font-size: 1.2rem; }
+            .cta-section p { font-size: 1.1rem; }
+            .cta-section .btn-success { padding: 10px 25px; font-size: 1.1rem; }
+            .back-to-top { bottom: 18px; right: 18px; padding: 8px 15px; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 576px) {
+            header { padding: 2rem 0; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            .back-to-main { top: 15px; left: 15px; padding: 6px 12px; font-size: 0.8rem; }
+            section { padding: 3rem 0; }
+            .feature-card img, .card img { height: 150px; }
+            .cycle-step { min-height: 250px; }
+            .cycle-step .icon-large { font-size: 3rem; }
+            #soil-superpowers, .cta-section { padding: 2rem; }
+            #soil-superpowers h3, .cta-section h3 { font-size: 2rem; }
+            .superpower-item h5 { font-size: 1.1rem; }
+            .superpower-item p { font-size: 0.9rem; }
+            .cycle-image { max-width: 100%; }
+            footer { padding: 2.5rem 0; }
+            .back-to-top { bottom: 15px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="sustainable_land_care.html" class="back-to-main">
+                <i class="fas fa-arrow-left"></i> Back to Land Care
+            </a>
+            <h1><i class="fas fa-sync-alt me-3"></i>The Crop Rotation Adventure!</h1>
+            <p class="lead">Discover how changing crops keeps our soil healthy and grows delicious food!</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center mb-4">What is Crop Rotation? <span class="text-success">(For Everyone!)</span></h2>
+            <p class="text-center lead px-lg-5">
+                Imagine your garden or farm as a big playground! If you always play the same game in the same spot, that spot might get tired. It's the same with plants and soil! <strong>Crop rotation</strong> means planting different kinds of crops in the same spot each year. This helps the soil stay strong and healthy, just like playing different games keeps you strong and fit!
+            </p>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="benefits-section" class="mb-5">
+            <h2 class="text-center mb-5">Why It's Super Helpful! <span class="text-success">(The Big Benefits)</span></h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/deep roots.jpg" class="card-img-top" alt="Healthy soil with roots and plants">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-seedling me-2"></i>Makes Soil Stronger!</h5>
+                            <p class="card-text">
+                                Different plants use different foods from the soil. When you swap them around, the soil gets a balanced meal and stays super fertile for a long time! Some amazing plants, like beans and peas, even add special food (nitrogen!) back into the soil naturally.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Keeps the soil happy, healthy, and fed.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/gfvb.jpg" class="card-img-top" alt="Ladybug eating aphids on a leaf">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-bug-slash me-2"></i>Chases Away Bad Bugs!</h5>
+                            <p class="card-text">
+                                Yucky bugs and plant sicknesses often like to stay where their favorite food is grown year after year. If you move the food by rotating crops, the bugs get confused and leave, helping your plants stay safe and sound without needing many chemicals!
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Keeps pests guessing and plants thriving!</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/ge.webp" class="card-img-top" alt="Person pulling weeds from a garden bed">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-weed-slash me-2"></i>Fights Off Weeds!</h5>
+                            <p class="card-text">
+                                Different crops grow in different ways and have varying effects on weeds. Some crops can suppress weeds by outcompeting them for sunlight and nutrients. Changing crops regularly makes it harder for specific weed species to establish and take over your garden.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Fewer weeds, more space for your valuable crops!</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="rotation-cycle" class="animate-on-scroll">
+            <h2 class="text-center mb-5">The Crop Rotation Cycle <span class="text-success">- A Fun Plan!</span></h2>
+            <p class="text-center lead px-lg-5 mb-5">
+                Let's imagine a simple **3-year plan** for your garden patch or farm field. Each year, a different type of plant gets its turn to grow and contribute to the soil's health!
+            </p>
+
+            <div class="row justify-content-center align-items-stretch g-4">
+                <div class="col-lg-3 col-md-6 col-sm-10">
+                    <div class="cycle-step legume animate-on-scroll">
+                        <i class="icon-large fas fa-hand-holding-heart"></i>
+                        <h4>Year 1: Legumes (Nitrogen Helpers!)</h4>
+                        <p>
+                            Plant **beans, peas, groundnuts, or cowpeas!** These amazing plants have special friends (tiny microbes!) in their roots that pull nitrogen (a super plant food!) from the air and put it into the soil. It's like they're making free, natural fertilizer for the next crops!
+                        </p>
+                        <img src="/images/beans grow.webp" alt="Beans growing" class="img-fluid rounded-lg mt-3 shadow-sm">
+                    </div>
+                </div>
+
+                <div class="col-lg-1 d-none d-lg-flex justify-content-center align-items-center">
+                    <i class="cycle-arrow fas fa-arrow-right"></i>
+                </div>
+                <div class="col-md-12 d-lg-none d-flex justify-content-center">
+                    <i class="cycle-arrow fas fa-arrow-down"></i>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-10">
+                    <div class="cycle-step root-crop animate-on-scroll">
+                        <i class="icon-large fas fa-carrot"></i>
+                        <h4>Year 2: Root Crops (Deep Diggers!)</h4>
+                        <p>
+                            Next, plant **carrots, potatoes, sweet potatoes, or cassava!** Their strong, long roots dig deep into the soil, breaking it up and making it fluffy. This improves drainage and helps air reach deeper. They also make good use of the nitrogen left by the legumes.
+                        </p>
+                        <img src="/images/carrots.jpg" alt="Carrots and potatoes" class="img-fluid rounded-lg mt-3 shadow-sm">
+                    </div>
+                </div>
+
+                <div class="col-lg-1 d-none d-lg-flex justify-content-center align-items-center">
+                    <i class="cycle-arrow fas fa-arrow-right"></i>
+                </div>
+                <div class="col-md-12 d-lg-none d-flex justify-content-center">
+                    <i class="cycle-arrow fas fa-arrow-down"></i>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-10">
+                    <div class="cycle-step leafy-fruit animate-on-scroll">
+                        <i class="icon-large fas fa-apple-alt"></i>
+                        <h4>Year 3: Leafy Greens / Fruit & Seed Crops</h4>
+                        <p>
+                            Finally, plant **maize, cabbage, tomatoes, or sukuma wiki!** These plants mostly grow above the ground and love the healthy, nutrient-rich soil left by the previous crops. They primarily use nutrients near the surface and complete the cycle.
+                        </p>
+                    <img src="/images/cabbages.jpg" alt="Maize and cabbage" class="img-fluid rounded-lg mt-3 shadow-sm">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cycle-image-container animate-on-scroll">
+                <h3 class="mt-5 mb-4">Visualize the Whole Cycle! <span class="text-success">(Interactive Diagram)</span></h3>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-12 col-md-10 col-lg-8">
+                        <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center position-relative">
+                            <div class="diagram-circle legume-circle">
+                                <i class="fas fa-leaf"></i>
+                                <span>Legumes</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-2x mx-lg-4 my-3 d-none d-lg-block text-secondary"></i>
+                            <i class="fas fa-arrow-down fa-2x my-3 d-lg-none text-secondary"></i>
+
+                            <div class="diagram-circle root-circle">
+                                <i class="fas fa-globe-americas"></i>
+                                <span>Root Crops</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-2x mx-lg-4 my-3 d-none d-lg-block text-secondary"></i>
+                            <i class="fas fa-arrow-down fa-2x my-3 d-lg-none text-secondary"></i>
+
+                            <div class="diagram-circle leafy-fruit-circle">
+                                <i class="fas fa-apple-alt"></i>
+                                <span>Leafy/Fruit Crops</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-muted cycle-diagram-text">This diagram shows a simplified 3-year rotation. You can adjust it based on your farm's needs!</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <hr class="my-5">
+
+        <section id="soil-superpowers" class="text-center animate-on-scroll">
+            <h3 class="mb-5">Beyond Rotation: What Else Does Healthy Soil Do? <span class="text-primary">(Its Superpowers!)</span></h3>
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="superpower-item animate-on-scroll">
+                        <i class="fas fa-tint"></i>
+                        <div>
+                            <h5>Holds Water Like a Sponge!</h5>
+                            <p>Healthy soil, rich in organic matter (like compost!), acts like a giant sponge. It can soak up and hold much more water, ensuring your plants don't get thirsty easily, especially during dry spells. This means less need for constant watering!</p>
+                        </div>
+                    </div>
+                    <div class="superpower-item animate-on-scroll">
+                        <i class="fas fa-microscope"></i>
+                        <div>
+                            <h5>Full of Tiny Helpers!</h5>
+                            <p>Good soil is a bustling city for millions of tiny living things: good bacteria, fungi, and micro-organisms. These unseen heroes work tirelessly to break down old plants and organic matter, turning them into fresh, nutrient-rich food for your growing crops!</p>
+                        </div>
+                    </div>
+                    <div class="superpower-item animate-on-scroll">
+                        <i class="fas fa-cloud"></i>
+                        <div>
+                            <h5>Stores Carbon for a Cleaner Planet!</h5>
+                            <p>Did you know plants take carbon dioxide from the air? When they grow in healthy soil, a lot of this carbon gets stored in the ground. This process is fantastic for our planet, helping to reduce greenhouse gases and keep our air cleaner. Healthy soil equals a healthier environment!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center cta-section animate-on-scroll">
+            <h3 class="mb-3">Ready to Start Your Rotation Adventure?</h3>
+            <p class="lead">
+                Crop rotation is a smart, sustainable, and rewarding way to farm and garden. It's a key practice for long-term soil health and abundant harvests. If you want to learn more, tailor a plan for your specific crops, or need personalized advice, our friendly agricultural experts are here to guide you every step of the way!
+            </p>
+            <a href="contact.html" class="btn btn-success btn-lg"><i class="fas fa-phone-alt me-2"></i>Connect with an Expert!</a>
+        </section>
+
+    </main> 
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year-crop-rotation"></span> AgriTech AI. All rights reserved.</p>
+            <p>Empowering sustainable agriculture in Uganda and beyond.</p>
+            <div class="social-links mt-3">
+                <a href="#" class="text-white mx-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <a href="#top" class="back-to-top">
+                <i class="fas fa-arrow-up"></i> Back to Top
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-crop-rotation').textContent = new Date().getFullYear();
+
+            // Smooth scrolling for anchor links (if any internal links are added later)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -80px 0px' // Adjust bottom margin to trigger earlier
+            };
+
+            const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        // Optional: If you want elements to only animate once, uncomment the line below
+                        // observer.unobserve(entry.target); 
+                    } else {
+                        // Optional: remove fade-in class if element scrolls out of view, to re-animate on re-entry
+                        // entry.target.classList.remove('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            animateOnScrollElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

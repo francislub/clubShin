@@ -1,4 +1,4 @@
-import { Chart } from "@/components/ui/chart"
+import { Chart } from "../components/ui/chart.js"
 // Agent Analytics JavaScript
 
 class AgentAnalytics {
@@ -44,7 +44,7 @@ class AgentAnalytics {
   }
 
   updateMetrics(analytics) {
-    document.getElementById("totalRevenue").textContent = `$${analytics.totalRevenue.toLocaleString()}`
+    document.getElementById("totalRevenue").textContent = `${(analytics.totalRevenue * 3700).toLocaleString()} shs`
     document.getElementById("totalSales").textContent = analytics.totalSales.toLocaleString()
     document.getElementById("uniqueCustomers").textContent = analytics.uniqueCustomers.toLocaleString()
     document.getElementById("profitMargin").textContent = `${analytics.profitMargin}%`
@@ -69,7 +69,7 @@ class AgentAnalytics {
       <tr>
         <td>${product.name}</td>
         <td>${product.sales}</td>
-        <td>$${product.revenue.toLocaleString()}</td>
+        <td>${(product.revenue * 3700).toLocaleString()} shs</td>
         <td>
           <i class="fas fa-arrow-${product.trend === "up" ? "up text-success" : product.trend === "down" ? "down text-danger" : "right text-warning"}"></i>
         </td>
@@ -86,7 +86,7 @@ class AgentAnalytics {
       <tr>
         <td>${market.name}</td>
         <td>${market.productCount}</td>
-        <td>$${market.revenue.toLocaleString()}</td>
+        <td>${(market.revenue * 3700).toLocaleString()} shs</td>
         <td>
           <span class="badge bg-${market.status === "active" ? "success" : market.status === "inactive" ? "danger" : "warning"}">
             ${market.status}
@@ -107,7 +107,7 @@ class AgentAnalytics {
         <td>${transaction.product}</td>
         <td>${transaction.market}</td>
         <td>${transaction.quantity} kg</td>
-        <td>$${transaction.amount.toLocaleString()}</td>
+        <td>${(transaction.amount * 3700).toLocaleString()} shs</td>
         <td>
           <span class="badge bg-${transaction.type === "sale" ? "success" : "primary"}">
             ${transaction.type}
@@ -133,7 +133,7 @@ class AgentAnalytics {
         labels: [],
         datasets: [
           {
-            label: "Revenue",
+            label: "Revenue (UGX)",
             data: [],
             borderColor: "#007bff",
             backgroundColor: "rgba(0, 123, 255, 0.1)",
@@ -148,7 +148,7 @@ class AgentAnalytics {
           y: {
             beginAtZero: true,
             ticks: {
-              callback: (value) => "$" + value.toLocaleString(),
+              callback: (value) => value.toLocaleString() + " shs",
             },
           },
         },
@@ -176,9 +176,11 @@ class AgentAnalytics {
   }
 
   updateCharts(analytics) {
+    const revenueDataUgx = analytics.revenueData.values.map((value) => value * 3700)
+
     // Update revenue chart
     this.charts.revenue.data.labels = analytics.revenueData.labels
-    this.charts.revenue.data.datasets[0].data = analytics.revenueData.values
+    this.charts.revenue.data.datasets[0].data = revenueDataUgx
     this.charts.revenue.update()
 
     // Update product chart

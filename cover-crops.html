@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Crops - Enriching Your Soil Naturally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --primary-color: #28a745; /* Success color for primary (green) */
+            --info-color: #17a2b8;
+            --success-color: #28a745; /* Main theme color for this page */
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50; /* Slightly softer dark for footer */
+            --card-bg: #ffffff;
+            --text-color: #34495e; /* Darker, softer text for readability */
+            --header-bg-color: #28a745; /* Success color for header */
+            --header-gradient: linear-gradient(to right, #28a745, #218838);
+            --button-hover-dark: #218838; /* Darker green for button hover */
+            --transition-speed: 0.3s ease-in-out;
+            --border-radius-lg: 1rem;
+            --box-shadow-light: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+            --box-shadow-hover: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Global Body Styles --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23e6e6e6" fill-opacity="0.2"><path d="M25 0H0v25L50 75l50-50V0H75L50 25zM50 75L25 100h50zM0 75h25L0 100zM75 100h25L75 75z"/></g></svg>'); /* Subtle background pattern */
+            background-attachment: fixed;
+        }
+
+        /* --- Bootstrap Color Overrides & Utilities --- */
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #7f8c8d !important; } /* A bit darker muted */
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        .btn-success {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            transition: var(--transition-speed);
+            border-radius: 0.5rem;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+        }
+        .btn-success:hover {
+            background-color: var(--button-hover-dark);
+            border-color: var(--button-hover-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-light);
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background: var(--header-gradient);
+            padding: 4rem 0;
+            box-shadow: var(--box-shadow-light);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/green-dust-scratch.png'); /* Subtle texture */
+            opacity: 0.1;
+            z-index: 0;
+        }
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+        header p {
+            font-size: 1.6rem;
+            font-style: italic;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Section Spacing & Headings --- */
+        section {
+            padding: 5rem 0;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--success-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--success-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Card Styling --- */
+        .feature-card, .card {
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition-speed);
+            border: none; /* Remove default bootstrap border */
+            background-color: var(--card-bg);
+            box-shadow: var(--box-shadow-light);
+            overflow: hidden;
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        .feature-card img, .card img {
+            width: 100%;
+            height: 250px; /* Slightly taller images */
+            object-fit: cover;
+            border-top-left-radius: var(--border-radius-lg);
+            border-top-right-radius: var(--border-radius-lg);
+            transition: transform 0.5s ease;
+        }
+        .feature-card:hover img, .card:hover img {
+            transform: scale(1.05); /* Zoom effect on image hover */
+        }
+        .feature-card .card-body {
+            padding: 1.75rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: 700;
+            color: var(--success-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-body p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            padding: 1rem 1.75rem;
+        }
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+        .feature-card ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .feature-card ul li::before {
+            content: "\f00c"; /* Font Awesome checkmark icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--success-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .feature-card .read-more-toggle {
+            cursor: pointer;
+            color: var(--info-color);
+            font-weight: 600;
+            transition: color var(--transition-speed);
+            text-decoration: none;
+        }
+        .feature-card .read-more-toggle:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        .feature-card .truncated-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Show 3 lines initially */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .feature-card .expanded-text {
+            -webkit-line-clamp: unset;
+        }
+
+        /* --- Animation for fade-in on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+        }
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Call to Action Section --- */
+        .cta-section {
+            background-color: #e8f5e9; /* Light green for CTA */
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow-light);
+            padding: 4rem;
+            margin-top: 6rem;
+            margin-bottom: 6rem;
+            text-align: center;
+        }
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+        }
+        .cta-section .lead {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Image Carousel Section (Conceptual) --- */
+        .image-carousel-section {
+            background-color: white;
+            padding: 5rem 0;
+            box-shadow: var(--box-shadow-light);
+            border-radius: var(--border-radius-lg);
+            margin-top: 4rem;
+        }
+        .carousel-item img {
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 400px; /* Consistent height for carousel images */
+            object-fit: cover;
+        }
+        .carousel-caption h5 {
+            color: white;
+            background-color: rgba(0,0,0,0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: var(--success-color);
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1); /* Make arrows visible on dark images */
+        }
+
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: var(--info-color);
+            color: white;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #back-to-top:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 4rem 0;
+            font-size: 0.95rem;
+            border-top: 8px solid var(--success-color); /* Thicker green accent line */
+            text-align: center;
+        }
+        footer p {
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+        footer a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: rgba(255,255,255,0.7);
+            transition: color var(--transition-speed);
+        }
+        .social-links a:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1200px) {
+            header h1 { font-size: 3.5rem; }
+            header p { font-size: 1.4rem; }
+            h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 992px) {
+            header { padding: 3rem 0; }
+            header h1 { font-size: 3rem; }
+            header p { font-size: 1.3rem; }
+            section { padding: 4rem 0; }
+            h2 { font-size: 2.2rem; }
+            .feature-card img, .card img { height: 200px; }
+            .cta-section { padding: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+            h2 { font-size: 1.9rem; }
+            .feature-card .card-body h5 { font-size: 1.3rem; }
+            .feature-card .card-body p { font-size: 0.95rem; }
+            .cta-section { padding: 2rem; margin-top: 4rem; margin-bottom: 4rem; }
+            .cta-section h3 { font-size: 1.8rem; }
+            .cta-section .lead { font-size: 1.1rem; }
+            .carousel-item img { height: 300px; }
+        }
+
+        @media (max-width: 576px) {
+            header { padding: 2.5rem 0; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            section { padding: 3rem 0; }
+            h2 { font-size: 1.7rem; }
+            .feature-card img, .card img { height: 180px; }
+            .cta-section { padding: 1.5rem; margin-top: 3rem; margin-bottom: 3rem; }
+            .cta-section h3 { font-size: 1.5rem; }
+            .cta-section .btn-lg { padding: 10px 20px; font-size: 1rem; }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            .carousel-item img { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-leaf me-3"></i>The Power of Cover Crops</h1>
+            <p class="lead">Enhancing soil health, suppressing weeds, and boosting your farm's resilience naturally.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center">Why Cover Crops Are Essential</h2>
+            <p class="text-center lead px-lg-5 mx-auto" style="max-width: 900px;">
+                Cover crops are plants grown primarily to protect and enrich the soil rather than for harvest. They are a cornerstone of sustainable agriculture, offering a multitude of benefits that improve farm productivity and environmental health. Integrating them into your farming practices leads to healthier ecosystems and more resilient harvests.
+            </p>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="benefits-section" class="mb-5">
+            <h2 class="text-center">Key Benefits of Using Cover Crops</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/field coiver.webp" class="card-img-top" alt="Field with cover crop preventing erosion">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-wind me-2"></i>Prevent Soil Erosion</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">Cover crops provide a protective layer over the soil, shielding it from the impact of rain and wind, significantly reducing soil erosion and preserving valuable topsoil. Their dense root systems also bind the soil particles together, enhancing stability.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Protecting your most valuable asset.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/dark.jpg" class="card-img-top" alt="Rich, dark soil with organic matter">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-seedling me-2"></i>Increase Organic Matter</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">As cover crops grow and are later incorporated into the soil, they add organic matter, improving soil structure, water retention, and nutrient-holding capacity. This enriches the soil's microbial life and long-term fertility.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Building healthier, more fertile soil.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/weed supp.webp" class="card-img-top" alt="Dense cover crop suppressing weeds">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-weed-slash me-2"></i>Suppress Weeds</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">Dense cover crop growth outcompetes weeds for light, water, and nutrients, reducing weed pressure and the need for herbicides. Some cover crops also release natural compounds that inhibit weed germination.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Natural weed control, less chemical reliance.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/legumes.webp" class="card-img-top" alt="Legume roots with nitrogen nodules">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-atom me-2"></i>Fix Nitrogen (Legumes)</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">Leguminous cover crops (like clover or vetch) form symbiotic relationships with bacteria that convert atmospheric nitrogen into a form usable by plants, reducing the need for synthetic nitrogen fertilizers and boosting soil fertility.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Fertilizing your soil naturally.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/insects.webp" class="card-img-top" alt="Beneficial insects on a plant">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-bug-slash me-2"></i>Pest & Disease Control</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">Some cover crops can disrupt pest life cycles, attract beneficial insects (like pollinators and pest predators), or suppress plant diseases, contributing to a healthier and more balanced farm ecosystem.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Promoting a balanced ecosystem.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/deep roots.jpg" class="card-img-top" alt="Soil with deep roots">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-ruler-combined me-2"></i>Improve Soil Structure</h5>
+                            <p class="card-text">
+                                <span class="truncated-text">The extensive root systems of cover crops break up compacted soil, improving aeration and drainage. This creates a more hospitable environment for future crop roots to thrive, enhancing nutrient uptake.</span>
+                                <a href="#" class="read-more-toggle">Read More</a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Creating optimal growing conditions.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="types-and-implementation" class="mb-5">
+            <h2 class="text-center">Types of Cover Crops & Implementation</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="" class="card-img-top" alt="Various cover crop seeds">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-list-alt me-2"></i>Common Types</h5>
+                            <p class="card-text">
+                                Cover crops are broadly categorized into:
+                                <ul>
+                                    <li><strong>Legumes:</strong> (e.g., clover, vetch, cowpeas) are excellent for nitrogen fixation, enriching the soil with natural fertilizer.</li>
+                                    <li><strong>Grasses:</strong> (e.g., rye, oats, sorghum) provide significant biomass, excel at erosion control, and are efficient nutrient scavengers.</li>
+                                    <li><strong>Broadleaves:</strong> (e.g., radish, mustard) are great for breaking up soil compaction with their deep taproots and can effectively suppress weeds.</li>
+                                </ul>
+                                Often, mixtures of these types are used to achieve multiple benefits simultaneously and create a more diverse soil ecosystem.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Choose the right crop for your goal.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/calender.webp"class="card-img-top" alt="Calendar with planting dates">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-calendar-alt me-2"></i>When to Plant</h5>
+                            <p class="card-text">
+                                The best time to plant cover crops depends heavily on your main crop rotation, local climate, and specific objectives. They are typically planted:
+                                <ul>
+                                    <li><strong>After the main harvest in the fall:</strong> To grow over winter, protect soil, and capture residual nutrients.</li>
+                                    <li><strong>During fallow periods between cash crops:</strong> To quickly improve soil health before the next planting season.</li>
+                                    <li><strong>Inter-seeded with cash crops:</strong> In some systems, cover crops are planted directly into existing crops.</li>
+                                </ul>
+                                Proper timing ensures optimal growth and benefits.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Timing is key for maximum benefit.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="/images/jj.webp" class="card-img-top" alt="Tractor tilling cover crop">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-cut me-2"></i>Termination Methods</h5>
+                            <p class="card-text">
+                                Cover crops need to be terminated (killed) before planting the next cash crop to prevent competition for resources. Common and effective methods include:
+                                <ul>
+                                    <li><strong>Mowing:</strong> Cutting the plants down, leaving residue on the surface.</li>
+                                    <li><strong>Rolling/Crimping:</strong> Mechanically flattening and breaking the stems to terminate growth.</li>
+                                    <li><strong>Tillage:</strong> Incorporating the plant material into the soil.</li>
+                                    <li><strong>Winter-kill:</strong> Relying on cold temperatures to naturally kill the crop (if the climate allows).</li>
+                                </ul>
+                                Choosing the right method depends on the cover crop type and your next cash crop.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Preparing for the next growing season.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section class="image-carousel-section animate-on-scroll">
+            <h2 class="text-center mb-5">Visualizing Cover Crop Success</h2>
+            <div id="coverCropCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#coverCropCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#coverCropCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#coverCropCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/images/soil.webp" class="d-block w-100" alt="Healthy soil from cover crops">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Enriching Soil with Organic Matter</h5>
+                            <p>Witness the transformation of barren land into fertile ground.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/weeds.webp" class="d-block w-100" alt="Weed suppression by cover crops">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Natural Weed Suppression</h5>
+                            <p>Reducing competition and the need for chemical herbicides.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/deep roots.jpg" class="d-block w-100" alt="Deep rooted cover crops">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Improving Soil Structure and Water Infiltration</h5>
+                            <p>Deep roots enhance aeration and water penetration.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#coverCropCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#coverCropCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+
+        <section class="text-center cta-section animate-on-scroll">
+            <h3 class="mb-3">Ready to Integrate Cover Crops into Your Farm?</h3>
+            <p class="lead">
+                Implementing cover crops can be a transformative step for your farm's long-term health, productivity, and sustainability. Our agricultural experts are here to provide personalized advice on selecting, planting, and managing the right cover crops for your specific soil type, climate, and farming goals.
+            </p>
+            <a href="contact.html" class="btn btn-success btn-lg"><i class="fas fa-phone-alt me-2"></i>Get a Cover Crop Consultation Today!</a>
+        </section>
+
+    </main> 
+    
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year-cover-crops"></span> AgriTech AI. All rights reserved.</p>
+            <p>Empowering sustainable agriculture in Uganda.</p>
+            <div class="social-links mt-3">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year-cover-crops').textContent = new Date().getFullYear();
+
+            // Smooth scrolling for anchor links (if any internal links are added later)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections and cards for animation
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Read More / Read Less functionality
+            document.querySelectorAll('.read-more-toggle').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const textSpan = this.previousElementSibling; // The <span> with truncated/expanded text
+                    if (textSpan.classList.contains('truncated-text')) {
+                        textSpan.classList.remove('truncated-text');
+                        textSpan.classList.add('expanded-text');
+                        this.textContent = 'Read Less';
+                    } else {
+                        textSpan.classList.remove('expanded-text');
+                        textSpan.classList.add('truncated-text');
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+
+            // Back to Top button functionality
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

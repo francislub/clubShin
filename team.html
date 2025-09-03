@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVELOPERS | Innovating with Code</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --dark-bg: #343a40;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: var(--light-bg);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        #about {
+            background-color: var(--light-bg);
+        }
+
+        #overall-leader {
+            background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        #overall-leader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.65);
+        }
+
+        #overall-leader .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #team-leaders {
+            background-color: var(--light-bg);
+        }
+
+        #contact-us {
+            background-color: var(--light-bg);
+        }
+
+        /* Titles and Text */
+        h2 {
+            font-weight: 700;
+            color: var(--dark-bg);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .text-light h2 {
+            color: #fff;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Cards */
+        .role-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            height: 100%;
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .role-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .role-card h3 {
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+        
+        .leader-profile {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .leader-profile:hover {
+            transform: translateY(-5px);
+        }
+
+        .leader-profile img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .leader-profile h3 {
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        .leader-profile .title {
+            color: var(--secondary-color);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in.is-visible {
+            animation: fadeIn 1s forwards;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <main>
+        <section id="about" class="bg-white">
+            <div class="container text-center">
+                <h2 class="mb-4 fade-in">Who We Are</h2>
+                <p class="lead mb-5 fade-in">
+                    We are pupils from <strong>Shining Stars Nursery and Primary School, Vvumba</strong>. As young and passionate learners, we have developed a strong interest in technology and coding. Many of us enjoy creating websites and software using <strong>HTML, CSS, and JavaScript</strong>. 
+                With curiosity and creativity, we work together as a team of young developers to explore the world of software development and bring our ideas to life through interactive and educational digital projects.
+                </p>
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-4 fade-in">
+                        <div class="role-card">
+                            <i class="fas fa-lightbulb text-primary"></i>
+                            <h3>Innovation</h3>
+                            <p>Constantly exploring new technologies and methodologies to bring cutting-edge solutions to life.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in">
+                        <div class="role-card">
+                            <i class="fas fa-handshake text-accent"></i>
+                            <h3>Collaboration</h3>
+                            <p>Working seamlessly together, leveraging diverse skills to achieve shared success on every project.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in">
+                        <div class="role-card">
+                            <i class="fas fa-check-circle text-secondary"></i>
+                            <h3>Quality</h3>
+                            <p>Committed to delivering high-quality, reliable, and maintainable code that stands the test of time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overall-leader">
+            <div class="container text-center">
+                <h2 class="mb-4 text-light fade-in">Meet Our Visionary Group Leader</h2>
+                <p class="lead text-light mb-5 fade-in">
+                    Guiding **DEVELOPERS** with unparalleled vision and fostering a culture of excellence, we are proud to introduce **Justine**, the driving force behind our entire team's success.
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="leader-profile fade-in">
+                            <img src="/images/leaders/nant1.jpg" alt="Justine - Group Leader">
+                            <h3>Justine</h3>
+                            <p class="title">Overall Group Leader, DEVELOPERS</p>
+                            <p class="title">
+                                Justine is an exceptional leader with a deep understanding of both technical intricacies and team dynamics. With years of experience spanning various complex projects, Justine's ability to simplify challenges, inspire innovation, and foster a collaborative environment has been instrumental in our group's achievements. Justine is not just a leader; they are a mentor, a problem-solver, and a true advocate for cutting-edge development practices. Their strategic vision ensures that our solutions are not only robust but also future-proof.
+                            </p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Justine's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Justine's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Justine's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team-leaders" class="bg-light">
+            <div class="container text-center">
+                <h2 class="mb-4 fade-in">Our Dedicated Team Leaders</h2>
+                <p class="lead mb-5 fade-in">
+                    Alongside Justine, our development divisions are expertly led by these talented individuals, each a master in their domain.
+                </p>
+                <div class="row justify-content-center g-4">
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="leader-profile">
+                            <img src="/images/leaders/kit1.jpg" alt="Kitone - Frontend Leader">
+                            <h3>Kitone</h3>
+                            <p class="title">Lead Frontend Developer</p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Kitone's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Kitone's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Kitone's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="leader-profile">
+                            <img src="/images/leaders/ire.jpg" alt="Irene - Backend Leader">
+                            <h3>Irene</h3>
+                            <p class="title">Lead Backend Developer</p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Irene's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Irene's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Irene's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="leader-profile">
+                            <img src="/images/leaders/alb1.jpg" alt="Carol - Full-Stack Leader">
+                            <h3>Carol</h3>
+                            <p class="title">Lead Full-Stack Developer</p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Carol's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Carol's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Carol's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="contact-us" class="bg-white">
+            <div class="container text-center">
+                <h2 class="mb-4 fade-in">Ready to Build Something Amazing with DEVELOPERS?</h2>
+                <p class="lead mb-5 fade-in">
+                    Whether you have a project in mind, a question about our services, or just want to say hello, we'd love to hear from you.
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card p-4 shadow-lg rounded-lg fade-in">
+                            <div class="card-body">
+                                <h4 class="card-title text-primary mb-4">Send Us a Message</h4>
+                                <form id="contactForm">
+                                    <div class="mb-3 text-start">
+                                        <label for="contactName" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="contactName" required>
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                        <label for="contactEmail" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="contactEmail" required>
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                        <label for="contactSubject" class="form-label">Subject</label>
+                                        <input type="text" class="form-control" id="contactSubject" required>
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                        <label for="contactMessage" class="form-label">Your Message</label>
+                                        <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg mt-3">
+                                        Send Message <i class="fas fa-paper-plane ms-2"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+
+    <div id="container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

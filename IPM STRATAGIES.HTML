@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech AI - Smart Farming Solutions developed by shining stars nursery and primary school vvumba - Computer Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* General Body and Font Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light grey background */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to right, #28a745, #8bc34a); /* Green gradient */
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/images/background_pattern.png') repeat; /* Optional: Add a subtle pattern */
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            animation: fadeInTop 1s ease-out forwards; /* Initial animation */
+        }
+
+        .hero-section p.lead {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            animation: fadeInTop 1.2s ease-out forwards; /* Initial animation */
+        }
+
+        .hero-image {
+            text-align: center;
+            animation: fadeInRight 1.5s ease-out forwards; /* Initial animation */
+        }
+
+        .hero-image img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            height: auto;
+            display: block; /* Ensures no extra space below image */
+            margin: 0 auto; /* Centers the image */
+        }
+
+        .btn-primary {
+            background-color: #ffc107; /* Yellow */
+            border-color: #ffc107;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800; /* Darker yellow */
+            border-color: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            color: white;
+            border-color: white;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: #28a745; /* Green */
+            transform: translateY(-2px);
+        }
+
+        /* General Section Styling */
+        .section-ipm {
+            padding: 80px 0;
+            background-color: #f9fdf9; /* Very light green/off-white */
+        }
+
+        .section-ipm .container {
+            max-width: 1200px;
+        }
+
+        .section-ipm h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #28a745; /* Bootstrap success green */
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-ipm h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #ffc107; /* Bootstrap warning yellow */
+            border-radius: 2px;
+        }
+
+        .ipm-intro p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Feature Card for IPM Strategies */
+        .ipm-strategy-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Ensure cards are same height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ipm-strategy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .ipm-strategy-card img {
+            max-width: 100%;
+            height: 180px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover ensures image fills the space */
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ipm-strategy-card h3 {
+            font-size: 1.8rem;
+            color: #007bff; /* Bootstrap primary blue */
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .ipm-strategy-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1; /* Allows paragraph to take available space */
+        }
+
+        /* Call to Action for IPM Section */
+        .ipm-cta {
+            background-color: #e6ffe6; /* Light green */
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .ipm-cta h3 {
+            color: #28a745;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .ipm-cta p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        /* Fade-in animation for elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific initial animations for hero section */
+        @keyframes fadeInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Ensure header and footer containers are hidden if not dynamically loaded */
+        #header-container, #container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div> 
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4 fade-in animated">
+                        Smart Agriculture with AI-Powered Price Predictions
+                    </h1>
+                    <p class="lead text-white mb-5 fade-in animated">
+                        Maximize your profits with real-time market analysis and intelligent price forecasting for agricultural products.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap fade-in animated">
+                        <a href="farmer-login.html" class="btn btn-primary btn-lg px-4 py-3">
+                            <i class="fas fa-user-tie me-2"></i>Farmer Portal
+                        </a>
+                        <a href="agent-login.html" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-briefcase me-2"></i>Agent Portal
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image fade-in animated">
+                        <img src="/images/images/the.jpg?height=400&width=500" alt="Smart Farming" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="ipm-strategies" class="section-ipm py-5 fade-in">
+        <div class="container">
+            <h2 class="mb-5 fade-in">Integrated Pest Management (IPM) Strategies</h2>
+            <div class="ipm-intro fade-in">
+                <p>
+                    Integrated Pest Management (IPM) is an ecosystem-based strategy that focuses on long-term prevention of pests or their damage through a combination of techniques such as biological control, habitat manipulation, modification of cultural practices, and use of resistant varieties. It's about smart, sustainable farming for a healthier planet.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_prevention.jpg" alt="Crop Rotation and Healthy Soil" class="img-fluid">
+                        <h3>1. Prevention</h3>
+                        <p>
+                            The first line of defense is preventing pest problems from occurring. This involves practices like crop rotation, using pest-resistant plant varieties, proper sanitation, and optimizing soil health to grow strong, resilient crops.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_monitoring.jpg" alt="Farmer Monitoring Crops" class="img-fluid">
+                        <h3>2. Monitoring & Identification</h3>
+                        <p>
+                            Regularly scouting fields, using traps, and accurately identifying pests are crucial. This helps farmers understand pest populations and their life cycles, enabling timely and targeted interventions only when necessary.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_biological.jpg" alt="Ladybugs on a Leaf" class="img-fluid">
+                        <h3>3. Biological Control</h3>
+                        <p>
+                            Harnessing nature's allies! This involves introducing or encouraging beneficial organisms like predatory insects (e.g., ladybugs) or pathogens that naturally prey on or control pest populations, reducing reliance on chemicals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_cultural.jpg" alt="Cover Cropping" class="img-fluid">
+                        <h3>4. Cultural Practices</h3>
+                        <p>
+                            Modifying farming practices to make the environment less favorable for pests. Examples include proper irrigation, optimal planting times, adjusting nutrient levels, and using cover crops to disrupt pest cycles.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_physical.jpg" alt="Pest Traps" class="img-fluid">
+                        <h3>5. Physical & Mechanical Control</h3>
+                        <p>
+                            Directly removing or blocking pests using physical methods. This can include hand-picking weeds/pests, using barriers (nets, fences), sticky traps, or tillage to disrupt pest habitats.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="ipm-strategy-card fade-in">
+                        <img src="images/ipm_chemical.jpg" alt="Targeted Spraying" class="img-fluid">
+                        <h3>6. Responsible Chemical Use</h3>
+                        <p>
+                            Pesticides are used only as a last resort, when other methods are insufficient, and always with precision. IPM emphasizes using the least toxic and most targeted pesticides, applied at minimal effective doses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ipm-cta fade-in">
+                <h3>Why IPM Matters for AgriTech AI?</h3>
+                <p>
+                    Our AI-powered price predictions work best when integrated with sustainable farming. By minimizing pest damage through IPM, farmers can achieve more stable yields, reduce input costs, and enhance the quality of their produce, leading to better market prices and higher profitability.
+                </p>
+                <a href="#contact" class="btn btn-primary btn-lg"><i class="fas fa-envelope me-2"></i>Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    
+    <script>
+        // Additional JavaScript for enhanced functionality
+        
+        // This contact form handling will only work if a #contactForm element exists in the HTML
+        // For this single-page demo, the contact form itself is not included.
+        // If you add a contact form, ensure it has the ID 'contactForm' and the inputs have the specified IDs.
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    type: document.getElementById('contactType').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value
+                };
+                
+                // Simulate form submission
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                this.reset();
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated'); // Add 'animated' class to trigger fade-in
+                }
+            });
+        }, observerOptions);
+
+        // Observe all relevant elements for fade-in animation
+        document.querySelectorAll('.hero-section h1, .hero-section p.lead, .hero-section .fade-in, .ipm-strategy-card, .section-ipm h2, .ipm-intro, .ipm-cta').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize tooltips when components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load (e.g., if content was injected via JS, though not in this single file)
+            setTimeout(function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }, 500); // Small delay to ensure Bootstrap is fully loaded if it was dynamic
+        });
+
+        // Add 'animated' class to hero elements on initial load to trigger their specific animations
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.hero-section h1, .hero-section p.lead, .hero-section .fade-in').forEach(el => {
+                el.classList.add('animated');
+            });
+        });
+    </script>
+</body>
+</html>

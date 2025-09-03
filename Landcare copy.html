@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Land Care - Your Farm's Future</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons - Using a stable CDN for reliability -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --primary-color: #28a745; /* Success color for primary (green) */
+            --info-color: #17a2b8;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --hero-bg-color: #4CAF50; /* A pleasant green for the hero */
+            --hero-gradient: linear-gradient(to right, #4CAF50, #388E3C);
+            --button-hover-dark: #218838;
+        }
+
+        /* --- Global Body Styles --- */
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Bootstrap Color Overrides (Ensuring consistency) --- */
+        .text-info { color: var(--info-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        .text-muted { color: #6c757d !important; }
+
+        .bg-info { background-color: var(--info-color) !important; }
+        .bg-light { background-color: var(--light-bg) !important; }
+        .bg-dark { background-color: var(--dark-bg) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-danger { background-color: var(--danger-color) !important; }
+        .bg-success { background-color: var(--success-color) !important; }
+
+        /* --- Header/Navbar Styling --- */
+        .navbar {
+            background-color: var(--dark-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-radius: 5px; /* Added rounded corners */
+            padding: 5px 10px;
+        }
+        .navbar-brand:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.7) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            border-radius: 5px; /* Added rounded corners */
+            padding: 8px 12px;
+        }
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            background-color: rgba(255,255,255,0.1);
+        }
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* --- Hero Section Specific Styles --- */
+        .hero-section {
+            background: var(--hero-gradient);
+            padding: 6rem 0;
+            min-height: 80vh; /* Adjust as needed */
+            display: flex;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .hero-section h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-section p.lead {
+            font-size: 1.6rem;
+            opacity: 0.9;
+        }
+        .hero-image img {
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 8px; /* Rounded buttons */
+        }
+        .btn-primary:hover {
+            background-color: var(--button-hover-dark);
+            border-color: var(--button-hover-dark);
+            transform: translateY(-2px);
+        }
+        .btn-outline-light {
+            border-color: white;
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            border-radius: 8px; /* Rounded buttons */
+        }
+        .btn-outline-light:hover {
+            background-color: white;
+            color: var(--hero-bg-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- General Section Spacing --- */
+        section {
+            padding: 4rem 0;
+        }
+
+        /* --- Card Styling (Consistent across pages) --- */
+        .feature-card, .card {
+            border-radius: 12px; /* More rounded corners */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            overflow: hidden; /* Ensures image corners are rounded */
+        }
+        .feature-card:hover, .card:hover {
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .feature-card img, .card img {
+            max-width: 100%;
+            height: 220px; /* Slightly taller images */
+            object-fit: cover;
+            border-top-left-radius: 12px; /* Match card radius */
+            border-top-right-radius: 12px; /* Match card radius */
+            margin-bottom: 1rem;
+        }
+        .feature-card .card-body h5 {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+        .feature-card .card-body p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        .feature-card .card-footer {
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: #6c757d;
+            padding: 1rem 1.25rem;
+        }
+
+        /* --- Animation for fade-in on scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px); /* More noticeable slide-up */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Quick Links Styling --- */
+        #quick-links {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        #quick-links h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        #quick-links .list-inline-item {
+            margin-bottom: 10px; /* Spacing for responsiveness */
+        }
+        #quick-links .list-inline-item .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-width: 2px; /* Thicker border for outline buttons */
+            transition: all 0.3s ease;
+        }
+        #quick-links .list-inline-item .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- Footer Styling --- */
+        .footer-section {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 3rem 0;
+            font-size: 0.95rem;
+            border-top: 5px solid var(--primary-color); /* Green accent line */
+        }
+        .footer-section p {
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* --- Contact Section Styling --- */
+        #contact-section {
+            background-color: #e8f5e9; /* Light green for contact form */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 3rem;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+        #contact-section .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        #contact-section .form-control, #contact-section .form-select {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+        }
+        #contact-section .btn-success {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-success:hover {
+            background-color: var(--button-hover-dark);
+            border-color: var(--button-hover-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- Custom Modal Styling (for form submission success) --- */
+        .modal-custom {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1050; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content-custom {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeInModal 0.3s ease-out;
+        }
+        .modal-content-custom h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .modal-content-custom p {
+            margin-bottom: 20px;
+        }
+        .modal-close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+        }
+        .modal-close-button:hover,
+        .modal-close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            .hero-section {
+                padding: 4rem 0;
+            }
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+            .hero-section p.lead {
+                font-size: 1.3rem;
+            }
+            .hero-image {
+                margin-top: 3rem;
+            }
+            #quick-links .list-inline-item {
+                display: block;
+                margin-right: 0 !important;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .feature-card img, .card img {
+                height: 180px;
+            }
+            .hero-section {
+                text-align: center;
+            }
+            .hero-section .col-lg-6 {
+                text-align: center;
+            }
+            .hero-section .d-flex {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p.lead {
+                font-size: 1rem;
+            }
+            .btn-primary, .btn-outline-light {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            #quick-links {
+                padding: 1.5rem;
+            }
+            #quick-links h3 {
+                font-size: 1.5rem;
+            }
+            .feature-card img, .card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container (Populated by JavaScript) -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section - AgriTech AI Landing -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4 animate-on-scroll">
+                        Smart Agriculture with AI-Powered Price Predictions
+                    </h1>
+                    <p class="lead text-white mb-5 animate-on-scroll">
+                        Maximize your profits with real-time market analysis and intelligent price forecasting for agricultural products.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap animate-on-scroll">
+                        <a href="#contact-section" class="btn btn-primary btn-lg px-4 py-3">
+                            <i class="fas fa-user-tie me-2"></i>Farmer Portal (Example)
+                        </a>
+                        <a href="#contact-section" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-briefcase me-2"></i>Agent Portal (Example)
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                    <div class="hero-image animate-on-scroll">
+                        <img src="https://placehold.co/500x400/4CAF50/ffffff?text=Smart+Farming+AI" alt="Smart Farming" class="img-fluid rounded shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/500x400/4CAF50/ffffff?text=Smart+Farming+AI';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section class="mb-5 animate-on-scroll">
+            <h2 class="text-center text-primary mb-4">Why Land Care Matters to You</h2>
+            <p class="text-center lead px-lg-5">
+                Healthy soil is the foundation of successful farming. By adopting sustainable land care practices, you can improve soil fertility, conserve water, manage pests, and ensure consistent, high-quality yields for generations to come. Explore these essential practices below.
+            </p>
+        </section>
+
+        <!-- Quick Links Section - Allows internal navigation -->
+        <section id="quick-links" class="text-center animate-on-scroll">
+            <h3>Jump to Key Practices:</h3>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item me-3">
+                    <a href="#soil-testing-section" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-flask me-1"></i> Soil Testing
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="#soil-improvement" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-hand-holding-heart me-1"></i> Soil Improvement
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="#water-management" class="btn btn-outline-info btn-sm rounded-pill">
+                        <i class="fas fa-water me-1"></i> Water Management
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="drainage_system_page.html" class="btn btn-outline-info btn-sm rounded-pill">
+                        <i class="fas fa-drain me-1"></i> Drainage Systems (Detailed)
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <a href="cover_crops_page.html" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-leaf me-1"></i> Cover Crops (Detailed)
+                    </a>
+                </li>
+                <li class="list-inline-item me-3">
+                    <!-- NEW LINK TO DEDICATED CROP ROTATION PAGE -->
+                    <a href="crop_rotation_page.html" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="fas fa-sync-alt me-1"></i> Crop Rotation (Detailed)
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <hr class="my-5">
+
+        <section id="core-practices" class="mb-5">
+            <h2 class="text-center text-primary mb-4">Fundamental Practices for Soil Health</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card" id="soil-testing-section"> <!-- ID ADDED FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Soil+Testing" class="card-img-top" alt="Farmer taking soil sample" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Soil+Testing';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-flask me-2"></i>Soil Testing</h5>
+                            <p class="card-text">
+                                Understand what's in your soil! Soil testing reveals its nutrient content, pH level, and organic matter. This helps you apply the right amount of fertilizers and amendments, saving costs and preventing nutrient imbalances.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Essential for informed decisions.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=pH+Monitoring" class="card-img-top" alt="pH meter in soil" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=pH+Monitoring';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-superscript me-2"></i>pH Monitoring</h5>
+                            <p class="card-text">
+                                Soil pH determines how well plants can absorb nutrients. Monitoring it helps you adjust acidity or alkalinity (e.g., using lime or sulfur) to create optimal conditions for your specific crops, maximizing their growth potential.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Key to nutrient availability.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/ffc107/ffffff?text=Nutrient+Analysis" class="card-img-top" alt="Healthy plant with rich leaves" onerror="this.onerror=null;this.src='https://placehold.co/400x220/ffc107/ffffff?text=Nutrient+Analysis';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-vial me-2"></i>Nutrient Analysis</h5>
+                            <p class="card-text">
+                                Go beyond basic tests! Nutrient analysis identifies specific deficiencies or excesses of vital elements like Nitrogen, Phosphorus, and Potassium. This allows for targeted fertilization, boosting yield and crop quality.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Precision feeding for your crops.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card" id="soil-improvement"> <!-- ID ADDED HERE FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Soil+Improvement" class="card-img-top" alt="Compost pile with rich soil" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Soil+Improvement';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-hand-holding-heart me-2"></i>Soil Improvement</h5>
+                            <p class="card-text">
+                                Build a healthier soil structure. Incorporate organic matter like compost, well-rotted manure, or crop residues. This improves water retention, aeration, and supports beneficial soil microbes for long-term fertility.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Invest in your soil's future.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card" id="crop-rotation"> <!-- ID ADDED HERE FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Crop+Rotation" class="card-img-top" alt="Different crops growing in strips" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Crop+Rotation';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-sync-alt me-2"></i>Crop Rotation</h5>
+                            <p class="card-text">
+                                Don't plant the same crop in the same place every season! Rotating different crop families helps break pest and disease cycles, improves nutrient cycling, and reduces soil erosion, leading to higher yields.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Nature's way of pest control.</small>
+                            <!-- NEW "LEARN MORE" BUTTON LINKING TO DEDICATED PAGE -->
+                            <a href="crop_rotation_page.html" class="btn btn-success btn-sm mt-2 rounded-pill">
+                                Learn More about Crop Rotation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card" id="cover-crops"> <!-- ID ADDED HERE FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x220/ffc107/ffffff?text=Cover+Crops" class="card-img-top" alt="Green cover crop field" onerror="this.onerror=null;this.src='https://placehold.co/400x220/ffc107/ffffff?text=Cover+Crops';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-leaf me-2"></i>Cover Crops</h5>
+                            <p class="card-text">
+                                Plant non-cash crops (like legumes or grasses) in fallow periods. They protect soil from erosion, suppress weeds, add organic matter, and can even fix nitrogen naturally, enriching the soil for your next main crop.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Living mulch for a healthy farm.</small>
+                            <!-- LINK TO DEDICATED COVER CROPS PAGE -->
+                            <a href="cover_crops_page.html" class="btn btn-success btn-sm mt-2 rounded-pill">
+                                Learn More about Cover Crops
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/dc3545/ffffff?text=Conservation+Tillage" class="card-img-top" alt="Farm field with crop residue" onerror="this.onerror=null;this.src='https://placehold.co/400x220/dc3545/ffffff?text=Conservation+Tillage';">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tractor me-2"></i>Conservation Tillage</h5>
+                            <p class="card-text">
+                                Reduce plowing and leave crop residues on the soil surface. This minimizes soil disturbance, prevents erosion, conserves moisture, and improves soil structure and beneficial microbial activity over time.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Less disturbance, more life.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="water-management" class="mb-5">
+            <h2 class="text-center text-info mb-4">Smart Water Management for Your Farm</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Irrigation+Planning" class="card-img-top" alt="Drip irrigation system in a field" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Irrigation+Planning';">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-water me-2"></i>Irrigation Planning</h5>
+                            <p class="card-text">
+                                Apply water wisely. Plan your irrigation based on crop needs, soil type, and weather forecasts. Efficient methods like drip irrigation or precise timing can save water, energy, and improve crop health.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Water where and when it's needed.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card">
+                        <img src="https://placehold.co/400x220/28a745/ffffff?text=Water+Conservation" class="card-img-top" alt="Rainwater harvesting barrel" onerror="this.onerror=null;this.src='https://placehold.co/400x220/28a745/ffffff?text=Water+Conservation';">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-hand-holding-water me-2"></i>Water Conservation</h5>
+                            <p class="card-text">
+                                Every drop counts! Implement practices like mulching to reduce evaporation, build small bunds to retain rainwater, and explore rainwater harvesting for dry spells. Conserving water protects this vital resource.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small>Safeguarding a precious resource.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col animate-on-scroll">
+                    <div class="card h-100 feature-card" id="drainage-systems"> <!-- ID ADDED HERE FOR DIRECT LINKING -->
+                        <img src="https://placehold.co/400x220/17a2b8/ffffff?text=Drainage+Systems" class="card-img-top" alt="Agricultural drainage ditch" onerror="this.onerror=null;this.src='https://placehold.co/400x220/17a2b8/ffffff?text=Drainage+Systems';">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="fas fa-drain me-2"></i>Drainage Systems</h5>
+                            <p class="card-text">
+                                Prevent waterlogging that harms roots. For areas prone to excessive wetness, consider simple drainage solutions like raised beds, surface drains, or even French drains to ensure proper aeration and prevent root rot.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <!-- LINK TO DEDICATED DRAINAGE PAGE -->
+                            <a href="drainage_system_page.html" class="btn btn-info btn-sm mt-2 rounded-pill">
+                                Learn More about Drainage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="text-center animate-on-scroll">
+            <h3 class="text-success mb-4">Ready to Transform Your Farm?</h3>
+            <p class="lead mb-5">
+                Implementing these practices can significantly enhance your farm's productivity and resilience. For more detailed guidance, connect with our experts.
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contactForm">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="contactName" class="form-label text-start d-block">Full Name</label>
+                                <input type="text" class="form-control" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactEmail" class="form-label text-start d-block">Email Address</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="contactPhone" class="form-label text-start d-block">Phone Number</label>
+                                <input type="tel" class="form-control" id="contactPhone" placeholder="+256 7XXXXXXXX">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactType" class="form-label text-start d-block">I am a...</label>
+                                <select class="form-select" id="contactType" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option value="farmer">Farmer</option>
+                                    <option value="agent">Agent</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactSubject" class="form-label text-start d-block">Subject</label>
+                            <input type="text" class="form-control" id="contactSubject" placeholder="e.g., Soil Testing Inquiry" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactMessage" class="form-label text-start d-block">Your Message</label>
+                            <textarea class="form-control" id="contactMessage" rows="5" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main> 
+    
+    <!-- Footer Container (Populated by JavaScript) -->
+    <div id="footer-container"></div>
+
+    <!-- Custom Success Modal -->
+    <div id="successModal" class="modal-custom">
+        <div class="modal-content-custom">
+            <span class="modal-close-button">&times;</span>
+            <h4><i class="fas fa-check-circle me-2 text-success"></i>Message Sent!</h4>
+            <p>Thank you for your message! We'll get back to you within 24 hours.</p>
+            <button class="btn btn-success" onclick="document.getElementById('successModal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Component Loading (Header & Footer) ---
+            // Function to load components
+            function loadComponent(elementId, htmlContent) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = htmlContent;
+                }
+            }
+
+            // Header HTML
+            const headerHtml = `
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <i class="fas fa-leaf me-2"></i>AgriTech AI
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#quick-links">Practices</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#water-management">Water Mgmt</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="drainage_system_page.html">Drainage Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="cover_crops_page.html">Cover Crops Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="crop_rotation_page.html">Crop Rotation Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#contact-section">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="farmer-login.html">Farmer Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="agent-login.html">Agent Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            `;
+
+            // Footer HTML
+            const footerHtml = `
+                <footer class="footer-section text-white text-center">
+                    <div class="container">
+                        <p>&copy; <span id="current-year-footer"></span> AgriTech AI. All rights reserved.</p>
+                        <p>Empowering sustainable agriculture in Uganda.</p>
+                        <p><a href="mailto:info@agritechai.com" class="text-white">info@agritechai.com</a> | +256 7XXXXXXXX</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            `;
+
+            loadComponent('header-container', headerHtml);
+            loadComponent('footer-container', footerHtml);
+
+            // Set current year in footer
+            document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+            // --- Smooth scrolling for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default jump
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start' // Scroll to the top of the target element
+                        });
+                    }
+                });
+            });
+
+            // --- Add fade-in animation on scroll ---
+            const observerOptions = {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Adjust bottom margin to trigger earlier/later
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with 'animate-on-scroll' class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- Contact form handling with custom modal ---
+            const contactForm = document.getElementById('contactForm');
+            const successModal = document.getElementById('successModal');
+            const modalCloseButton = successModal.querySelector('.modal-close-button');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Prevent default form submission
+
+                    // Simulate form submission (e.g., sending data to a server)
+                    console.log('Form Data:', {
+                        name: document.getElementById('contactName').value,
+                        email: document.getElementById('contactEmail').value,
+                        phone: document.getElementById('contactPhone').value,
+                        type: document.getElementById('contactType').value,
+                        subject: document.getElementById('contactSubject').value,
+                        message: document.getElementById('contactMessage').value
+                    });
+
+                    // Show the custom success modal
+                    successModal.style.display = 'flex'; // Use flex to center it
+
+                    // Reset the form
+                    this.reset();
+                });
+            }
+
+            // Close modal when close button is clicked
+            if (modalCloseButton) {
+                modalCloseButton.addEventListener('click', function() {
+                    successModal.style.display = 'none';
+                });
+            }
+
+            // Close modal when clicking outside of the modal content
+            if (successModal) {
+                successModal.addEventListener('click', function(event) {
+                    if (event.target === successModal) {
+                        successModal.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
