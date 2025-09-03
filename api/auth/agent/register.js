@@ -1,53 +1,60 @@
 import bcrypt from "bcryptjs"
 import { getDB } from "../../../utils/database.js"
 
-export default async function handler(req, res) {
+export default async function agentRegister(req, res) {
+  console.log("[v0] 📝 Agent registration attempt started")
+  console.log("[v0] Request method:", req.method)
+  console.log("[v0] Request body keys:", Object.keys(req.body))
+
   if (req.method !== "POST") {
+    console.log("[v0] ❌ Invalid method for agent registration:", req.method)
     return res.status(405).json({ message: "Method not allowed" })
   }
 
   try {
-    const db = getDB()
-    const agents = db.collection("agents")
-
-    const { name, email, phone, password, company, businessLocation, businessType, licenseNumber } = req.body
+    const { name, email, password, phone, location, marketArea } = req.body
+    console.log("[v0] 📧 Registration attempt for agent:", email)
 
     if (!name || !email || !password) {
+      console.log("[v0] ❌ Missing required fields in agent registration")
       return res.status(400).json({ message: "Name, email, and password are required" })
     }
 
-    // Check if agent already exists
-    const existingAgent = await agents.findOne({ email })
+    const db = getDB()
+    console.log("[v0] 🔍 Checking if agent email already exists...")
+
+    const existingAgent = await db.collection("agents").findOne({ email })
+
     if (existingAgent) {
-      return res.status(400).json({ message: "Agent with this email already exists" })
+      console.log("[v0] ❌ Agent email already exists:", email)
+      return res.status(400).json({ message: "Email already registered" })
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10)
+    console.log("[v0] 🔐 Hashing password for agent...")
+    const hashedPassword = await bcrypt.hash(password, 12)
 
-    // Create new agent
     const newAgent = {
       name,
       email,
-      phone,
       password: hashedPassword,
-      company,
-      businessLocation,
-      businessType,
-      licenseNumber,
+      phone: phone || "",
+      location: location || "",
+      marketArea: marketArea || "",
+      type: "agent",
       createdAt: new Date(),
-      totalRevenue: 0,
-      totalTransactions: 0,
+      updatedAt: new Date(),
     }
 
-    const result = await agents.insertOne(newAgent)
+    console.log("[v0] 💾 Saving new agent to database...")
+    const result = await db.collection("agents").insertOne(newAgent)
 
+    console.log("[v0] ✅ Agent registration successful:", email)
     res.status(201).json({
       message: "Agent registered successfully",
       agentId: result.insertedId,
     })
   } catch (error) {
-    console.error("Registration error:", error)
+    console.error("[v0] ❌ Agent registration error:", error.message)
     res.status(500).json({ message: "Internal server error" })
   }
 }

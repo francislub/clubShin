@@ -16,6 +16,7 @@ class AgentDashboard {
 
   async init() {
     try {
+      await this.loadUserInfo()
       await this.loadDashboardData()
       await this.loadMyMarkets()
       await this.loadProducts()
@@ -41,6 +42,33 @@ class AgentDashboard {
     // Modal form submissions will be handled by global functions
   }
 
+  async loadUserInfo() {
+    try {
+      const response = await fetch(`${this.apiUrl}/agent/profile`, {
+        headers: this.getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const userInfo = await response.json()
+        const agentName = userInfo.name || userInfo.fullName || localStorage.getItem("agentName") || "Agent"
+
+        document.getElementById("agentName").textContent = agentName
+        document.getElementById("agentNameHeader").textContent = agentName
+
+        localStorage.setItem("agentName", agentName)
+      } else {
+        const agentName = localStorage.getItem("agentName") || "Agent"
+        document.getElementById("agentName").textContent = agentName
+        document.getElementById("agentNameHeader").textContent = agentName
+      }
+    } catch (error) {
+      console.error("Error loading user info:", error)
+      const agentName = localStorage.getItem("agentName") || "Agent"
+      document.getElementById("agentName").textContent = agentName
+      document.getElementById("agentNameHeader").textContent = agentName
+    }
+  }
+
   async loadDashboardData() {
     try {
       console.log("Loading agent dashboard data...")
@@ -58,34 +86,39 @@ class AgentDashboard {
       document.getElementById("myMarkets").textContent = data.myMarkets || 0
       document.getElementById("activeProducts").textContent = data.activeProducts || 0
       document.getElementById("totalTransactions").textContent = data.totalTransactions || 0
-      document.getElementById("totalRevenue").textContent = `$${data.totalRevenue || 0}`
 
-      if (data.agentName) {
-        document.getElementById("agentName").textContent = data.agentName
-      }
+      const revenueInUGX = data.totalRevenue || 0 // Already in UGX from API
+      document.getElementById("totalRevenue").innerHTML =
+        `<span class="currency-ugx">${revenueInUGX.toLocaleString()} shs</span>`
     } catch (error) {
       console.error("Error loading dashboard data:", error)
-      // Show fallback data
       document.getElementById("myMarkets").textContent = "0"
       document.getElementById("activeProducts").textContent = "0"
       document.getElementById("totalTransactions").textContent = "0"
-      document.getElementById("totalRevenue").textContent = "$0"
+      document.getElementById("totalRevenue").innerHTML = '<span class="currency-ugx">0 shs</span>'
     }
   }
 
   async loadMyMarkets() {
     try {
-      console.log("Loading agent markets...")
-      const response = await fetch(`${this.apiUrl}/agent/markets`, {
+      console.log("[v0] Loading agent markets...")
+      console.log("[v0] Token:", this.token ? "Present" : "Missing")
+
+      const response = await fetch(`${this.apiUrl}/markets`, {
         headers: this.getAuthHeaders(),
       })
 
+      console.log("[v0] Markets API response status:", response.status)
+
       if (!response.ok) {
+        const errorText = await response.text()
+        console.log("[v0] Markets API error response:", errorText)
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
 
       const markets = await response.json()
-      console.log("Agent markets loaded:", markets.length)
+      console.log("[v0] Agent markets loaded:", markets.length)
+      console.log("[v0] First market sample:", markets[0])
 
       const marketsList = document.getElementById("marketsList")
       marketsList.innerHTML = ""
@@ -120,10 +153,9 @@ class AgentDashboard {
         marketsList.appendChild(marketCard)
       })
 
-      // Update product market options
       this.updateProductMarketOptions(markets)
     } catch (error) {
-      console.error("Error loading markets:", error)
+      console.error("[v0] Error loading markets:", error)
     }
   }
 
@@ -143,17 +175,24 @@ class AgentDashboard {
 
   async loadProducts() {
     try {
-      console.log("Loading agent products...")
-      const response = await fetch(`${this.apiUrl}/agent/products`, {
+      console.log("[v0] Loading agent products...")
+      console.log("[v0] Token:", this.token ? "Present" : "Missing")
+
+      const response = await fetch(`${this.apiUrl}/products`, {
         headers: this.getAuthHeaders(),
       })
 
+      console.log("[v0] Products API response status:", response.status)
+
       if (!response.ok) {
+        const errorText = await response.text()
+        console.log("[v0] Products API error response:", errorText)
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
 
       const products = await response.json()
-      console.log("Agent products loaded:", products.length)
+      console.log("[v0] Agent products loaded:", products.length)
+      console.log("[v0] First product sample:", products[0])
 
       const productsTable = document.getElementById("productsTable")
       productsTable.innerHTML = ""
@@ -165,17 +204,20 @@ class AgentDashboard {
 
       products.forEach((product) => {
         const row = document.createElement("tr")
+        const sellingPriceUGX = Math.round(product.sellingPrice || 0).toLocaleString()
+        const buyingPriceUGX = Math.round(product.buyingPrice || 0).toLocaleString()
+
         row.innerHTML = `
-          <td>${product.name}</td>
+          <td><strong>${product.name}</strong></td>
           <td>${product.marketName}</td>
-          <td>$${product.sellingPrice.toFixed(2)}</td>
-          <td>$${product.buyingPrice.toFixed(2)}</td>
+          <td><span class="currency-ugx">${sellingPriceUGX} shs</span></td>
+          <td><span class="currency-ugx">${buyingPriceUGX} shs</span></td>
           <td>${product.stock} kg</td>
           <td>
-            <button class="btn btn-sm btn-outline-primary me-1" onclick="editProduct('${product._id}')">
+            <button class="btn btn-sm btn-outline-primary me-1" onclick="editProduct('${product._id}')" title="Edit Product">
               <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${product._id}')">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${product._id}')" title="Delete Product">
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -183,7 +225,7 @@ class AgentDashboard {
         productsTable.appendChild(row)
       })
     } catch (error) {
-      console.error("Error loading products:", error)
+      console.error("[v0] Error loading products:", error)
     }
   }
 }
@@ -210,14 +252,11 @@ async function createMarket() {
     })
 
     if (response.ok) {
-      // Close modal
       const modal = window.bootstrap.Modal.getInstance(document.getElementById("createMarketModal"))
       modal.hide()
 
-      // Reset form
       document.getElementById("createMarketForm").reset()
 
-      // Reload markets
       await dashboard.loadMyMarkets()
       await dashboard.loadDashboardData()
 
@@ -261,14 +300,11 @@ async function addProduct() {
     })
 
     if (response.ok) {
-      // Close modal
       const modal = window.bootstrap.Modal.getInstance(document.getElementById("addProductModal"))
       modal.hide()
 
-      // Reset form
       document.getElementById("addProductForm").reset()
 
-      // Reload products
       await dashboard.loadProducts()
       await dashboard.loadDashboardData()
 
@@ -290,7 +326,7 @@ async function deleteMarket(marketId) {
 
   try {
     const token = localStorage.getItem("agentToken")
-    const response = await fetch(`/api/markets/${marketId}`, {
+    const response = await fetch(`/api/markets?id=${marketId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -319,7 +355,7 @@ async function deleteProduct(productId) {
 
   try {
     const token = localStorage.getItem("agentToken")
-    const response = await fetch(`/api/products/${productId}`, {
+    const response = await fetch(`/api/products?id=${productId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -340,14 +376,168 @@ async function deleteProduct(productId) {
   }
 }
 
-function editMarket(marketId) {
-  // Implementation for editing market
-  alert("Edit market functionality - to be implemented")
+async function editProduct(productId) {
+  try {
+    const token = localStorage.getItem("agentToken")
+    // Get all products and find the specific one
+    const response = await fetch(`/api/products`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (response.ok) {
+      const products = await response.json()
+      const product = products.find((p) => p._id === productId)
+
+      if (!product) {
+        alert("Product not found")
+        return
+      }
+
+      document.getElementById("editProductId").value = product._id
+      document.getElementById("editProductName").value = product.name
+      document.getElementById("editProductMarket").value = product.marketId
+      document.getElementById("editSellingPrice").value = Math.round(product.sellingPrice || 0)
+      document.getElementById("editBuyingPrice").value = Math.round(product.buyingPrice || 0)
+      document.getElementById("editStockQuantity").value = product.stock
+
+      await dashboard.updateEditProductMarketOptions()
+      document.getElementById("editProductMarket").value = product.marketId
+
+      const modal = new window.bootstrap.Modal(document.getElementById("editProductModal"))
+      modal.show()
+    } else {
+      alert("Error loading product details")
+    }
+  } catch (error) {
+    console.error("Error loading product for edit:", error)
+    alert("Error loading product details")
+  }
 }
 
-function editProduct(productId) {
-  // Implementation for editing product
-  alert("Edit product functionality - to be implemented")
+async function updateProduct() {
+  const productId = document.getElementById("editProductId").value
+  const name = document.getElementById("editProductName").value
+  const marketId = document.getElementById("editProductMarket").value
+  const sellingPrice = Number.parseFloat(document.getElementById("editSellingPrice").value)
+  const buyingPrice = Number.parseFloat(document.getElementById("editBuyingPrice").value)
+  const stock = Number.parseFloat(document.getElementById("editStockQuantity").value)
+
+  if (!name || !marketId || !sellingPrice || !buyingPrice || !stock) {
+    alert("Please fill in all fields")
+    return
+  }
+
+  if (sellingPrice <= buyingPrice) {
+    alert("Selling price must be higher than buying price")
+    return
+  }
+
+  try {
+    const token = localStorage.getItem("agentToken")
+    const response = await fetch(`/api/products?id=${productId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name, marketId, sellingPrice, buyingPrice, stock }),
+    })
+
+    if (response.ok) {
+      const modal = window.bootstrap.Modal.getInstance(document.getElementById("editProductModal"))
+      modal.hide()
+
+      await dashboard.loadProducts()
+      await dashboard.loadDashboardData()
+
+      alert("Product updated successfully!")
+    } else {
+      const errorData = await response.json()
+      alert(errorData.message || "Error updating product")
+    }
+  } catch (error) {
+    console.error("Error updating product:", error)
+    alert("Error updating product")
+  }
+}
+
+async function editMarket(marketId) {
+  try {
+    const token = localStorage.getItem("agentToken")
+    // Get all markets and find the specific one
+    const response = await fetch(`/api/markets`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (response.ok) {
+      const markets = await response.json()
+      const market = markets.find((m) => m._id === marketId)
+
+      if (!market) {
+        alert("Market not found")
+        return
+      }
+
+      document.getElementById("editMarketId").value = market._id
+      document.getElementById("editMarketName").value = market.name
+      document.getElementById("editMarketLocation").value = market.location
+      document.getElementById("editMarketDescription").value = market.description || ""
+
+      const modal = new window.bootstrap.Modal(document.getElementById("editMarketModal"))
+      modal.show()
+    } else {
+      alert("Error loading market details")
+    }
+  } catch (error) {
+    console.error("Error loading market for edit:", error)
+    alert("Error loading market details")
+  }
+}
+
+async function updateMarket() {
+  const marketId = document.getElementById("editMarketId").value
+  const name = document.getElementById("editMarketName").value
+  const location = document.getElementById("editMarketLocation").value
+  const description = document.getElementById("editMarketDescription").value
+
+  if (!name || !location) {
+    alert("Please fill in required fields")
+    return
+  }
+
+  try {
+    const token = localStorage.getItem("agentToken")
+    const response = await fetch(`/api/markets?id=${marketId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name, location, description }),
+    })
+
+    if (response.ok) {
+      const modal = window.bootstrap.Modal.getInstance(document.getElementById("editMarketModal"))
+      modal.hide()
+
+      await dashboard.loadMyMarkets()
+      await dashboard.loadDashboardData()
+
+      alert("Market updated successfully!")
+    } else {
+      const errorData = await response.json()
+      alert(errorData.message || "Error updating market")
+    }
+  } catch (error) {
+    console.error("Error updating market:", error)
+    alert("Error updating market")
+  }
 }
 
 function logout() {
@@ -357,9 +547,33 @@ function logout() {
   window.location.href = "agent-login.html"
 }
 
-// Initialize dashboard when page loads
 let dashboard
 document.addEventListener("DOMContentLoaded", () => {
-  window.bootstrap = window.bootstrap || {} // Declare bootstrap variable
+  window.bootstrap = window.bootstrap || {}
   dashboard = new AgentDashboard()
+
+  dashboard.updateEditProductMarketOptions = async function () {
+    try {
+      const response = await fetch(`${this.apiUrl}/markets`, {
+        headers: this.getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const markets = await response.json()
+        const editProductMarketSelect = document.getElementById("editProductMarket")
+        if (editProductMarketSelect) {
+          editProductMarketSelect.innerHTML = '<option value="">Select a market...</option>'
+
+          markets.forEach((market) => {
+            const option = document.createElement("option")
+            option.value = market._id
+            option.textContent = `${market.name} - ${market.location}`
+            editProductMarketSelect.appendChild(option)
+          })
+        }
+      }
+    } catch (error) {
+      console.error("Error loading markets for edit form:", error)
+    }
+  }
 })

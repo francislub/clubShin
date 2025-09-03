@@ -44,7 +44,6 @@ class ComponentLoader {
         <li><a class="dropdown-item" href="#pest-detection"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
         <li><a class="dropdown-item" href="#control-methods"><i class="fas fa-spray-can me-2"></i>Control Methods</a></li>
         <li><a class="dropdown-item" href="#organic-solutions"><i class="fas fa-leaf me-2"></i>Organic Solutions</a></li>
-        <li><a class="dropdown-item" href="#integrated-pest-management"><i class="fas fa-cogs me-2"></i>IPM Strategies</a></li>
       </ul>
     </li>
 
@@ -61,10 +60,8 @@ class ComponentLoader {
         <li><a class="dropdown-item" href="#wind-conditions"><i class="fas fa-wind me-2"></i>Wind Conditions</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-primary"><i class="fas fa-calendar-alt me-2"></i>Forecasting</h6></li>
-        <li><a class="dropdown-item" href="#7day-forecast"><i class="fas fa-calendar-week me-2"></i>7-Day Forecast</a></li>
         <li><a class="dropdown-item" href="#seasonal-outlook"><i class="fas fa-calendar me-2"></i>Seasonal Outlook</a></li>
         <li><a class="dropdown-item" href="#storm-warnings"><i class="fas fa-exclamation-triangle me-2"></i>Storm Warnings</a></li>
-        <li><a class="dropdown-item" href="#frost-alerts"><i class="fas fa-snowflake me-2"></i>Frost Alerts</a></li>
       </ul>
     </li>
 
@@ -77,7 +74,6 @@ class ComponentLoader {
         <li><h6 class="dropdown-header text-brown"><i class="fas fa-seedling me-2"></i>Soil Management</h6></li>
         <li><a class="dropdown-item" href="#soil-testing"><i class="fas fa-vial me-2"></i>Soil Testing</a></li>
         <li><a class="dropdown-item" href="#ph-monitoring"><i class="fas fa-chart-line me-2"></i>pH Monitoring</a></li>
-        <li><a class="dropdown-item" href="#nutrient-analysis"><i class="fas fa-atom me-2"></i>Nutrient Analysis</a></li>
         <li><a class="dropdown-item" href="#soil-improvement"><i class="fas fa-arrow-up me-2"></i>Soil Improvement</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-blue"><i class="fas fa-tint me-2"></i>Water Management</h6></li>
@@ -422,7 +418,6 @@ class ComponentLoader {
         <li><a class="dropdown-item" href="pest-detection.html"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
         <li><a class="dropdown-item" href="control-methods.html"><i class="fas fa-spray-can me-2"></i>Control Methods</a></li>
         <li><a class="dropdown-item" href="organic-solutions.html"><i class="fas fa-leaf me-2"></i>Organic Solutions</a></li>
-        <li><a class="dropdown-item" href="integrated-pest-management.html"><i class="fas fa-cogs me-2"></i>IPM Strategies</a></li>
       </ul>
     </li>
 
@@ -435,14 +430,11 @@ class ComponentLoader {
         <li><h6 class="dropdown-header text-info"><i class="fas fa-thermometer-half me-2"></i>Current Conditions</h6></li>
         <li><a class="dropdown-item" href="live-weather.html"><i class="fas fa-broadcast-tower me-2"></i>Live Weather</a></li>
         <li><a class="dropdown-item" href="temperature-humidity.html"><i class="fas fa-tint me-2"></i>Temperature & Humidity</a></li>
-        <li><a class="dropdown-item" href="rainfall-data.html"><i class="fas fa-cloud-rain me-2"></i>Rainfall Data</a></li>
         <li><a class="dropdown-item" href="wind-conditions.html"><i class="fas fa-wind me-2"></i>Wind Conditions</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-primary"><i class="fas fa-calendar-alt me-2"></i>Forecasting</h6></li>
-        <li><a class="dropdown-item" href="7day-forecast.html"><i class="fas fa-calendar-week me-2"></i>7-Day Forecast</a></li>
         <li><a class="dropdown-item" href="seasonal-outlook.html"><i class="fas fa-calendar me-2"></i>Seasonal Outlook</a></li>
         <li><a class="dropdown-item" href="storm-warnings.html"><i class="fas fa-exclamation-triangle me-2"></i>Storm Warnings</a></li>
-        <li><a class="dropdown-item" href="frost-alerts.html"><i class="fas fa-snowflake me-2"></i>Frost Alerts</a></li>
       </ul>
     </li>
 
@@ -455,7 +447,6 @@ class ComponentLoader {
         <li><h6 class="dropdown-header text-brown"><i class="fas fa-seedling me-2"></i>Soil Management</h6></li>
         <li><a class="dropdown-item" href="soil-testing.html"><i class="fas fa-vial me-2"></i>Soil Testing</a></li>
         <li><a class="dropdown-item" href="ph-monitoring.html"><i class="fas fa-chart-line me-2"></i>pH Monitoring</a></li>
-        <li><a class="dropdown-item" href="nutrient-analysis.html"><i class="fas fa-atom me-2"></i>Nutrient Analysis</a></li>
         <li><a class="dropdown-item" href="soil-improvement.html"><i class="fas fa-arrow-up me-2"></i>Soil Improvement</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-blue"><i class="fas fa-tint me-2"></i>Water Management</h6></li>

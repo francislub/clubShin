@@ -1,12 +1,295 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>temperature and humidity</title>
+    <title>Uganda Weather Dashboard (Single File Demo)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="images/favicon.png" type="image/png"> <style>
+        /* Customizing Bootstrap variables (optional) */
+        :root {
+            --bs-primary: #007bff;
+            --bs-success: #28a745; /* A fresh green, like Uganda's landscapes */
+            --bs-info: #17a2b8;
+            --bs-warning: #ffc107;
+            --bs-danger: #dc3545;
+            --bs-dark: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8f0; /* Very light green background */
+        }
+
+        /* Header Specific Styles */
+        header {
+            background-image: linear-gradient(to right, var(--bs-success), #4CAF50);
+            border-bottom: 5px solid #FFEB3B;
+            position: relative; /* Needed for absolute positioning of current time */
+        }
+
+        header h1 {
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Current Time Display Style */
+        #current-time {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px; /* Spacing below the lead text */
+        }
+
+        /* Weather Card Styles */
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .card-title {
+            color: var(--bs-dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #6c757d;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .card-text-details {
+            font-weight: bold;
+            color: var(--bs-primary);
+            margin-bottom: 5px;
+        }
+
+        .card-text-details span {
+            color: #333;
+            font-weight: normal;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a !important;
+            font-size: 0.85em;
+            padding: 15px 0;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Container -->
-    <div id="header-container"></div>
+    <header class="bg-success text-white py-4 shadow-sm">
+        <div class="container text-center">
+            <h1 class="display-4 mb-1">Uganda Weather Explorer</h1>
+            <p class="lead mb-0">Real-time Climate Insights Across the Pearl of Africa</p>
+            <div id="current-time"></div> </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="weather-cards-container">
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/kampala.jpg" class="card-img-top" alt="Kampala Skyline">
+                    <div class="card-body">
+                        <h5 class="card-title">Kampala</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-kampala">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-kampala">--%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/gulu.jpg" class="card-img-top" alt="Gulu Landscape">
+                    <div class="card-body">
+                        <h5 class="card-title">Gulu</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-gulu">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-gulu">--%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/kabale.jpg" class="card-img-top" alt="Kabale Hills">
+                    <div class="card-body">
+                        <h5 class="card-title">Kabale</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-kabale">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-kabale">--%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/mbarara.jpg" class="card-img-top" alt="Mbarara City">
+                    <div class="card-body">
+                        <h5 class="card-title">Mbarara</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-mbarara">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-mbarara">--%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/fort_portal.jpg" class="card-img-top" alt="Fort Portal Mountains">
+                    <div class="card-body">
+                        <h5 class="card-title">Fort Portal</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-fort-portal">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-fort-portal">--%</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/mbale.jpg" class="card-img-top" alt="Mbale View">
+                    <div class="card-body">
+                        <h5 class="card-title">Mbale</h5>
+                        <p class="card-text">Loading...</p>
+                        <p class="card-text-details">Temperature: <span id="temp-mbale">--°C</span></p>
+                        <p class="card-text-details">Humidity: <span id="hum-mbale">--%</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Uganda Weather Insights. Data provided by [Your Data Source/API].</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Uganda Weather Dashboard loaded!');
+
+            // --- 1. Added More Locations ---
+            const locations = [
+                { name: 'Kampala', tempId: 'temp-kampala', humId: 'hum-kampala', lat: 0.3476, lon: 32.5825 },
+                { name: 'Gulu', tempId: 'temp-gulu', humId: 'hum-gulu', lat: 2.7766, lon: 32.2902 },
+                { name: 'Kabale', tempId: 'temp-kabale', humId: 'hum-kabale', lat: -1.2500, lon: 29.9800 },
+                { name: 'Mbarara', tempId: 'temp-mbarara', humId: 'hum-mbarara', lat: -0.6048, lon: 30.6486 },
+                { name: 'Fort Portal', tempId: 'temp-fort-portal', humId: 'hum-fort-portal', lat: 0.6558, lon: 30.2758 },
+                { name: 'Mbale', tempId: 'temp-mbale', humId: 'hum-mbale', lat: 1.0768, lon: 34.1751 }
+            ];
+
+            // Function to simulate fetching weather data (replace with actual API call)
+            async function fetchWeatherData(location) {
+                // For demonstration, return random but plausible values
+                let minTemp = 22;
+                let maxTemp = 32;
+                let minHum = 60;
+                let maxHum = 90;
+
+                // Adjust ranges based on typical climate if known
+                if (location.name === 'Kabale' || location.name === 'Fort Portal') { // Cooler, higher altitude areas
+                    minTemp = 15;
+                    maxTemp = 25;
+                    minHum = 70; // Still humid
+                    maxHum = 95;
+                } else if (location.name === 'Mbarara') { // Similar to Kampala
+                    minTemp = 20;
+                    maxTemp = 30;
+                }
+                // Gulu, Mbale can be similar to Kampala range
+
+                const temp = (Math.random() * (maxTemp - minTemp) + minTemp).toFixed(1);
+                const humidity = (Math.random() * (maxHum - minHum) + minHum).toFixed(0);
+                const descriptions = ['Sunny', 'Partly Cloudy', 'Light Rain', 'Cloudy', 'Showers', 'Thunderstorms'];
+                const description = descriptions[Math.floor(Math.random() * descriptions.length)];
+
+                return {
+                    temperature: parseFloat(temp),
+                    humidity: parseInt(humidity),
+                    description: description
+                };
+            }
+
+            // Function to update the UI
+            async function updateWeatherUI() {
+                for (const location of locations) {
+                    try {
+                        const weather = await fetchWeatherData(location);
+
+                        const tempElement = document.getElementById(location.tempId);
+                        const humElement = document.getElementById(location.humId);
+                        const cardTextElement = tempElement.closest('.card-body').querySelector('.card-text');
+
+                        if (tempElement && humElement && cardTextElement) {
+                            tempElement.textContent = `${weather.temperature}°C`;
+                            humElement.textContent = `${weather.humidity}%`;
+                            cardTextElement.textContent = weather.description;
+                        } else {
+                            console.error(`Elements not found for ${location.name}`);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching weather for ${location.name}:`, error);
+                        const cardTextElement = document.getElementById(location.tempId).closest('.card-body').querySelector('.card-text');
+                        if (cardTextElement) {
+                            cardTextElement.textContent = 'Data N/A';
+                        }
+                    }
+                }
+            }
+
+            // --- 2. Added Current Local Date and Time Display ---
+            function updateCurrentTime() {
+                const now = new Date();
+                // Format for Uganda (East Africa Time)
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true, // Use 12-hour clock with AM/PM
+                    timeZone: 'Africa/Kampala' // Explicitly set timezone for Uganda
+                };
+                const formattedTime = now.toLocaleString('en-US', options); // 'en-US' for standard format, but timeZone overrides actual timezone
+
+                const timeElement = document.getElementById('current-time');
+                if (timeElement) {
+                    timeElement.textContent = `Current Time: ${formattedTime}`;
+                }
+            }
+
+            // Initial load and periodic updates
+            updateWeatherUI();
+            updateCurrentTime(); // Initial display of time
+            setInterval(updateCurrentTime, 1000); // Update time every second
+            // setInterval(updateWeatherUI, 300000); // Update weather data every 5 minutes (300,000 ms)
+        });
+    </script>
+</body>
+</html>

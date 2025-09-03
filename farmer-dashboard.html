@@ -5,171 +5,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmer Dashboard - AgriTech AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+        .currency-ugx {
+            color: #28a745;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-seedling me-2"></i>AgriTech AI - Farmer
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#" onclick="logout()">
-                    <i class="fas fa-sign-out-alt me-1"></i>Logout
-                </a>
+    <!-- Added sidebar navigation for farmer portal -->
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar position-fixed d-none d-md-block" style="width: 250px; z-index: 1000;">
+            <div class="p-3">
+                <div class="text-center mb-4">
+                    <i class="fas fa-seedling text-white" style="font-size: 2rem;"></i>
+                    <h5 class="text-white mt-2">Farmer Portal</h5>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#price-prediction">
+                            <i class="fas fa-crystal-ball me-2"></i>Price Prediction
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#market-comparison">
+                            <i class="fas fa-balance-scale me-2"></i>Market Comparison
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#my-products">
+                            <i class="fas fa-leaf me-2"></i>My Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analytics">
+                            <i class="fas fa-chart-line me-2"></i>Analytics
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">
+                            <i class="fas fa-user me-2"></i>Profile
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </nav>
+            <div class="mt-auto p-3">
+                <button class="btn btn-outline-light w-100" onclick="logout()">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </button>
+            </div>
+        </nav>
 
-    <div class="dashboard-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="display-6 fw-bold">Welcome, <span id="farmerName">Farmer</span>!</h1>
-                    <p class="lead">Make informed decisions with AI-powered price predictions</p>
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+                <div class="container-fluid">
+                    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand fw-bold" href="#">
+                        <i class="fas fa-seedling me-2"></i>AgriTech AI - Farmer
+                    </a>
+                    <div class="navbar-nav ms-auto">
+                        <span class="navbar-text me-3">
+                            <i class="fas fa-user-circle me-1"></i><span id="farmerName">Farmer</span>
+                        </span>
+                        <a class="nav-link d-md-none" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="dashboard-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-6 fw-bold">Welcome, <span id="farmerNameHeader">Farmer</span>!</h1>
+                            <p class="lead">Make informed decisions with AI-powered price predictions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid my-5">
+                <!-- Stats Cards -->
+                <div class="row mb-5">
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-success text-white mx-auto">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4 id="totalMarkets">0</h4>
+                            <p class="text-muted">Available Markets</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-primary text-white mx-auto">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h4 id="totalProducts">0</h4>
+                            <p class="text-muted">Products Tracked</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-warning text-white mx-auto">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 id="predictions">0</h4>
+                            <p class="text-muted">Price Predictions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stats-card text-center">
+                            <div class="stats-icon bg-info text-white mx-auto">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <!-- Changed currency from $ to UGX shs -->
+                            <h4 id="savedAmount" class="currency-ugx">0 shs</h4>
+                            <p class="text-muted">Losses Prevented</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Prediction Section -->
+                <div class="row mb-5" id="price-prediction">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-crystal-ball me-2"></i>AI Price Prediction Tool</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="predictionForm" class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="productSelect" class="form-label">Select Product</label>
+                                        <select class="form-select" id="productSelect" required>
+                                            <option value="">Choose a product...</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="marketSelect" class="form-label">Select Market</label>
+                                        <select class="form-select" id="marketSelect" required>
+                                            <option value="">Choose a market...</option>
+                                        </select>
+                                    </div>
+                                    <!-- Enhanced quantity input with better validation and UGX currency -->
+                                    <div class="col-md-3">
+                                        <label for="quantity" class="form-label">Quantity (kg)</label>
+                                        <input type="number" class="form-control" id="quantity" min="0.1" step="0.1" required>
+                                        <div class="form-text">Enter quantity in kilograms</div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="predictionDays" class="form-label">Prediction Period</label>
+                                        <select class="form-select" id="predictionDays">
+                                            <option value="1">Next 1 day</option>
+                                            <option value="7" selected>Next 7 days</option>
+                                            <option value="14">Next 14 days</option>
+                                            <option value="30">Next 30 days</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search me-2"></i>Get AI Price Prediction
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prediction Results -->
+                <div id="predictionResults" class="row mb-5" style="display: none;">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>AI Price Prediction Results</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="prediction-card p-3 mb-3">
+                                            <h6 class="text-success">Selling Price Prediction</h6>
+                                            <!-- Updated to show UGX currency and per kg pricing -->
+                                            <h3 id="sellingPrice" class="price-up currency-ugx">0 shs</h3>
+                                            <p class="mb-0">Per kg: <span id="sellingPricePerKg" class="currency-ugx">0 shs</span></p>
+                                            <p class="mb-0">Best time to sell: <span id="bestSellTime">-</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="prediction-card p-3 mb-3">
+                                            <h6 class="text-primary">Buying Price Prediction</h6>
+                                            <h3 id="buyingPrice" class="price-down currency-ugx">0 shs</h3>
+                                            <p class="mb-0">Per kg: <span id="buyingPricePerKg" class="currency-ugx">0 shs</span></p>
+                                            <p class="mb-0">Best time to buy: <span id="bestBuyTime">-</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="prediction-card p-3 mb-3">
+                                            <h6 class="text-warning">Profit Potential</h6>
+                                            <h3 id="profitPotential" class="currency-ugx">0 shs</h3>
+                                            <p class="mb-0">Confidence: <span id="confidenceLevel">0%</span></p>
+                                            <p class="mb-0">Market trend: <span id="marketTrend">-</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong>AI Recommendation:</strong> <span id="recommendation">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Comparison -->
+                <div class="row" id="market-comparison">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="fas fa-balance-scale me-2"></i>Live Market Comparison</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Market</th>
+                                                <th>Product</th>
+                                                <!-- Updated table headers to show UGX currency -->
+                                                <th>Current Selling Price (UGX/kg)</th>
+                                                <th>Current Buying Price (UGX/kg)</th>
+                                                <th>Stock Available</th>
+                                                <th>Trend</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="marketComparisonTable">
+                                            <!-- Dynamic content will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container my-5">
-        <!-- Stats Cards -->
-        <div class="row mb-5">
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-success text-white mx-auto">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h4 id="totalMarkets">0</h4>
-                    <p class="text-muted">Available Markets</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-primary text-white mx-auto">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h4 id="totalProducts">0</h4>
-                    <p class="text-muted">Products Tracked</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-warning text-white mx-auto">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4 id="predictions">0</h4>
-                    <p class="text-muted">Price Predictions</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="stats-card text-center">
-                    <div class="stats-icon bg-info text-white mx-auto">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4 id="savedAmount">$0</h4>
-                    <p class="text-muted">Losses Prevented</p>
-                </div>
-            </div>
+    <!-- Mobile Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header bg-success text-white">
+            <h5 class="offcanvas-title">
+                <i class="fas fa-seedling me-2"></i>Farmer Portal
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
-
-        <!-- Price Prediction Section -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="fas fa-crystal-ball me-2"></i>Price Prediction Tool</h5>
-                    </div>
-                    <div class="card-body">
-                        <form id="predictionForm" class="row g-3">
-                            <div class="col-md-4">
-                                <label for="productSelect" class="form-label">Select Product</label>
-                                <select class="form-select" id="productSelect" required>
-                                    <option value="">Choose a product...</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="marketSelect" class="form-label">Select Market</label>
-                                <select class="form-select" id="marketSelect" required>
-                                    <option value="">Choose a market...</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="quantity" class="form-label">Quantity (kg)</label>
-                                <input type="number" class="form-control" id="quantity" min="1" required>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-search me-2"></i>Get Price Prediction
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Prediction Results -->
-        <div id="predictionResults" class="row mb-5" style="display: none;">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Price Prediction Results</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="prediction-card p-3 mb-3">
-                                    <h6 class="text-success">Selling Price Prediction</h6>
-                                    <h3 id="sellingPrice" class="price-up">$0.00</h3>
-                                    <p class="mb-0">Best time to sell: <span id="bestSellTime">-</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="prediction-card p-3 mb-3">
-                                    <h6 class="text-primary">Buying Price Prediction</h6>
-                                    <h3 id="buyingPrice" class="price-down">$0.00</h3>
-                                    <p class="mb-0">Best time to buy: <span id="bestBuyTime">-</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle me-2"></i>
-                            <strong>Recommendation:</strong> <span id="recommendation">-</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Market Comparison -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header bg-warning text-dark">
-                        <h5 class="mb-0"><i class="fas fa-balance-scale me-2"></i>Market Comparison</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Market</th>
-                                        <th>Product</th>
-                                        <th>Current Selling Price</th>
-                                        <th>Current Buying Price</th>
-                                        <th>Trend</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="marketComparisonTable">
-                                    <!-- Dynamic content will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="offcanvas-body bg-success">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#price-prediction">
+                        <i class="fas fa-crystal-ball me-2"></i>Price Prediction
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#market-comparison">
+                        <i class="fas fa-balance-scale me-2"></i>Market Comparison
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#my-products">
+                        <i class="fas fa-leaf me-2"></i>My Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#analytics">
+                        <i class="fas fa-chart-line me-2"></i>Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#profile">
+                        <i class="fas fa-user me-2"></i>Profile
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 

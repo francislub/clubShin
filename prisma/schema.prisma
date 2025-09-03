@@ -1,0 +1,221 @@
+// This is your Prisma schema file,
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  name      String?
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  type      UserType
+
+  @@map("users")
+}
+
+
+model Farmer {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String   @unique
+  password       String
+  firstName      String?
+  lastName       String?
+  phone          String?
+  farmLocation   String?
+  farmSize       Float?
+  primaryCrops   String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  // Analytics fields
+  totalPredictions Int   @default(0)
+  moneySaved       Float @default(0)
+  
+  // Relations
+  transactions Transaction[]
+  predictions  PricePrediction[]
+
+  @@map("farmers")
+}
+
+
+model Agent {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  email      String   @unique
+  password   String
+  firstName  String?
+  lastName   String?
+  phone      String?
+  company    String?
+  businessLocation String?
+  businessType     String?
+  licenseNumber    String?
+  type       String   @default("agent")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  // Relations
+  markets      Market[]
+  products     Product[]
+  transactions Transaction[]
+
+  @@map("agents")
+}
+
+
+model Market {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  location     String?
+  description  String?
+  agentId      String   @db.ObjectId     // required now
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  productCount Int      @default(0)
+  
+  // Relations
+  agent        Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  products     Product[]
+  priceHistory PriceHistory[]
+
+  @@map("markets")
+}
+
+
+model Product {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  category     String?
+  sellingPrice Float
+  buyingPrice  Float
+  stock        Int
+  unit         String   @default("kg")
+  marketId     String   @db.ObjectId
+  agentId      String   @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relations
+  market       Market        @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  agent        Agent         @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  priceHistory PriceHistory[]
+  predictions  PricePrediction[]
+
+  @@map("products")
+}
+
+
+model Transaction {
+  id          String            @id @default(auto()) @map("_id") @db.ObjectId
+  productId   String            @db.ObjectId
+  farmerId    String?           @db.ObjectId
+  agentId     String?           @db.ObjectId
+  quantity    Float
+  pricePerKg  Float
+  totalAmount Float
+  type        TransactionType
+  status      TransactionStatus @default(PENDING)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  
+  // Relations
+  product Product @relation(fields: [productId], references: [id])
+  farmer  Farmer? @relation(fields: [farmerId], references: [id])
+  agent   Agent?  @relation(fields: [agentId], references: [id])
+
+  @@map("transactions")
+}
+
+
+model PriceHistory {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId    String   @db.ObjectId
+  productName  String
+  marketId     String   @db.ObjectId
+  sellingPrice Float
+  buyingPrice  Float
+  date         DateTime @default(now())
+  source       String?  // Where the price data came from
+  
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  market  Market  @relation(fields: [marketId], references: [id], onDelete: Cascade)
+
+  @@map("price_history")
+}
+
+model PricePrediction {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId             String   @db.ObjectId
+  farmerId              String?  @db.ObjectId
+  quantity              Float
+  predictionDays        Int
+  predictedSellingPrice Float
+  predictedBuyingPrice  Float
+  profitPotential       Float
+  confidence            Float
+  recommendation        String
+  bestSellTime          String?
+  bestBuyTime           String?
+  factors               Json     // Store calculation factors as JSON
+  createdAt             DateTime @default(now())
+  
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  farmer  Farmer? @relation(fields: [farmerId], references: [id])
+
+  @@map("predictions")
+}
+
+model MarketComparison {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  productName String
+  comparisons Json     // Store market comparison data as JSON
+  createdAt   DateTime @default(now())
+  expiresAt   DateTime // For caching purposes
+
+  @@map("market_comparisons")
+}
+
+model Analytics {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  totalFarmers      Int      @default(0)
+  totalAgents       Int      @default(0)
+  totalMarkets      Int      @default(0)
+  totalProducts     Int      @default(0)
+  totalTransactions Int      @default(0)
+  totalPredictions  Int      @default(0)
+  lastUpdated       DateTime @default(now())
+
+  @@map("analytics")
+}
+
+enum UserType {
+  FARMER
+  AGENT
+  ADMIN
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+  FAILED
+}

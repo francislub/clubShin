@@ -5,170 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEVELOPERS | Innovating with Code</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
     <style>
-        /* Custom styles to enhance the Bootstrap theme */
+        /* General Styles */
         :root {
-            --primary-color: #6f42c1; /* Purple - often associated with tech/innovation */
-            --secondary-color: #0d6efd; /* Blue - Bootstrap primary */
-            --accent-color: #20c997; /* Teal/Green - for highlights */
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --dark-bg: #343a40;
             --light-bg: #f8f9fa;
-            --dark-bg: #212529; /* Darker for contrast */
-            --card-bg: #ffffff;
-            --text-color: #343a40;
-            --text-light: #f8f9fa;
-            --border-radius-lg: 0.75rem;
-            --box-shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
-            --transition-speed: 0.4s ease-in-out;
         }
 
         body {
-            font-family: 'Inter', sans-serif; /* Modern, clean font */
-            line-height: 1.7;
-            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
             background-color: var(--light-bg);
-            scroll-behavior: smooth;
         }
-
-        /* Navbar Customization */
-        .navbar {
-            background-color: var(--dark-bg);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
-        }
-
-        .navbar-brand, .nav-link {
-            color: var(--text-light) !important;
-            font-weight: 500;
-            transition: color var(--transition-speed);
-        }
-
-        .navbar-brand:hover, .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .navbar-toggler {
-            border-color: rgba(255,255,255,0.1);
-        }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        /* Hero Section Styling */
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x900/?coding,teamwork,innovation') no-repeat center center/cover;
-            color: var(--text-light);
-            padding: 10rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--box-shadow-lg);
-        }
-        .hero-section h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-            margin-bottom: 1.5rem;
-        }
-        .hero-section p.lead {
-            font-size: clamp(1.3rem, 3.5vw, 2rem);
-            max-width: 900px;
-            margin: 0 auto 3rem auto;
-            opacity: 0.9;
-        }
-        .hero-section .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px; /* Pill shape */
-            transition: all var(--transition-speed);
-        }
-        .hero-section .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        .hero-section .btn-primary:hover {
-            background-color: #5a34a0; /* Darker purple */
-            border-color: #5a34a0;
-            transform: translateY(-3px);
-        }
-        .hero-section .btn-outline-light:hover {
-            background-color: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
-        }
-
-        /* Section Headings */
+        
+        /* Sections */
         section {
-            padding: 6rem 0;
-            position: relative;
-            z-index: 1;
-        }
-        section h2 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-        section p.lead {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--text-color);
-            max-width: 800px;
-            margin: 0 auto 4rem auto;
+            padding: 80px 0;
         }
 
-        /* Feature/Role Cards */
-        .role-card {
-            background-color: var(--card-bg);
-            border: none;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            height: 100%;
-            padding: 2.5rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .role-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        .role-card i {
-            font-size: clamp(3rem, 7vw, 5rem);
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-        .role-card h3 {
-            font-weight: bold;
-            color: var(--dark-bg);
-            margin-bottom: 1rem;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-        }
-        .role-card p {
-            font-size: 1.1rem;
-            color: var(--text-color);
+        #about {
+            background-color: var(--light-bg);
         }
 
-        /* Our Leader Section */
         #overall-leader {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 8rem 0;
+            background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
+            color: #fff;
+            padding: 100px 0;
         }
+
         #overall-leader::before {
             content: '';
             position: absolute;
@@ -176,182 +51,160 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://source.unsplash.com/random/1600x900/?abstract-pattern,geometric') no-repeat center center/cover;
-            opacity: 0.1;
-            z-index: 0;
+            background-color: rgba(0, 0, 0, 0.65);
         }
+
         #overall-leader .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
-        .leader-profile {
-            background-color: rgba(255,255,255,0.1);
-            border-radius: var(--border-radius-lg);
-            padding: 3rem;
-            box-shadow: var(--box-shadow-lg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        #team-leaders {
+            background-color: var(--light-bg);
+        }
+
+        #contact-us {
+            background-color: var(--light-bg);
+        }
+
+        /* Titles and Text */
+        h2 {
+            font-weight: 700;
+            color: var(--dark-bg);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .text-light h2 {
+            color: #fff;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Cards */
+        .role-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
-            margin-bottom: 2rem; /* Spacing for multiple leader profiles */
+            height: 100%;
         }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .role-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .role-card h3 {
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+        
+        .leader-profile {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .leader-profile:hover {
+            transform: translateY(-5px);
+        }
+
         .leader-profile img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
-            border: 5px solid var(--accent-color);
-            margin-bottom: 2rem;
-            box-shadow: 0 0 0 8px rgba(255,255,255,0.2);
-        }
-        .leader-profile h3 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-        .leader-profile .title {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-        }
-        .leader-profile p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        .leader-profile .social-icons a {
-            color: var(--text-light);
-            font-size: 1.8rem;
-            margin: 0 1rem;
-            transition: color var(--transition-speed);
-        }
-        .leader-profile .social-icons a:hover {
-            color: var(--accent-color);
-        }
-        /* Specific styling for the section containing multiple leaders, if needed */
-        #team-leaders .leader-profile {
-            background-color: var(--card-bg); /* Use light background for these cards */
-            color: var(--text-color);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid #eee;
-        }
-        #team-leaders .leader-profile img {
+            border-radius: 50%;
             border: 5px solid var(--primary-color);
-            box-shadow: 0 0 0 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        #team-leaders .leader-profile h3 {
+
+        .leader-profile h3 {
+            font-weight: 700;
             color: var(--dark-bg);
         }
-        #team-leaders .leader-profile .title {
+
+        .leader-profile .title {
             color: var(--secondary-color);
-        }
-        #team-leaders .leader-profile .social-icons a {
-            color: var(--primary-color);
-        }
-        #team-leaders .leader-profile .social-icons a:hover {
-            color: var(--accent-color);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
 
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
 
-        /* Call to Action Section */
-        #cta-section {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            padding: 5rem 0;
-            text-align: center;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-        }
-        #cta-section h2 {
-            color: var(--text-light);
-        }
-        #cta-section .btn-outline-light {
-            border-color: var(--primary-color);
+        .social-icons a:hover {
             color: var(--primary-color);
         }
-        #cta-section .btn-outline-light:hover {
+
+        /* Buttons */
+        .btn-primary {
             background-color: var(--primary-color);
-            color: var(--text-light);
+            border-color: var(--primary-color);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Footer Styling */
-        footer {
-            background-color: var(--dark-bg);
-            color: rgba(255,255,255,0.7);
-            padding: 3rem 0;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color var(--transition-speed);
-        }
-        footer a:hover {
-            color: var(--accent-color);
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
         }
 
-        /* Animated fade-in */
+        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            animation: fadeIn 1s forwards;
         }
-        .fade-in.animated {
+        
+        .fade-in.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 991px) {
-            .hero-section {
-                padding: 8rem 0;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            .hero-section h1 {
-                font-size: clamp(2.5rem, 7vw, 4.5rem);
-            }
-            .hero-section p.lead {
-                font-size: clamp(1.1rem, 3vw, 1.6rem);
-            }
-            .leader-profile {
-                padding: 2rem;
-            }
-            .leader-profile img {
-                width: 150px;
-                height: 150px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-
-        @media (max-width: 767px) {
-            section {
-                padding: 4rem 0;
-            }
-            section h2 {
-                font-size: clamp(2rem, 5vw, 3rem);
-            }
-            section p.lead {
-                font-size: clamp(1rem, 2.5vw, 1.2rem);
-            }
-            .role-card {
-                padding: 2rem;
-            }
-            .role-card i {
-                font-size: clamp(2.5rem, 6vw, 4rem);
-            }
-            .leader-profile h3 {
-                font-size: clamp(1.8rem, 4vw, 2.5rem);
-            }
-            .leader-profile .title {
-                font-size: 1.2rem;
-            }
+        
+        .fade-in.is-visible {
+            animation: fadeIn 1s forwards;
         }
+        
     </style>
 </head>
 <body>
 
-    <!-- Header Container -->
     <div id="header-container"></div>
 
     <main>
@@ -360,7 +213,7 @@
                 <h2 class="mb-4 fade-in">Who We Are</h2>
                 <p class="lead mb-5 fade-in">
                     We are pupils from <strong>Shining Stars Nursery and Primary School, Vvumba</strong>. As young and passionate learners, we have developed a strong interest in technology and coding. Many of us enjoy creating websites and software using <strong>HTML, CSS, and JavaScript</strong>. 
-                 With curiosity and creativity, we work together as a team of young developers to explore the world of software development and bring our ideas to life through interactive and educational digital projects.
+                With curiosity and creativity, we work together as a team of young developers to explore the world of software development and bring our ideas to life through interactive and educational digital projects.
                 </p>
                 <div class="row justify-content-center g-4">
                     <div class="col-md-4 fade-in">
@@ -400,8 +253,8 @@
                             <img src="/images/leaders/nant1.jpg" alt="Justine - Group Leader">
                             <h3>Justine</h3>
                             <p class="title">Overall Group Leader, DEVELOPERS</p>
-                            <p>
-                                **Justine** is an exceptional leader with a deep understanding of both technical intricacies and team dynamics. With years of experience spanning various complex projects, Justine's ability to simplify challenges, inspire innovation, and foster a collaborative environment has been instrumental in our group's achievements. Justine is not just a leader; they are a mentor, a problem-solver, and a true advocate for cutting-edge development practices. Their strategic vision ensures that our solutions are not only robust but also future-proof.
+                            <p class="title">
+                                Justine is an exceptional leader with a deep understanding of both technical intricacies and team dynamics. With years of experience spanning various complex projects, Justine's ability to simplify challenges, inspire innovation, and foster a collaborative environment has been instrumental in our group's achievements. Justine is not just a leader; they are a mentor, a problem-solver, and a true advocate for cutting-edge development practices. Their strategic vision ensures that our solutions are not only robust but also future-proof.
                             </p>
                             <div class="social-icons">
                                 <a href="#" aria-label="Justine's LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -426,12 +279,10 @@
                             <img src="/images/leaders/kit1.jpg" alt="Kitone - Frontend Leader">
                             <h3>Kitone</h3>
                             <p class="title">Lead Frontend Developer</p>
-                            <p>
-                                **Kitone** spearheads our frontend efforts, bringing designs to life with pixel-perfect precision and exceptional user experience. Kitone's passion for intuitive interfaces ensures every interaction is seamless and engaging.
-                            </p>
                             <div class="social-icons">
                                 <a href="#" aria-label="Kitone's LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="#" aria-label="Kitone's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Kitone's Twitter"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -440,12 +291,10 @@
                             <img src="/images/leaders/ire.jpg" alt="Irene - Backend Leader">
                             <h3>Irene</h3>
                             <p class="title">Lead Backend Developer</p>
-                            <p>
-                                **Irene** leads our backend team, building the robust and scalable architecture that powers our applications. Irene's expertise ensures our systems are secure, efficient, and capable of handling complex data with ease.
-                            </p>
                             <div class="social-icons">
                                 <a href="#" aria-label="Irene's LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="#" aria-label="Irene's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Irene's Twitter"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -454,12 +303,10 @@
                             <img src="/images/leaders/alb1.jpg" alt="Carol - Full-Stack Leader">
                             <h3>Carol</h3>
                             <p class="title">Lead Full-Stack Developer</p>
-                            <p>
-                                **Carol** leads our full-stack endeavors, bringing a holistic approach to development. Carol excels at integrating both client-side and server-side technologies to deliver complete, high-performing solutions.
-                            </p>
                             <div class="social-icons">
                                 <a href="#" aria-label="Carol's LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="#" aria-label="Carol's GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Carol's Twitter"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -467,7 +314,7 @@
             </div>
         </section>
 
-        <section id="contact-us" class="bg-white">
+        <!-- <section id="contact-us" class="bg-white">
             <div class="container text-center">
                 <h2 class="mb-4 fade-in">Ready to Build Something Amazing with DEVELOPERS?</h2>
                 <p class="lead mb-5 fade-in">
@@ -504,37 +351,33 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
-    <footer class="mt-5">
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> DEVELOPERS. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            <p>Built with <i class="fas fa-heart text-danger"></i> by passionate developers.</p>
-        </div>
-    </footer>
-
-
-    
+    <div id="container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="js/components.js"></script>
     <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Contact form handling (simulated)
+        // Additional JavaScript for enhanced functionality
+        
+        // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
+            
+            // Get form data
             const formData = {
                 name: document.getElementById('contactName').value,
                 email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                type: document.getElementById('contactType').value,
                 subject: document.getElementById('contactSubject').value,
                 message: document.getElementById('contactMessage').value
             };
-
-            console.log('Form data submitted:', formData);
-            alert('Thank you for your message! We\'ll get back to you soon.');
+            
+            // Simulate form submission
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
             this.reset();
         });
 
@@ -558,21 +401,22 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries, observer) {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('fade-in');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all feature cards and sections
+        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
             observer.observe(el);
         });
 
-        // Initialize tooltips (if any are added)
+        // Initialize tooltips when components are loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Wait for components to load, then initialize tooltips
             setTimeout(function() {
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

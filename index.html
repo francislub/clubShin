@@ -1,206 +1,898 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriTech AI - Smart Farming Solutions</title>
+    <title>AgriTech AI - Smart Farming Solutions developed by shining stars nursery and primary school vvumba - Computer Club</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles/main.css">
+     <style>
+        /* Adding advanced animations and better color contrast */
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #4a7c59;
+            --accent-color: #7fb069;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #212529;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Typewriter Animation */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+
+        /* Sliding Text Animation */
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Pulse Animation */
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px var(--accent-color); }
+            50% { box-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color); }
+            100% { box-shadow: 0 0 5px var(--accent-color); }
+        }
+
+        /* Hero Section Enhanced */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        /* Moving Background Elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: moveBackground 20s linear infinite;
+        }
+
+        .bg-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .bg-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* Enhanced Cards */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Scrolling Text */
+        .scrolling-text {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .scrolling-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 15s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Counter Animation */
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        /* Progress Bars */
+        .progress-bar-animated {
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0%; }
+        }
+
+        /* Testimonial Carousel */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 1rem;
+        }
+
+        /* FAQ Accordion */
+        .accordion-button:not(.collapsed) {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Blog Cards */
+        .blog-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+        }
+
+        /* Team Cards */
+        .team-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Technology Stack */
+        .tech-icon {
+            font-size: 3rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .typewriter {
+                font-size: 1.5rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .counter {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Particle Effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 6s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <!-- <div id="loading-screen" class="position-fixed top-0 start-0 w-100 h-100 bg-white d-flex justify-content-center align-items-center" style="z-index: 9999;">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-3"></div>
+            <h4 class="text-primary">Loading AgriTech AI...</h4>
+        </div>
+    </div> -->
+
     <!-- Header Container -->
     <div id="header-container"></div>
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="container">
+
+    <!-- Hero Section with Enhanced Animations -->
+    <header class="hero-section position-relative">
+        <!-- Added moving background elements and particles -->
+        <div class="bg-element"></div>
+        <div class="bg-element"></div>
+        <div class="bg-element"></div>
+        
+        <div class="particles" id="particles-container"></div>
+        
+        <div class="container position-relative">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold text-white mb-4 fade-in">
-                        Smart Agriculture with AI-Powered Price Predictions
-                    </h1>
-                    <p class="lead text-white mb-5 fade-in">
-                        Maximize your profits with real-time market analysis and intelligent price forecasting for agricultural products.
-                    </p>
-                    <div class="d-flex gap-3 flex-wrap fade-in">
-                        <a href="farmer-login.html" class="btn btn-primary btn-lg px-4 py-3">
+                    <div class="slide-in-left">
+                        <h1 class="display-4 fw-bold text-white mb-4">
+                            <span class="typewriter">Smart Agriculture with AI-Powered Price Predictions</span>
+                        </h1>
+                    </div>
+                    <div class="slide-in-left" style="animation-delay: 0.5s;">
+                        <p class="lead text-white mb-5">
+                            Maximize your profits with real-time market analysis and intelligent price forecasting for agricultural products.
+                        </p>
+                    </div>
+                    <div class="d-flex gap-3 flex-wrap slide-in-left" style="animation-delay: 1s;">
+                        <a href="farmer-login.html" class="btn btn-primary btn-lg px-4 py-3 pulse-glow">
                             <i class="fas fa-user-tie me-2"></i>Farmer Portal
                         </a>
                         <a href="agent-login.html" class="btn btn-outline-light btn-lg px-4 py-3">
                             <i class="fas fa-briefcase me-2"></i>Agent Portal
                         </a>
                     </div>
+                    
+                    <!-- Added scrolling announcement text -->
+                    <div class="mt-4 p-3 bg-white bg-opacity-10 rounded scrolling-text">
+                        <span class="text-white fw-bold">
+                            🌾 New Feature: AI Crop Disease Detection Now Available! 
+                            📈 Market Predictions with 95% Accuracy! 
+                            🚀 Join 10,000+ Farmers Already Using Our Platform!
+                        </span>
+                    </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="hero-image fade-in">
-                        <img src="/placeholder.svg?height=400&width=500" alt="Smart Farming" class="img-fluid rounded shadow-lg">
+                    <div class="hero-image slide-in-right floating">
+                        <img src="/images/yes.jpg?height=500&width=600" alt="Smart Farming" class="img-fluid rounded shadow-lg">
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Features Section -->
-    <section id="features" class="py-5 bg-light">
+    <!-- Technology Stack Section -->
+    <section class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="display-5 fw-bold">Key Features</h2>
-                    <p class="lead">Empowering farmers and agents with cutting-edge technology</p>
+                    <h2 class="display-6 fw-bold">Developed by Shining Stars computer club</h2>
+                    <p class="lead">teach farmer save farmer</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-2 col-4 mb-4">
+                    <div class="tech-icon text-primary">
+                        <img src="/images/leaders/ire.jpg" 
+                        alt="Irene - Backend Leader" 
+                        class="img-fluid rounded-circle" 
+                        style="width:100px; height:100px; object-fit:cover;">
+                    </div>
+                    <h6>Irene</h6>
+                </div>
+                <div class="col-md-2 col-4 mb-4">
+                    <div class="tech-icon text-success">
+                        <img src="/images/leaders/ire.jpg" 
+                        alt="Irene - Backend Leader" 
+                        class="img-fluid rounded-circle" 
+                        style="width:100px; height:100px; object-fit:cover;">
+                    </div>
+                    
+                
+                <div class="col-md-2 col-4 mb-4">
+                    <div class="tech-icon text-info">
+                        <img src="/images/leaders/nant1.jpg" 
+                        alt="Irene - Backend Leader" 
+                        class="img-fluid rounded-circle" 
+                        style="width:100px; height:100px; object-fit:cover;">
+                    </div>
+                    <h6>Justine</h6>
+                </div>
+                <div class="col-md-2 col-4 mb-4">
+                    <div class="tech-icon text-danger">
+                        <img src="/images/leaders/nant1.jpg" 
+                        alt="Irene - Backend Leader" 
+                        class="img-fluid rounded-circle" 
+                        style="width:100px; height:100px; object-fit:cover;">
+                    </div>
+                    <h6>Kitone</h6>
+                </div>
+                <div class="col-md-2 col-4 mb-4">
+                    <div class="tech-icon text-dark">
+                        <img src="/images/leaders/kit1.jpg" 
+                        alt="Irene - Backend Leader" 
+                        class="img-fluid rounded-circle" 
+                        style="width:100px; height:100px; object-fit:cover;">
+                    </div>
+                    <h6>J</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section Enhanced -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold animate__animated animate__fadeInUp">Key Features</h2>
+                    <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Empowering farmers and agents with cutting-edge technology</p>
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInLeft">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-chart-line fa-3x text-success"></i>
                         </div>
-                        <h4>AI Price Prediction</h4>
-                        <p>Advanced machine learning algorithms analyze market trends to provide accurate price forecasts for optimal trading decisions.</p>
+                        <h4 class="text-dark">Price Prediction</h4>
+                        <p class="text-muted">Algorithms analyze market trends to provide accurate price forecasts for optimal trading decisions.</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success progress-bar-animated" role="progressbar" style="width: 95%"></div>
+                        </div>
+                        <small class="text-success fw-bold">95% Accuracy Rate</small>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-store fa-3x text-primary"></i>
                         </div>
-                        <h4>Market Management</h4>
-                        <p>Comprehensive platform for agents to create, manage, and monitor multiple agricultural markets with real-time updates.</p>
+                        <h4 class="text-dark">Market Management</h4>
+                        <p class="text-muted">Comprehensive platform for agents to create, manage, and monitor multiple agricultural markets with real-time updates.</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary progress-bar-animated" role="progressbar" style="width: 88%"></div>
+                        </div>
+                        <small class="text-primary fw-bold">500+ Active Markets</small>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInRight animate__delay-2s">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-shield-alt fa-3x text-warning"></i>
                         </div>
-                        <h4>Loss Prevention</h4>
-                        <p>Smart analytics and recommendations help prevent financial losses through data-driven insights and market intelligence.</p>
+                        <h4 class="text-dark">Loss Prevention</h4>
+                        <p class="text-muted">Smart analytics and recommendations help prevent financial losses through data-driven insights and market intelligence.</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-warning progress-bar-animated" role="progressbar" style="width: 92%"></div>
+                        </div>
+                        <small class="text-warning fw-bold">2M+ Losses Prevented</small>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInLeft animate__delay-3s">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-mobile-alt fa-3x text-info"></i>
                         </div>
-                        <h4>Mobile Friendly</h4>
-                        <p>Access your agricultural data and make informed decisions anywhere with our responsive mobile-optimized platform.</p>
+                        <h4 class="text-dark">Mobile Friendly</h4>
+                        <p class="text-muted">Access your agricultural data and make informed decisions anywhere with our responsive mobile-optimized platform.</p>
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <span class="badge bg-info">iOS</span>
+                            <span class="badge bg-info">Android</span>
+                            <span class="badge bg-info">Web</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-4s">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-clock fa-3x text-secondary"></i>
                         </div>
-                        <h4>Real-time Updates</h4>
-                        <p>Get instant notifications about market changes, price fluctuations, and trading opportunities as they happen.</p>
+                        <h4 class="text-dark">Real-time Updates</h4>
+                        <p class="text-muted">Get instant notifications about market changes, price fluctuations, and trading opportunities as they happen.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-success me-1">Live Data</span>
+                            <span class="badge bg-success me-1">Push Notifications</span>
+                            <span class="badge bg-success">24/7 Monitoring</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInRight animate__delay-5s">
+                    <div class="feature-card text-center p-4 h-100">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-users fa-3x text-dark"></i>
                         </div>
-                        <h4>Community Network</h4>
-                        <p>Connect with other farmers and agents in your region to share insights, experiences, and market opportunities.</p>
+                        <h4 class="text-dark">Community Network</h4>
+                        <p class="text-muted">Connect with other farmers and agents in your region to share insights, experiences, and market opportunities.</p>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-users text-success"></i>
+                                    <small class="ms-1">10K+ Members</small>
+                                </div>
+                                <div>
+                                    <i class="fas fa-comments text-primary"></i>
+                                    <small class="ms-1">Active Forums</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
+    <!-- About Section Enhanced -->
+    <section id="about" class="py-5 bg-light">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <h2 class="display-6 fw-bold mb-4">Revolutionizing Agriculture with AI</h2>
-                    <p class="lead mb-4">AgriTech AI is transforming the agricultural landscape by providing farmers and agents with intelligent tools for market analysis, price prediction, and strategic decision-making.</p>
-                    <p class="mb-4">Our platform combines cutting-edge artificial intelligence with real-world agricultural expertise to deliver actionable insights that help maximize profits and minimize risks in farming operations.</p>
+                    <h2 class="display-6 fw-bold mb-4 text-dark">Revolutionizing Agriculture with AI</h2>
+                    <p class="lead mb-4 text-muted">AgriTech AI is transforming the agricultural landscape by providing farmers and agents with intelligent tools for market analysis, price prediction, and strategic decision-making.</p>
+                    <p class="mb-4 text-muted">Our platform combines cutting-edge artificial intelligence with real-world agricultural expertise to deliver actionable insights that help maximize profits and minimize risks in farming operations.</p>
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>Real-time Market Data</span>
+                                <span class="text-dark">Real-time Market Data</span>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>AI-Powered Predictions</span>
+                                <span class="text-dark">AI-Powered Predictions</span>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>24/7 Expert Support</span>
+                                <span class="text-dark">24/7 Expert Support</span>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>Mobile Responsive</span>
+                                <span class="text-dark">Mobile Responsive</span>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>Secure & Reliable</span>
+                                <span class="text-dark">Secure & Reliable</span>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                <span>Easy Integration</span>
+                                <span class="text-dark">Easy Integration</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="/placeholder.svg?height=400&width=500" alt="About AgriTech AI" class="img-fluid rounded shadow">
+                    <img src="/images/images/the.jpg?height=400&width=500" alt="About AgriTech AI" class="img-fluid rounded shadow floating">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="py-5 bg-success text-white">
+    <!-- Statistics Section Enhanced -->
+    <section class="py-5 bg-success text-white position-relative">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
                     <div class="stats-item">
-                        <h2 class="display-4 fw-bold">10K+</h2>
+                        <div class="counter" data-target="10000">0</div>
                         <p class="lead">Active Farmers</p>
+                        <small class="opacity-75">Growing daily</small>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-item">
-                        <h2 class="display-4 fw-bold">500+</h2>
+                        <div class="counter" data-target="500">0</div>
                         <p class="lead">Registered Agents</p>
+                        <small class="opacity-75">Verified professionals</small>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-item">
-                        <h2 class="display-4 fw-bold">95%</h2>
+                        <div class="counter" data-target="95">0</div>
                         <p class="lead">Prediction Accuracy</p>
+                        <small class="opacity-75">Industry leading</small>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-item">
-                        <h2 class="display-4 fw-bold">$2M+</h2>
+                        <div class="counter" data-target="2000000">0</div>
                         <p class="lead">Losses Prevented</p>
+                        <small class="opacity-75">USD saved</small>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark">What Our Users Say</h2>
+                    <p class="lead text-muted">Real feedback from farmers and agents using our platform</p>
+                </div>
+            </div>
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonial-card text-center">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left fa-2x text-primary"></i>
+                                    </div>
+                                    <p class="lead text-muted mb-4">"AgriTech AI has revolutionized how I manage my farm. The price predictions are incredibly accurate, and I've increased my profits by 40% in just six months!"</p>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="/placeholder.svg?height=60&width=60" alt="John Doe" class="rounded-circle me-3" width="60" height="60">
+                                        <div class="text-start">
+                                            <h6 class="mb-0 text-dark">John Doe</h6>
+                                            <small class="text-muted">Corn Farmer, Iowa</small>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonial-card text-center">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left fa-2x text-primary"></i>
+                                    </div>
+                                    <p class="lead text-muted mb-4">"As an agricultural agent, this platform has made my job so much easier. I can manage multiple markets efficiently and provide better service to my clients."</p>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="/placeholder.svg?height=60&width=60" alt="Sarah Smith" class="rounded-circle me-3" width="60" height="60">
+                                        <div class="text-start">
+                                            <h6 class="mb-0 text-dark">Sarah Smith</h6>
+                                            <small class="text-muted">Agricultural Agent, California</small>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonial-card text-center">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left fa-2x text-primary"></i>
+                                    </div>
+                                    <p class="lead text-muted mb-4">"The real-time market data and community features have connected me with other farmers. I've learned so much and improved my farming practices significantly."</p>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="/placeholder.svg?height=60&width=60" alt="Mike Johnson" class="rounded-circle me-3" width="60" height="60">
+                                        <div class="text-start">
+                                            <h6 class="mb-0 text-dark">Mike Johnson</h6>
+                                            <small class="text-muted">Vegetable Farmer, Texas</small>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark">Frequently Asked Questions</h2>
+                    <p class="lead text-muted">Get answers to common questions about our platform</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    How accurate are the AI price predictions?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our AI models achieve 95% accuracy in price predictions by analyzing historical data, market trends, weather patterns, and economic indicators. The system continuously learns and improves its predictions over time.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    Is the platform suitable for small-scale farmers?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our platform is designed to serve farmers of all sizes. We offer a free tier for individual farmers with essential features, and our pricing scales based on usage and needs.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                    How do I get started with AgriTech AI?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Getting started is easy! Simply choose whether you're a farmer or agent, create your free account, complete your profile, and start exploring the platform. We also offer onboarding support to help you get the most out of our tools.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                    What kind of support do you provide?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We provide 24/7 technical support, comprehensive documentation, video tutorials, and a community forum. Premium users also get access to dedicated account managers and priority support.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                                    Can I integrate the platform with my existing systems?
+                                </button>
+                            </h2>
+                            <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! We offer comprehensive APIs and integrations with popular farm management systems, accounting software, and IoT devices. Our technical team can help with custom integrations for enterprise clients.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold text-dark">Latest from Our Blog</h2>
+                    <p class="lead text-muted">Stay updated with the latest trends in agricultural technology</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="/placeholder.svg?height=200&width=400" class="card-img-top" alt="Blog Post">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary">Technology</span>
+                                <small class="text-muted">Dec 15, 2024</small>
+                            </div>
+                            <h5 class="card-title text-dark">The Future of AI in Agriculture</h5>
+                            <p class="card-text text-muted">Explore how artificial intelligence is transforming modern farming practices and what it means for the future of food production.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="/placeholder.svg?height=200&width=400" class="card-img-top" alt="Blog Post">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success">Market Analysis</span>
+                                <small class="text-muted">Dec 12, 2024</small>
+                            </div>
+                            <h5 class="card-title text-dark">Understanding Market Volatility</h5>
+                            <p class="card-text text-muted">Learn how to navigate market fluctuations and make informed decisions using data-driven insights and predictive analytics.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="/placeholder.svg?height=200&width=400" class="card-img-top" alt="Blog Post">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-warning">Sustainability</span>
+                                <small class="text-muted">Dec 10, 2024</small>
+                            </div>
+                            <h5 class="card-title text-dark">Sustainable Farming Practices</h5>
+                            <p class="card-text text-muted">Discover eco-friendly farming methods that not only protect the environment but also improve long-term profitability.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5 text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-6 fw-bold mb-3">Stay Updated</h2>
+                    <p class="lead mb-0">Get the latest insights, market updates, and agricultural technology news delivered to your inbox.</p>
+                </div>
+                <div class="col-lg-6">
+                    <form class="row g-3" id="newsletterForm">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-warning btn-lg w-100">Subscribe</button>
+                        </div>
+                        <div class="col-12">
+                            <small class="opacity-75">
+                                <i class="fas fa-lock me-1"></i>
+                                We respect your privacy. Unsubscribe at any time.
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section Enhanced -->
     <section id="pricing" class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="display-5 fw-bold">Simple, Transparent Pricing</h2>
-                    <p class="lead">Choose the plan that works best for your agricultural needs</p>
+                    <h2 class="display-5 fw-bold text-dark">Simple, Transparent Pricing</h2>
+                    <p class="lead text-muted">Choose the plan that works best for your agricultural needs</p>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -210,7 +902,7 @@
                             <div class="mb-3">
                                 <i class="fas fa-user-tie fa-3x text-success"></i>
                             </div>
-                            <h5 class="card-title">Farmer Plan</h5>
+                            <h5 class="card-title text-dark">Farmer Plan</h5>
                             <div class="display-4 fw-bold text-success mb-3">Free</div>
                             <p class="text-muted mb-4">Perfect for individual farmers</p>
                             <ul class="list-unstyled mb-4">
@@ -233,7 +925,7 @@
                             <div class="mb-3">
                                 <i class="fas fa-briefcase fa-3x text-primary"></i>
                             </div>
-                            <h5 class="card-title">Agent Plan</h5>
+                            <h5 class="card-title text-dark">Agent Plan</h5>
                             <div class="display-4 fw-bold text-primary mb-3">$29<small class="fs-6 text-muted">/month</small></div>
                             <p class="text-muted mb-4">Ideal for agricultural agents</p>
                             <ul class="list-unstyled mb-4">
@@ -253,7 +945,7 @@
                             <div class="mb-3">
                                 <i class="fas fa-building fa-3x text-warning"></i>
                             </div>
-                            <h5 class="card-title">Enterprise</h5>
+                            <h5 class="card-title text-dark">Enterprise</h5>
                             <div class="display-4 fw-bold text-warning mb-3">Custom</div>
                             <p class="text-muted mb-4">For large organizations</p>
                             <ul class="list-unstyled mb-4">
@@ -271,32 +963,32 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section Enhanced -->
     <section id="contact" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="display-5 fw-bold">Get In Touch</h2>
-                    <p class="lead">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                    <h2 class="display-5 fw-bold text-dark">Get In Touch</h2>
+                    <p class="lead text-muted">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <form class="row g-3" id="contactForm">
                         <div class="col-md-6">
-                            <label for="contactName" class="form-label">Full Name</label>
+                            <label for="contactName" class="form-label text-dark">Full Name</label>
                             <input type="text" class="form-control" id="contactName" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="contactEmail" class="form-label">Email Address</label>
+                            <label for="contactEmail" class="form-label text-dark">Email Address</label>
                             <input type="email" class="form-control" id="contactEmail" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="contactPhone" class="form-label">Phone Number</label>
+                            <label for="contactPhone" class="form-label text-dark">Phone Number</label>
                             <input type="tel" class="form-control" id="contactPhone">
                         </div>
                         <div class="col-md-6">
-                            <label for="contactType" class="form-label">Inquiry Type</label>
+                            <label for="contactType" class="form-label text-dark">Inquiry Type</label>
                             <select class="form-select" id="contactType" required>
                                 <option value="">Select type...</option>
                                 <option value="general">General Inquiry</option>
@@ -306,11 +998,11 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <label for="contactSubject" class="form-label">Subject</label>
+                            <label for="contactSubject" class="form-label text-dark">Subject</label>
                             <input type="text" class="form-control" id="contactSubject" required>
                         </div>
                         <div class="col-12">
-                            <label for="contactMessage" class="form-label">Message</label>
+                            <label for="contactMessage" class="form-label text-dark">Message</label>
                             <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
                         </div>
                         <div class="col-12 text-center">
@@ -331,8 +1023,95 @@
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
     <script src="js/components.js"></script>
     <script>
-        // Additional JavaScript for enhanced functionality
         
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 2000);
+        });
+
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Typewriter effect
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    
+                    // Trigger counter animation when stats section is visible
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Newsletter form handling
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Simulate subscription
+            alert('Thank you for subscribing! You\'ll receive our latest updates at ' + email);
+            this.reset();
+        });
+
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -347,9 +1126,19 @@
                 message: document.getElementById('contactMessage').value
             };
             
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitBtn.disabled = true;
+            
             // Simulate form submission
-            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-            this.reset();
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         });
 
         // Smooth scrolling for anchor links
@@ -366,35 +1155,118 @@
             });
         });
 
-        // Add fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all feature cards and sections
-        document.querySelectorAll('.feature-card, .stats-item, .card').forEach(el => {
-            observer.observe(el);
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
         });
 
-        // Initialize tooltips when components are loaded
+        // Dynamic text color based on background
+        function adjustTextColor() {
+            const elements = document.querySelectorAll('.text-auto');
+            elements.forEach(el => {
+                const bg = window.getComputedStyle(el.parentElement).backgroundColor;
+                const rgb = bg.match(/\d+/g);
+                if (rgb) {
+                    const brightness = Math.round(((parseInt(rgb[0]) * 299) +
+                                      (parseInt(rgb[1]) * 587) +
+                                      (parseInt(rgb[2]) * 114)) / 1000);
+                    el.style.color = (brightness > 125) ? 'black' : 'white';
+                }
+            });
+        }
+
+        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for components to load, then initialize tooltips
+            createParticles();
+            adjustTextColor();
+            
+            // Observe all sections for animations
+            document.querySelectorAll('section, .feature-card, .stats-item, .card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Initialize tooltips
             setTimeout(function() {
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                     return new bootstrap.Tooltip(tooltipTriggerEl);
                 });
             }, 500);
+            
+            // Add hover effects to cards
+            document.querySelectorAll('.feature-card, .blog-card, .team-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
         });
+
+        // Add scroll-triggered animations
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            
+            // Animate elements based on scroll position
+            document.querySelectorAll('.floating').forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrollTop * speed}px)`;
+            });
+        });
+
+        // Add click effects to buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

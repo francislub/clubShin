@@ -1,12 +1,18 @@
 import express from "express"
 import cors from "cors"
-import dotenv from "dotenv"
 import path from "path"
 import { fileURLToPath } from "url"
-import { connectDB, closeDB } from "./utils/database.js"
+import { connectDB, getDB, initializeCollections } from "./utils/database.js"
 
-// Load environment variables first
-dotenv.config()
+// Import API route handlers
+import agentRegister from "./api/auth/agent/register.js"
+import agentLogin from "./api/auth/agent/login.js"
+import farmerRegister from "./api/auth/farmer/register.js"
+import farmerLogin from "./api/auth/farmer/login.js"
+import marketsHandler from "./api/markets.js"
+import productsHandler from "./api/products.js"
+import marketComparisonHandler from "./api/market-comparison.js"
+import predictPriceHandler from "./api/predict-price.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -21,379 +27,201 @@ app.use(
     credentials: true,
   }),
 )
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use(express.json({ limit: "10mb" }))
-app.use(express.urlencoded({ extended: true, limit: "10mb" }))
-
-// Serve static files
-app.use(express.static("."))
-
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: process.env.NODE_ENV || "development",
-  })
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`[v0] ${new Date().toISOString()} - ${req.method} ${req.path}`)
+  if (req.body && Object.keys(req.body).length > 0) {
+    console.log(`[v0] Request body keys: ${Object.keys(req.body).join(", ")}`)
+  }
+  next()
 })
 
-// Import and use API routes after database connection
-async function setupRoutes() {
+// Authentication routes
+app.post("/api/auth/agent/register", (req, res) => {
+  console.log("[v0] Agent registration route accessed")
+  agentRegister(req, res)
+})
+
+app.post("/api/auth/agent/login", (req, res) => {
+  console.log("[v0] Agent login route accessed")
+  agentLogin(req, res)
+})
+
+app.post("/api/auth/farmer/register", (req, res) => {
+  console.log("[v0] Farmer registration route accessed")
+  farmerRegister(req, res)
+})
+
+app.post("/api/auth/farmer/login", (req, res) => {
+  console.log("[v0] Farmer login route accessed")
+  farmerLogin(req, res)
+})
+
+// Markets API routes
+app.all("/api/markets", (req, res) => {
+  console.log("[v0] Markets API route accessed")
+  marketsHandler(req, res)
+})
+
+app.all("/api/markets/:id", (req, res) => {
+  console.log("[v0] Markets API with ID route accessed")
+  req.query.id = req.params.id
+  marketsHandler(req, res)
+})
+
+// Products API routes
+app.all("/api/products", (req, res) => {
+  console.log("[v0] Products API route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/products/by-name/:productName", (req, res) => {
+  console.log("[v0] Products API by name route accessed")
+  req.params.productName = req.params.productName
+  productsHandler(req, res)
+})
+
+app.all("/api/products/:productName", (req, res) => {
+  console.log("[v0] Products API with product name route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/products/market/:marketId", (req, res) => {
+  console.log("[v0] Products API with market ID route accessed")
+  productsHandler(req, res)
+})
+
+// Agent-specific routes for markets and products
+// Agent Markets API routes
+app.all("/api/agent/markets", (req, res) => {
+  console.log("[v0] Agent markets API route accessed")
+  marketsHandler(req, res)
+})
+
+app.all("/api/agent/markets/:id", (req, res) => {
+  console.log("[v0] Agent markets API with ID route accessed")
+  req.query.id = req.params.id
+  marketsHandler(req, res)
+})
+
+// Agent Products API routes
+app.all("/api/agent/products", (req, res) => {
+  console.log("[v0] Agent products API route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/agent/products/:productName", (req, res) => {
+  console.log("[v0] Agent products API with product name route accessed")
+  productsHandler(req, res)
+})
+
+app.all("/api/agent/products/market/:marketId", (req, res) => {
+  console.log("[v0] Agent products API with market ID route accessed")
+  productsHandler(req, res)
+})
+
+// Dashboard routes
+app.get("/api/farmer/dashboard", async (req, res) => {
+  console.log("[v0] Farmer dashboard data requested")
   try {
-    // Connect to database first
-    await connectDB()
-    console.log("✅ Database connected successfully")
-
-    // Import routes after database connection
-    const { default: farmerLogin } = await import("./api/auth/farmer/login.js")
-    const { default: agentLogin } = await import("./api/auth/agent/login.js")
-    const { default: farmerRegister } = await import("./api/auth/farmer/register.js")
-    const { default: agentRegister } = await import("./api/auth/agent/register.js")
-    const { default: markets } = await import("./api/markets.js")
-    const { default: products } = await import("./api/products.js")
-    const { default: predictPrice } = await import("./api/predict-price.js")
-    const { default: farmerDashboard } = await import("./api/farmer/dashboard.js")
-    const { default: agentDashboard } = await import("./api/agent/dashboard.js")
-    const { default: marketComparison } = await import("./api/market-comparison.js")
-
-    // Authentication Routes
-    app.post("/api/auth/farmer/login", farmerLogin)
-    app.post("/api/auth/agent/login", agentLogin)
-    app.post("/api/auth/farmer/register", farmerRegister)
-    app.post("/api/auth/agent/register", agentRegister)
-
-    // Market Routes
-    app.get("/api/markets", markets)
-    app.post("/api/markets", markets)
-    app.delete("/api/markets/:id", (req, res) => {
-      req.query.id = req.params.id
-      markets(req, res)
-    })
-
-    // Product Routes
-    app.get("/api/products", products)
-    app.post("/api/products", products)
-    app.delete("/api/products/:id", (req, res) => {
-      req.query.id = req.params.id
-      products(req, res)
-    })
-
-    // Additional product routes
-    app.get("/api/products/by-name/:name", async (req, res) => {
-      try {
-        req.method = "GET"
-        req.params.productName = req.params.name
-        await products(req, res)
-      } catch (error) {
-        res.status(500).json({ error: "Internal server error" })
-      }
-    })
-
-    app.get("/api/products/by-market/:marketId", async (req, res) => {
-      try {
-        req.method = "GET"
-        req.params.marketId = req.params.marketId
-        await products(req, res)
-      } catch (error) {
-        res.status(500).json({ error: "Internal server error" })
-      }
-    })
-
-    // Prediction Routes
-    app.post("/api/predict-price", predictPrice)
-
-    // Dashboard Routes
-    app.get("/api/farmer/dashboard", farmerDashboard)
-    app.get("/api/agent/dashboard", agentDashboard)
-
-    // Market Comparison
-    app.get("/api/market-comparison", marketComparison)
-
-    // Agent specific routes
-    app.get("/api/agent/markets", async (req, res) => {
-      try {
-        const token = req.headers.authorization?.split(" ")[1]
-        if (!token) {
-          return res.status(401).json({ message: "No token provided" })
-        }
-
-        const jwt = await import("jsonwebtoken")
-        const decoded = jwt.default.verify(token, process.env.JWT_SECRET || "your-secret-key")
-
-        if (decoded.type !== "agent") {
-          return res.status(403).json({ message: "Access denied" })
-        }
-
-        const { getDB } = await import("./utils/database.js")
-        const { ObjectId } = await import("mongodb")
-        const db = getDB()
-
-        const agentMarkets = await db
-          .collection("markets")
-          .find({
-            agentId: new ObjectId(decoded.id),
-          })
-          .toArray()
-
-        res.json(agentMarkets)
-      } catch (error) {
-        console.error("Agent markets error:", error)
-        res.status(500).json({ message: "Internal server error" })
-      }
-    })
-
-    app.get("/api/agent/products", async (req, res) => {
-      try {
-        const token = req.headers.authorization?.split(" ")[1]
-        if (!token) {
-          return res.status(401).json({ message: "No token provided" })
-        }
-
-        const jwt = await import("jsonwebtoken")
-        const decoded = jwt.default.verify(token, process.env.JWT_SECRET || "your-secret-key")
-
-        if (decoded.type !== "agent") {
-          return res.status(403).json({ message: "Access denied" })
-        }
-
-        const { getDB } = await import("./utils/database.js")
-        const { ObjectId } = await import("mongodb")
-        const db = getDB()
-
-        const agentProducts = await db
-          .collection("products")
-          .aggregate([
-            { $match: { agentId: new ObjectId(decoded.id) } },
-            {
-              $lookup: {
-                from: "markets",
-                localField: "marketId",
-                foreignField: "_id",
-                as: "market",
-              },
-            },
-            { $unwind: "$market" },
-            {
-              $project: {
-                name: 1,
-                sellingPrice: 1,
-                buyingPrice: 1,
-                stock: 1,
-                marketName: "$market.name",
-                createdAt: 1,
-              },
-            },
-          ])
-          .toArray()
-
-        res.json(agentProducts)
-      } catch (error) {
-        console.error("Agent products error:", error)
-        res.status(500).json({ message: "Internal server error" })
-      }
-    })
-
-    console.log("✅ API routes configured successfully")
+    const db = getDB()
+    // Mock farmer data for now - in production, get from JWT token
+    const farmerData = {
+      name: "Sample Farmer",
+      email: "farmer@example.com",
+      location: "Sample Location",
+      totalProducts: await db.collection("products").countDocuments(),
+      totalMarkets: await db.collection("markets").countDocuments(),
+    }
+    console.log("[v0] Farmer dashboard data retrieved successfully")
+    res.json({ success: true, data: farmerData })
   } catch (error) {
-    console.error("❌ Failed to setup routes:", error)
-    throw error
+    console.log("[v0] Error fetching farmer dashboard:", error.message)
+    res.status(500).json({ success: false, error: error.message })
   }
-}
+})
 
-// Define all your HTML file routes explicitly
-const htmlFiles = [
-  "index.html",
-  "farmer-login.html",
-  "farmer-register.html",
-  "farmer-dashboard.html",
-  "farmer-markets.html",
-  "farmer-profile.html",
-  "farmer-settings.html",
-  "farmer-transactions.html",
-  "agent-login.html",
-  "agent-register.html",
-  "agent-dashboard.html",
-  "agent-analytics.html",
-  "disease-identification.html",
-  "pest-detection.html",
-  "control-methods.html",
-  "organic-solutions.html",
-  "weather.html",
-  "soil-testing.html",
-  "soil-improvement.html",
-  "Landcare.html",
-  "market.html",
-]
+app.get("/api/agent/dashboard", async (req, res) => {
+  console.log("[v0] Agent dashboard data requested")
+  try {
+    const db = getDB()
+    // Mock agent data for now - in production, get from JWT token
+    const agentData = {
+      name: "Sample Agent",
+      email: "agent@example.com",
+      location: "Sample Location",
+      totalProducts: await db.collection("products").countDocuments(),
+      totalMarkets: await db.collection("markets").countDocuments(),
+    }
+    console.log("[v0] Agent dashboard data retrieved successfully")
+    res.json({ success: true, data: agentData })
+  } catch (error) {
+    console.log("[v0] Error fetching agent dashboard:", error.message)
+    res.status(500).json({ success: false, error: error.message })
+  }
+})
 
-// Serve HTML files - Root route
+// Static file serving
+app.use(express.static(__dirname))
+
+// Root route
 app.get("/", (req, res) => {
+  console.log("[v0] Root route accessed, serving index.html")
   res.sendFile(path.join(__dirname, "index.html"))
 })
 
-// Handle all HTML file routes with proper error handling
-htmlFiles.forEach((file) => {
-  const routeName = file.replace(".html", "")
-
-  // Route without .html extension
-  app.get(`/${routeName}`, (req, res) => {
-    const filePath = path.join(__dirname, file)
-    res.sendFile(filePath, (err) => {
-      if (err) {
-        console.error(`Error serving ${file}:`, err)
-        res.status(404).send(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>Page Not Found</title>
-            <style>
-              body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-              .error { color: #e74c3c; }
-              .links { margin-top: 20px; }
-              .links a { margin: 0 10px; color: #3498db; text-decoration: none; }
-            </style>
-          </head>
-          <body>
-            <h1 class="error">404 - Page Not Found</h1>
-            <p>The page "${routeName}" could not be found.</p>
-            <div class="links">
-              <a href="/">Home</a>
-              <a href="/farmer-login">Farmer Login</a>
-              <a href="/agent-login">Agent Login</a>
-              <a href="/disease-identification">Disease ID</a>
-              <a href="/soil-testing">Soil Testing</a>
-            </div>
-          </body>
-          </html>
-        `)
-      }
-    })
-  })
-
-  // Route with .html extension
-  app.get(`/${file}`, (req, res) => {
-    const filePath = path.join(__dirname, file)
-    res.sendFile(filePath, (err) => {
-      if (err) {
-        console.error(`Error serving ${file}:`, err)
-        res.status(404).send(`Page not found: ${file}`)
-      }
-    })
-  })
+// Market comparison API
+app.all("/api/market-comparison", (req, res) => {
+  console.log("[v0] Market comparison API route accessed")
+  marketComparisonHandler(req, res)
 })
 
-// Catch-all route for any other requests to HTML-like paths
-app.get("/:page", (req, res) => {
-  const page = req.params.page
-
-  // Skip API routes
-  if (page.startsWith("api")) {
-    return res.status(404).json({ error: "API route not found" })
-  }
-
-  const htmlFile = `${page}.html`
-  const filePath = path.join(__dirname, htmlFile)
-
-  // Try to serve the file
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error(`File not found: ${htmlFile}`)
-      res.status(404).send(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Page Not Found</title>
-          <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-            .error { color: #e74c3c; }
-            .available { margin-top: 30px; }
-            .available ul { list-style: none; padding: 0; }
-            .available li { margin: 5px 0; }
-            .available a { color: #3498db; text-decoration: none; }
-          </style>
-        </head>
-        <body>
-          <h1 class="error">404 - Page Not Found</h1>
-          <p>The page "${page}" does not exist.</p>
-          <div class="available">
-            <h3>Available Pages:</h3>
-            <ul>
-              ${htmlFiles.map((f) => `<li><a href="/${f.replace(".html", "")}">${f.replace(".html", "").replace("-", " ").toUpperCase()}</a></li>`).join("")}
-            </ul>
-          </div>
-        </body>
-        </html>
-      `)
-    }
-  })
+// Price prediction API
+app.all("/api/predict-price", (req, res) => {
+  console.log("[v0] Price prediction API route accessed")
+  predictPriceHandler(req, res)
 })
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error("Error:", err.stack)
-  res.status(500).json({
-    error: "Something went wrong!",
-    message: process.env.NODE_ENV === "development" ? err.message : "Internal server error",
-  })
-})
-
-// 404 handler - this should be last
+// 404 handler
 app.use((req, res) => {
-  console.log(`404 - Route not found: ${req.method} ${req.path}`)
+  console.log(`[v0] 404 - Route not found: ${req.method} ${req.path}`)
   res.status(404).json({
-    error: "Route not found",
-    path: req.path,
-    method: req.method,
-    message: "The requested resource could not be found.",
+    success: false,
+    error: `Route not found: ${req.method} ${req.path}`,
   })
+})
+
+// Error handler
+app.use((error, req, res, next) => {
+  console.log("[v0] Server error:", error.message)
+  res.status(500).json({ success: false, error: error.message })
 })
 
 // Start server
 async function startServer() {
   try {
-    // Setup routes and database connection
-    await setupRoutes()
+    console.log("[v0] Starting AgriTech AI server...")
+    console.log("[v0] Connecting to database...")
 
-    // Start server
+    await connectDB()
+    console.log("[v0] Database connected successfully")
+
+    console.log("[v0] Initializing database collections...")
+    await initializeCollections()
+    console.log("[v0] Database collections initialized")
+
     app.listen(PORT, () => {
-      console.log(`🚀 AgriTech AI System running on http://localhost:${PORT}`)
-      console.log(`🏥 Health check: http://localhost:${PORT}/api/health`)
-      console.log(`📊 Environment: ${process.env.NODE_ENV || "development"}`)
-      console.log(`🌱 Farmer Portal: http://localhost:${PORT}/farmer-login`)
-      console.log(`👨‍💼 Agent Portal: http://localhost:${PORT}/agent-login`)
-      console.log("\n📋 Available Pages:")
-      htmlFiles.forEach((file) => {
-        const route = file.replace(".html", "")
-        console.log(`   http://localhost:${PORT}/${route}`)
-      })
-      console.log("\n📋 Available API Endpoints:")
-      console.log("   POST /api/auth/farmer/login")
-      console.log("   POST /api/auth/agent/login")
-      console.log("   POST /api/auth/farmer/register")
-      console.log("   POST /api/auth/agent/register")
-      console.log("   GET  /api/markets")
-      console.log("   GET  /api/products")
-      console.log("   POST /api/predict-price")
-      console.log("   GET  /api/farmer/dashboard")
-      console.log("   GET  /api/agent/dashboard")
+      console.log(`[v0] ✅ Server running on port ${PORT}`)
+      console.log(`[v0] ✅ Server started at ${new Date().toISOString()}`)
+      console.log(`[v0] 🌐 Access your app at http://localhost:${PORT}`)
     })
   } catch (error) {
-    console.error("❌ Failed to start server:", error)
+    console.log("[v0] ❌ Failed to start server:", error.message)
     process.exit(1)
   }
 }
-
-// Graceful shutdown
-process.on("SIGINT", async () => {
-  console.log("\n🛑 Shutting down server...")
-  await closeDB()
-  process.exit(0)
-})
-
-process.on("SIGTERM", async () => {
-  console.log("\n🛑 Shutting down server...")
-  await closeDB()
-  process.exit(0)
-})
 
 startServer()

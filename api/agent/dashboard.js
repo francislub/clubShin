@@ -24,9 +24,23 @@ export default async function handler(req, res) {
     const myMarkets = await db.collection("markets").countDocuments({ agentId: new ObjectId(decoded.id) })
     const activeProducts = await db.collection("products").countDocuments({ agentId: new ObjectId(decoded.id) })
 
-    // Mock transaction and revenue data
-    const totalTransactions = activeProducts * 10
-    const totalRevenue = totalTransactions * 100
+    // Calculate real revenue from products (mock transactions based on stock levels)
+    const products = await db
+      .collection("products")
+      .find({ agentId: new ObjectId(decoded.id) })
+      .toArray()
+    let totalRevenue = 0
+    let totalTransactions = 0
+
+    products.forEach((product) => {
+      const estimatedSales = Math.floor(product.stock * 0.3) // Assume 30% of stock sold
+      const profit = (product.sellingPrice - product.buyingPrice) * estimatedSales
+      totalRevenue += profit
+      totalTransactions += estimatedSales
+    })
+
+    // Convert revenue to UGX (1 USD = 3700 UGX)
+    const totalRevenueUGX = totalRevenue * 3700
 
     // Get agent name
     const agent = await db.collection("agents").findOne({ _id: new ObjectId(decoded.id) })
@@ -35,8 +49,8 @@ export default async function handler(req, res) {
       myMarkets,
       activeProducts,
       totalTransactions,
-      totalRevenue,
-      agentName: agent?.name || "Agent",
+      totalRevenue: totalRevenueUGX, // Now in UGX
+      agentName: agent?.name || agent?.fullName || "Agent",
     })
   } catch (error) {
     console.error("Agent dashboard error:", error)
