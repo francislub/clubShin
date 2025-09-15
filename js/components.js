@@ -41,7 +41,7 @@ class ComponentLoader {
         <li><a class="dropdown-item" href="#disease-prevention"><i class="fas fa-shield-alt me-2"></i>Prevention Guide</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-warning"><i class="fas fa-spider me-2"></i>Pest Control</h6></li>
-        <li><a class="dropdown-item" href="#pest-detection"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
+        <li><a class="dropdown-item" href="https://legacypotatodoctor.vercel.app"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
         <li><a class="dropdown-item" href="#control-methods"><i class="fas fa-spray-can me-2"></i>Control Methods</a></li>
         <li><a class="dropdown-item" href="#organic-solutions"><i class="fas fa-leaf me-2"></i>Organic Solutions</a></li>
       </ul>
@@ -415,7 +415,7 @@ class ComponentLoader {
         <li><a class="dropdown-item" href="disease-prevention.html"><i class="fas fa-shield-alt me-2"></i>Prevention Guide</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><h6 class="dropdown-header text-warning"><i class="fas fa-spider me-2"></i>Pest Control</h6></li>
-        <li><a class="dropdown-item" href="pest-detection.html"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
+        <li><a class="dropdown-item" href="https://legacypotatodoctor.vercel.app"><i class="fas fa-eye me-2"></i>Pest Detection</a></li>
         <li><a class="dropdown-item" href="control-methods.html"><i class="fas fa-spray-can me-2"></i>Control Methods</a></li>
         <li><a class="dropdown-item" href="organic-solutions.html"><i class="fas fa-leaf me-2"></i>Organic Solutions</a></li>
       </ul>
