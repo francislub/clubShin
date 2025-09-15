@@ -13,19 +13,31 @@ export default async function handler(req, res) {
 
     const { email, password } = req.body
 
+    console.log("[v0] Farmer login attempt for:", email)
+
     if (!email || !password) {
+      console.log("[v0] Missing email or password")
       return res.status(400).json({ message: "Email and password are required" })
     }
+
+    const allFarmers = await farmers.find({}).toArray()
+    console.log("[v0] Total farmers in database:", allFarmers.length)
+    console.log(
+      "[v0] Farmer emails in database:",
+      allFarmers.map((f) => f.email),
+    )
 
     // Find farmer by email
     const farmer = await farmers.findOne({ email })
     if (!farmer) {
+      console.log("[v0] Farmer not found:", email)
       return res.status(401).json({ message: "Invalid credentials" })
     }
 
     // Check password
     const isValidPassword = await bcrypt.compare(password, farmer.password)
     if (!isValidPassword) {
+      console.log("[v0] Invalid password for farmer:", email)
       return res.status(401).json({ message: "Invalid credentials" })
     }
 
@@ -36,13 +48,18 @@ export default async function handler(req, res) {
       { expiresIn: "24h" },
     )
 
+    console.log("[v0] Farmer login successful:", email)
+
+    const displayName = farmer.name || `${farmer.firstName || ""} ${farmer.lastName || ""}`.trim()
+
     res.status(200).json({
       token,
-      name: farmer.name,
+      name: displayName,
       email: farmer.email,
+      type: "farmer",
     })
   } catch (error) {
-    console.error("Login error:", error)
+    console.error("[v0] Farmer login error:", error)
     res.status(500).json({ message: "Internal server error" })
   }
 }

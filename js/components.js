@@ -36,7 +36,7 @@ class ComponentLoader {
       </a>
       <ul class="dropdown-menu shadow-lg border-0" aria-labelledby="pestsDropdown">
         <li><h6 class="dropdown-header text-success"><i class="fas fa-microscope me-2"></i>Disease Management</h6></li>
-        <li><a class="dropdown-item" href="#disease-identification"><i class="fas fa-search me-2"></i>Disease Identification</a></li>
+        <li><a class="dropdown-item" href="https://legacypotatodoctor.vercel.app"><i class="fas fa-search me-2"></i>Disease Identification</a></li>
         <li><a class="dropdown-item" href="#treatment-solutions"><i class="fas fa-pills me-2"></i>Treatment Solutions</a></li>
         <li><a class="dropdown-item" href="#disease-prevention"><i class="fas fa-shield-alt me-2"></i>Prevention Guide</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -410,7 +410,7 @@ class ComponentLoader {
       </a>
       <ul class="dropdown-menu shadow-lg border-0" aria-labelledby="pestsDropdown">
         <li><h6 class="dropdown-header text-success"><i class="fas fa-microscope me-2"></i>Disease Management</h6></li>
-        <li><a class="dropdown-item" href="disease-identification.html"><i class="fas fa-search me-2"></i>Disease Identification</a></li>
+        <li><a class="dropdown-item" href="https://legacypotatodoctor.vercel.app"><i class="fas fa-search me-2"></i>Disease Identification</a></li>
         <li><a class="dropdown-item" href="treatment-solutions.html"><i class="fas fa-pills me-2"></i>Treatment Solutions</a></li>
         <li><a class="dropdown-item" href="disease-prevention.html"><i class="fas fa-shield-alt me-2"></i>Prevention Guide</a></li>
         <li><hr class="dropdown-divider"></li>

@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken"
 import { getDB } from "../../utils/database.js"
 
 export default async function handler(req, res) {
+  console.log("[v0] Agent dashboard data requested")
+
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed" })
   }
@@ -19,6 +21,7 @@ export default async function handler(req, res) {
     }
 
     const db = getDB()
+    console.log("[v0] 📊 Database instance retrieved")
 
     // Get agent-specific statistics
     const myMarkets = await db.collection("markets").countDocuments({ agentId: new ObjectId(decoded.id) })
@@ -45,6 +48,7 @@ export default async function handler(req, res) {
     // Get agent name
     const agent = await db.collection("agents").findOne({ _id: new ObjectId(decoded.id) })
 
+    console.log("[v0] Agent dashboard data retrieved successfully")
     res.status(200).json({
       myMarkets,
       activeProducts,
@@ -53,7 +57,7 @@ export default async function handler(req, res) {
       agentName: agent?.name || agent?.fullName || "Agent",
     })
   } catch (error) {
-    console.error("Agent dashboard error:", error)
+    console.error("[v0] Agent dashboard error:", error)
     res.status(500).json({ message: "Internal server error" })
   }
 }
